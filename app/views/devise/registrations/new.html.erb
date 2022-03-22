@@ -3,9 +3,23 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+  <%# 法人または一般の属性を選択するフォーム %>
+  <div class="field">
+    <%= f.label :characteristic_general, "一般" %>
+    <%= f.radio_button :characteristic, :general %>
+    <%= f.label :characteristic_general, "法人" %>
+    <%= f.radio_button :characteristic, :corporation %>
+  </div>
+
+  <%# お名前を入力するフォーム %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email %>
   </div>
 
   <div class="field">
