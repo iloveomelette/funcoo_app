@@ -9,6 +9,7 @@ AllCops:
     - 'assets/**/*'
     - 'bin/**/*'
     - 'db/schema.rb'
+    - 'db/migrate/*'
     - 'log/**/*'
     - 'node_modules/**/*'
     - 'tmp/**/*'
