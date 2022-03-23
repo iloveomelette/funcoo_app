@@ -1,0 +1,26 @@
+<div>
+  <%= form_with model: @recipe, local: true do |form| %>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title, required: true %>
+  </div>
+  <div>
+    <%= form.label :content %>
+    <%= form.text_field :content, required: true %>
+  </div>
+  <%# 調理時間、調理費用、カロリー入力欄 %>
+  <div>
+    <%= form.label :cooking_time %>
+    <%= form.number_field :cooking_time, in: 0..200 %>
+    <%= form.label :cooking_cost %>
+    <%= form.number_field :cooking_cost, in: 0..10000 %>
+    <%= form.label :calorie %>
+    <%= form.number_field :calorie, in: 0..3000 %>
+  </div>
+  <div>
+    <%= form.label :menu_image %>
+    <%= form.file_field :menu_image %>
+  </div>
+  <%= form.submit '送信' %>
+  <% end %>
+</div>

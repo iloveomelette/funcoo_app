@@ -43,3 +43,9 @@ Style/WordArray:
 
 Style/SymbolArray:
   Enabled: false
+
+# プロック内の行数を除外
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'db/**/*'
