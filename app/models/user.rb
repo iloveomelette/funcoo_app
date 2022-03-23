@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :recipes, dependent: :destroy
+
   validates :name, presence: true
   validates :characteristic, presence: true
   # 法人または一般の属性を定義
