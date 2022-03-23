@@ -1,0 +1,11 @@
+<div>
+  <div><%= recipe.menu_image %></div>
+  <p><%= recipe.title %></p>
+  <p><%= recipe.content %></p>
+  <p>調理時間： <%= recipe.cooking_time %></p>
+  <p>目安費用： <%= recipe.cooking_cost %></p>
+  <p>カロリー： <%= recipe.calorie %></p>
+  <p><%= link_to '編集', edit_recipe_path(recipe) %></p>
+  <p><%= link_to '削除', recipe_path(recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} %></p>
+  <p><%= link_to '詳しく見る', recipes_path %></p>
+</div>
