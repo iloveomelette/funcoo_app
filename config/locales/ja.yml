@@ -2,9 +2,20 @@ ja:
   activerecord:
     models:
       user: ユーザ
+      recipe: レシピ
     attributes:
       user:
         name: お名前
         email: メールアドレス
         introduction: 自己紹介
         profile_image: プロフィール画像
+      recipe:
+        title: タイトル
+        content: 内容
+        menu_image: 料理イメージ
+        cooking_time: 調理時間
+        cooking_cost: 目安費用
+        calorie: カロリー
+  time:
+    formats:
+      default: '%Y年%-m月%-d日'
