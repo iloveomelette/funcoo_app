@@ -24,7 +24,10 @@ class RecipesController < ApplicationController
 
   def edit; end
 
-  def update; end
+  def update
+    @recipe.update!(recipe_params)
+    redirect_to @recipe
+  end
 
   def destroy
     if @recipe.destroy
@@ -43,6 +46,6 @@ class RecipesController < ApplicationController
   # 自身のIDに対応する投稿を取得するメソッド
   def set_recipe
     @recipe = current_user.recipes.find_by(id: params[:id])
-    redirect_to recipes_path, alert: "権限がありません"
+    redirect_to recipes_path, alert: "権限がありません" if @recipe.nil?
   end
 end
