@@ -7,5 +7,5 @@
   <p>カロリー： <%= recipe.calorie %></p>
   <p><%= link_to '編集', edit_recipe_path(recipe) %></p>
   <p><%= link_to '削除', recipe_path(recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} %></p>
-  <p><%= link_to '詳しく見る', recipes_path %></p>
+  <p><%= link_to '詳しく見る', recipe %></p>
 </div>

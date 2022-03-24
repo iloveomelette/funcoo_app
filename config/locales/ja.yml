@@ -16,3 +16,6 @@ ja:
         cooking_time: 調理時間
         cooking_cost: 目安費用
         calorie: カロリー
+  time:
+    formats:
+      default: '%Y年%-m月%-d日'
