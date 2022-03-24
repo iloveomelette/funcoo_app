@@ -7,10 +7,14 @@
       更新日 <%= l @recipe.updated_at %>
     <% end %>
   </p>
+  <p><%= link_to '編集', edit_recipe_path(@recipe) if current_user.id == @recipe.user_id %></p>
   <p>
     調理時間 <%= @recipe.cooking_time %>分
     目安費用 <%= @recipe.cooking_cost %>円
     カロリー <%= @recipe.calorie %>kcal
   </p>
   <p><%= @recipe.content %></p>
+  <% if current_user.id == @recipe.user_id %>
+    <p><%= link_to '削除', recipe_path(@recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} %></p>
+  <% end %>
 </div>
