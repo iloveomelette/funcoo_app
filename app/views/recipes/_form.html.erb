@@ -27,7 +27,7 @@
       </div>
       <div class="field">
         <%= form.label :menu_image %>
-        <%= form.file_field :menu_image %>
+        <%= form.file_field :menu_image, accept: "image/png,image/jpeg,image/gif" %>
       </div>
       <div><%= form.submit '投稿する' %></div>
     <% end %>
