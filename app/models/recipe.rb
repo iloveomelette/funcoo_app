@@ -6,4 +6,7 @@ class Recipe < ApplicationRecord
   validates :cooking_time, length: { in: 0..200 }
   validates :cooking_cost, length: { in: 0..10_000 }
   validates :calorie, length: { in: 0..3000 }
+
+  # CarrierWaveとmenu_imageカラム、profile_imageカラムの連携
+  mount_uploader :menu_image, MenuImageUploader
 end
