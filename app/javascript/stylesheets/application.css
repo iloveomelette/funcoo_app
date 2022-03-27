@@ -21,3 +21,8 @@
 .nav-link {
   @apply mx-10 text-tertiary font-bold;
 }
+
+/* ****新規投稿**** */
+.recipe-container {
+  @apply py-20 w-2/3 m-auto;
+}
