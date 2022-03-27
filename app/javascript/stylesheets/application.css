@@ -1,3 +1,28 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@layer base {
+  h1 {
+    @apply text-5xl;
+  }
+  h2 {
+    @apply text-4xl;
+  }
+}
+
+/* ****ヘッダー**** */
+.header-container {
+  @apply text-center bg-primary h-20 flex border-b-8 border-secondary;
+}
+.nav-wrapper {
+  @apply w-10/12 m-auto;
+}
+.nav-link {
+  @apply mx-10 text-tertiary font-bold;
+}
+
+/* ****新規投稿**** */
+.recipe-container {
+  @apply py-20 w-2/3 m-auto;
+}

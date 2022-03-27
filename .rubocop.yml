@@ -49,3 +49,7 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'db/**/*'
+Rails/I18nLocaleTexts:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 20

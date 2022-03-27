@@ -1,20 +1,26 @@
-<div>
-  <%= @recipe.menu_image %>
-  <p><%= @recipe.title %></p>
-  <p>
-    投稿日 <%= l @recipe.created_at %>
-    <% if @recipe.created_at != @recipe.updated_at %>
-      更新日 <%= l @recipe.updated_at %>
+<article class="recipe-container">
+  <header>
+    <div class="flex justify-end">
+      <p>
+        投稿日 <%= l @recipe.created_at %>
+        <% if @recipe.created_at != @recipe.updated_at %>
+          更新日 <%= l @recipe.updated_at %>
+        <% end %>
+      </p>
+      <p><%= link_to '編集', edit_recipe_path(@recipe) if current_user.id == @recipe.user_id %></p>
+    </div>
+    <div><%= @recipe.menu_image %></div>
+    <div class="text-center"><h2><%= @recipe.title %></h2></div>
+  </header>
+  <div class="flex justify-around w-8/12 m-auto">
+    <p>調理時間 <%= @recipe.cooking_time %>分</p>
+    <p>目安費用 <%= @recipe.cooking_cost %>円</p>
+    <p>カロリー <%= @recipe.calorie %>kcal</p>
+  </div>
+  <div>
+    <p class="text-xl"><%= @recipe.content %></p>
+    <% if current_user.id == @recipe.user_id %>
+      <p><%= link_to '削除', recipe_path(@recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} %></p>
     <% end %>
-  </p>
-  <p><%= link_to '編集', edit_recipe_path(@recipe) if current_user.id == @recipe.user_id %></p>
-  <p>
-    調理時間 <%= @recipe.cooking_time %>分
-    目安費用 <%= @recipe.cooking_cost %>円
-    カロリー <%= @recipe.calorie %>kcal
-  </p>
-  <p><%= @recipe.content %></p>
-  <% if current_user.id == @recipe.user_id %>
-    <p><%= link_to '削除', recipe_path(@recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} %></p>
-  <% end %>
-</div>
+  </div>
+</article>
