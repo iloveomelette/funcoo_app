@@ -1,7 +1,7 @@
 class ProfileImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -28,9 +28,13 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
-  # end
+  # サムネイル用の画像サイズを指定する
+  version :thumb do
+    process resize_to_fit: [200, 200]
+  end
+
+  # 投稿画像サイズをリサイズ
+  process resize_to_limit: [800, 800]
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -44,10 +48,12 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+  # 投稿画像のファイルサイズを指定
   def size_range
     0..5.megabytes
   end
 
+  # ファイル名をランダムに変更
   def filename
     "#{secure_token}.#{file.extension}" if original_filename.present?
   end
