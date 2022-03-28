@@ -9,9 +9,11 @@
       </p>
       <p><%= link_to '編集', edit_recipe_path(@recipe) if current_user.id == @recipe.user_id %></p>
     </div>
-    <div><%= @recipe.menu_image %></div>
+    
+    <div><%= image_tag @recipe.menu_image.url %></div>
     <div class="text-center"><h2><%= @recipe.title %></h2></div>
   </header>
+  
   <div class="flex justify-around w-8/12 m-auto">
     <p>調理時間 <%= @recipe.cooking_time %>分</p>
     <p>目安費用 <%= @recipe.cooking_cost %>円</p>
