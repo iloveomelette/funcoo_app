@@ -1,6 +1,13 @@
 <article>
   <div>
-    <div><%= recipe.menu_image %></div>
+    <%#　投稿画像があればサムネイル用を表示、ない場合はデフォルト画像を表示 %>
+    <div>
+      <% if recipe.menu_image.present? %>
+        <%= image_tag recipe.menu_image.thumb.url %>
+      <% else %>
+        <%= image_tag recipe.menu_image.url %>
+      <% end %>
+    </div>
     <p><%= recipe.title %></p>
     <p>調理時間： <%= recipe.cooking_time %>分</p>
     <p>目安費用： <%= recipe.cooking_cost %>円</p>
