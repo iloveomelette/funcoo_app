@@ -10,9 +10,7 @@
       <p><%= link_to '編集', edit_recipe_path(@recipe) if current_user.id == @recipe.user_id %></p>
     </div>
     
-    <% if @recipe.menu_image? %>
-      <div><%= image_tag @recipe.menu_image.url %></div>
-    <% end %>
+    <div><%= image_tag @recipe.menu_image.url %></div>
     <div class="text-center"><h2><%= @recipe.title %></h2></div>
   </header>
   
