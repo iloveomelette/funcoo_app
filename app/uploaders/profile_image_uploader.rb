@@ -18,7 +18,7 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
     # For Rails 3.1+ asset pipeline compatibility:
     # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
 
-    "/images/fallback/" + [version_name, "default_user.png"].compact.join("_")
+    "/images/fallback/#{[version_name, 'default_user.png'].compact.join('_')}"
   end
   # Process files as they are uploaded:
   # process scale: [200, 300]
@@ -45,6 +45,17 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
   # end
 
   def size_range
-    (0..5).megabytes
+    0..5.megabytes
+  end
+
+  def filename
+    "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+
+  protected
+
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
 end
