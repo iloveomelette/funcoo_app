@@ -53,3 +53,15 @@ Rails/I18nLocaleTexts:
   Enabled: false
 Metrics/MethodLength:
   Max: 20
+
+# デフォルト値をnested形式からcompact形式に変更
+ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    - 'app/channels/application_cable/*'
+    - 'config/*'
+
+# deviseのアクションのため除外
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/users/*'
