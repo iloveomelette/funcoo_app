@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :recipes, dependent: :destroy
   has_many :makes, dependent: :destroy
+  has_many :maked_recipes, through: :makes, source: :recipe
 
   validates :name, presence: true
   validates :characteristic, presence: true
