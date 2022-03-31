@@ -8,5 +8,7 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
 
-  resources :recipes
+  resources :recipes do
+    resource :makes, only: %i[create destroy]
+  end
 end
