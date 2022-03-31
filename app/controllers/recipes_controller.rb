@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[edit update destroy]
 
   def index
-    @recipes = Recipe.includes(:user).order(created_at: :desc)
+    @recipes = Recipe.includes(:user, :makes).order(created_at: :desc)
   end
 
   def new

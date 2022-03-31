@@ -11,7 +11,7 @@ class Recipe < ApplicationRecord
 
   # 「作ってみた!」を押しているかどうか判定するメソッド
   def maked_by?(user)
-    makes.exists?(user_id: user.id)
+    makes.any? { |make| make.user_id == user.id }
   end
 
   # CarrierWaveとmenu_imageカラム、profile_imageカラムの連携
