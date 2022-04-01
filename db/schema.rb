@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_23_031425) do
+ActiveRecord::Schema.define(version: 2022_04_01_120311) do
+
+  create_table "makes", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_makes_on_recipe_id"
+    t.index ["user_id", "recipe_id"], name: "index_makes_on_user_id_and_recipe_id", unique: true
+    t.index ["user_id"], name: "index_makes_on_user_id"
+  end
 
   create_table "recipes", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -22,6 +32,7 @@ ActiveRecord::Schema.define(version: 2022_03_23_031425) do
     t.integer "calorie"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "makes_count", default: 0
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
@@ -42,5 +53,7 @@ ActiveRecord::Schema.define(version: 2022_03_23_031425) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "makes", "recipes"
+  add_foreign_key "makes", "users"
   add_foreign_key "recipes", "users"
 end

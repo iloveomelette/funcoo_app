@@ -21,8 +21,17 @@
   </div>
   <div>
     <p class="text-xl"><%= @recipe.content %></p>
-    <% if current_user.id == @recipe.user_id %>
-      <p><%= link_to '削除', recipe_path(@recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} %></p>
-    <% end %>
   </div>
+  <p id="recipe-<%= @recipe.id %>">
+    <% if @recipe.maked_by?(current_user) %>
+      <%# 「作ってみた!」を押している状態 %>
+      <%= render "make", recipe: @recipe %>
+    <% else %>
+      <%# 「作ってみた!」を押していない状態 %>
+      <%= render "nonmake", recipe: @recipe %>
+    <% end %>
+  </p>
+  <% if current_user.id == @recipe.user_id %>
+    <p><%= link_to '削除', recipe_path(@recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} %></p>
+  <% end %>
 </article>
