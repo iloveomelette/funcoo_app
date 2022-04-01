@@ -1,3 +1,5 @@
 <%# 「作ってみた!」を押していない状態 %>
-<%= link_to "☆", recipe_makes_path(recipe), method: :post, remote: true %>
-<%= recipe.makes_count %>
+<%= link_to recipe_makes_path(recipe), method: :post, remote: true do %>
+  <i class="fa-regular fa-thumbs-up"></i>
+  <%= recipe.makes_count %>
+<% end %>
