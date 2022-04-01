@@ -16,7 +16,7 @@
       <p><%= link_to '編集', edit_recipe_path(recipe) %></p>
       <p><%= link_to '削除', recipe_path(recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} %></p>
     <% end %>
-    <p>
+    <p id="recipe-<%= recipe.id %>">
       <% if recipe.maked_by?(current_user) %>
         <%# 「作ってみた!」を押している状態 %>
         <%= render "make", recipe: recipe %>

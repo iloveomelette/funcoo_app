@@ -22,7 +22,7 @@
   <div>
     <p class="text-xl"><%= @recipe.content %></p>
   </div>
-  <p>
+  <p id="recipe-<%= @recipe.id %>">
     <% if @recipe.maked_by?(current_user) %>
       <%# 「作ってみた!」を押している状態 %>
       <%= render "make", recipe: @recipe %>
