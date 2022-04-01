@@ -1,11 +1,11 @@
 class MakesController < ApplicationController
   def create
-    current_user.makes.create!(recipe_id: params[:recipe_id])
-    redirect_back(fallback_location: recipes_path)
+    @recipe = Recipe.find(params[:recipe_id])
+    current_user.makes.create!(recipe_id: @recipe.id)
   end
 
   def destroy
-    current_user.makes.find_by(recipe_id: params[:recipe_id]).destroy!
-    redirect_back(fallback_location: recipes_path)
+    @recipe = Recipe.find(params[:recipe_id])
+    current_user.makes.find_by(recipe_id: @recipe.id).destroy!
   end
 end
