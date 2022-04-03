@@ -9,11 +9,11 @@ class Recipe < ApplicationRecord
   validates :cooking_cost, length: { in: 0..10_000 }
   validates :calorie, length: { in: 0..3000 }
 
+  # CarrierWaveとmenu_imageカラム、profile_imageカラムの連携
+  mount_uploader :menu_image, MenuImageUploader
+
   # 「作ってみた!」を押しているかどうか判定するメソッド
   def maked_by?(user)
     makes.any? { |make| make.user_id == user.id }
   end
-
-  # CarrierWaveとmenu_imageカラム、profile_imageカラムの連携
-  mount_uploader :menu_image, MenuImageUploader
 end
