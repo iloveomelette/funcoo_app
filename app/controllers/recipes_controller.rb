@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.includes(:user, :makes).order(created_at: :desc)
+    @recommend = Recipe.recommend(current_user)
   end
 
   def new
