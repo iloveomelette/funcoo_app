@@ -16,4 +16,12 @@ class Recipe < ApplicationRecord
   def maked_by?(user)
     makes.any? { |make| make.user_id == user.id }
   end
+
+  def self.recommend(user)
+    base_recipes = Make.where(user_id: user.id).order(created_at: :desc)
+    base_recipe = Recipe.find_by(id: base_recipes[5].recipe_id)
+    relation_users = base_recipe.maked_users.ids
+    relation_users_maked = Make.where(user_id: relation_users[0]).order(recipe_id: :desc)
+    Recipe.find_by(id: relation_users_maked[0].recipe_id)
+  end
 end
