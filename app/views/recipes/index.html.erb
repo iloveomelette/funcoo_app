@@ -1,6 +1,17 @@
 <section class="py-20">
   <div class="w-4/5 m-auto">
     <div>
+      <h1>Recomend for you</h1>
+      <div>
+        <% if @recommend.menu_image.present? %>
+          <%= image_tag @recommend.menu_image.thumb.url %>
+        <% else %>
+          <%= image_tag @recommend.menu_image.url %>
+        <% end %>
+      </div>
+      <p><%= @recommend.title %></p>
+    </div>
+    <div>
       <h1>Recipes</h1>
     </div>
     <div class="grid grid-cols-3 gap-4 my-10">
