@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_01_120311) do
+ActiveRecord::Schema.define(version: 2022_04_07_024547) do
+
+  create_table "genres", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.integer "staple_food", default: 0, null: false
+    t.integer "main_dish", default: 0, null: false
+    t.integer "side_dish", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_genres_on_recipe_id"
+  end
 
   create_table "makes", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -53,6 +63,7 @@ ActiveRecord::Schema.define(version: 2022_04_01_120311) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "genres", "recipes"
   add_foreign_key "makes", "recipes"
   add_foreign_key "makes", "users"
   add_foreign_key "recipes", "users"
