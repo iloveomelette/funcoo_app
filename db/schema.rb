@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2022_04_07_024547) do
     t.integer "staple_food", default: 0, null: false
     t.integer "main_dish", default: 0, null: false
     t.integer "side_dish", default: 0, null: false
+    t.integer "country_dish", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_genres_on_recipe_id"

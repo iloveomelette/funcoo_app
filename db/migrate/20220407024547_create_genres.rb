@@ -5,6 +5,7 @@ class CreateGenres < ActiveRecord::Migration[6.1]
       t.integer :staple_food, null: false, default: 0
       t.integer :main_dish, null: false, default: 0
       t.integer :side_dish, null: false, default: 0
+      t.integer :country_dish, null: false, default: 0
 
       t.timestamps
     end
