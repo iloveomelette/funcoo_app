@@ -4,17 +4,18 @@ class RecipesController < ApplicationController
   def index
     @recipes = Recipe.includes(:user, :makes).order(created_at: :desc)
     # レコメンド機能の呼び出し
-    @recommend = Recipe.recommend(current_user)
+    @recommend = Recipe.recommend(current_user) if current_user.characteristic == "general"
   end
 
   def new
-    @recipe = Recipe.new
+    @recipe_form = MakeRecipeForm.new
   end
 
   def create
-    @recipe = current_user.recipes.new(recipe_params)
-    if @recipe.save
-      redirect_to @recipe, notice: "投稿しました!"
+    @recipe_form = MakeRecipeForm.new(recipe_params)
+    if @recipe_form.valid?
+      @recipe_form.save
+      redirect_to recipes_path, notice: "投稿しました!"
     else
       render :new
     end
@@ -24,10 +25,13 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
-  def edit; end
+  def edit
+    @recipe_form = MakeRecipeForm.new(recipe: @recipe)
+  end
 
   def update
-    @recipe.update!(recipe_params)
+    @recipe_form = MakeRecipeForm.new(recipe_params, recipe: @recipe)
+    @recipe_form.update_recipe
     redirect_to @recipe
   end
 
@@ -42,7 +46,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :content, :menu_image, :cooking_time, :cooking_cost, :calorie)
+    params.require(:recipe).permit(:title, :content, :menu_image, :cooking_time, :cooking_cost, :calorie).merge(user_id: current_user.id)
   end
 
   # 自身のIDに対応する投稿を取得するメソッド

@@ -2,6 +2,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_many :makes, dependent: :destroy
   has_many :maked_users, through: :makes, source: :user
+  has_one :genre, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 100 }
   validates :content, presence: true, length: { maximum: 500 }
