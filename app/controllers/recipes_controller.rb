@@ -8,13 +8,13 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = MakeRecipeForm.new
+    @recipe_form = MakeRecipeForm.new
   end
 
   def create
-    @recipe = MakeRecipeForm.new(recipe_params)
-    if @recipe.valid?
-      @recipe.save
+    @recipe_form = MakeRecipeForm.new(recipe_params)
+    if @recipe_form.valid?
+      @recipe_form.save
       redirect_to recipes_path, notice: "投稿しました!"
     else
       render :new
@@ -25,10 +25,13 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
-  def edit; end
+  def edit
+    @recipe_form = MakeRecipeForm.new(recipe: @recipe)
+  end
 
   def update
-    @recipe.update!(recipe_params)
+    @recipe_form = MakeRecipeForm.new(recipe_params, recipe: @recipe)
+    @recipe_form.update_recipe
     redirect_to @recipe
   end
 
@@ -43,7 +46,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:make_recipe_form).permit(:title, :content, :menu_image, :cooking_time, :cooking_cost, :calorie).merge(user_id: current_user.id)
+    params.require(:recipe).permit(:title, :content, :menu_image, :cooking_time, :cooking_cost, :calorie).merge(user_id: current_user.id)
   end
 
   # 自身のIDに対応する投稿を取得するメソッド
