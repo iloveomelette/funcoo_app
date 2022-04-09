@@ -53,6 +53,10 @@ Rails/I18nLocaleTexts:
   Enabled: false
 Metrics/MethodLength:
   Max: 20
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - 'app/forms/*'
 
 # デフォルト値をnested形式からcompact形式に変更
 ClassAndModuleChildren:

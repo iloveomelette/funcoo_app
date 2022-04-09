@@ -46,7 +46,11 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :content, :menu_image, :cooking_time, :cooking_cost, :calorie).merge(user_id: current_user.id)
+    params.require(:make_recipe_form).permit(
+      :title, :content, :menu_image, :cooking_time,
+      :cooking_cost, :calorie,
+      :staple_food, :main_dish, :side_dish, :country_dish
+    ).merge(user_id: current_user.id)
   end
 
   # 自身のIDに対応する投稿を取得するメソッド
