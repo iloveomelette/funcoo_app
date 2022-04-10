@@ -1,6 +1,6 @@
 <div class="recipe-container">
   <div class="recipe-form m-8">
-    <%= form_with model: @recipe_form, url: @recipe_form.persisted? ? recipe_path(@recipe_form) : recipes_path, local: true do |form| %>
+    <%= form_with model: @recipe_form, url: @recipe_form.persisted? ? recipe_path : recipes_path, local: true do |form| %>
       <div>
         <%= form.text_field :title, required: true, placeholder: 'タイトル' %>
       </div>
