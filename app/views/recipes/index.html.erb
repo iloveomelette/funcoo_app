@@ -1,5 +1,13 @@
 <section class="py-20">
   <div class="w-4/5 m-auto">
+    <div>
+      <h1>Search for Recipe</h1>
+      <%= search_form_for @q, url: search_recipes_path do |f| %>
+        <%= f.label :title_cont, "タイトル" %>
+        <%= f.search_field :title %><br>
+        <%= f.submit "検索" %>
+      <% end %>
+    </div>
     <% if current_user.characteristic == "general" %>
       <div>
         <h1>Recomend for you</h1>
