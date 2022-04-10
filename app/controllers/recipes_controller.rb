@@ -3,7 +3,8 @@ class RecipesController < ApplicationController
   PER_PAGE = 20
 
   def index
-    @recipes = Recipe.includes(:user, :makes).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
+    @q = Recipe.ransack(params[:q])
+    @recipes = @q.result.includes(:user, :makes).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
     # レコメンド機能の呼び出し
     @recommend = Recipe.recommend(current_user) if current_user.characteristic == "general"
   end
