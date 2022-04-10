@@ -3,8 +3,22 @@
     <div>
       <h1>Search for Recipe</h1>
       <%= search_form_for @q, url: search_recipes_path do |f| %>
-        <%= f.label :title_cont, "タイトル" %>
-        <%= f.search_field :title %><br>
+        <%= f.label :title_or_content_cont, "タイトルもしくは内容を検索" %>
+        <%= f.search_field :title_or_content_cont %><br>
+        <%= f.radio_button :cooking_time_lteq, "30" %>30分以内
+        <%= f.radio_button :cooking_time_lteq, "60" %>60分以内
+        <%= f.radio_button :cooking_time_gt, "60" %>それ以上
+        <br>
+        <%= f.radio_button :cooking_cost_lteq, "500" %>500円以内
+        <%= f.radio_button :cooking_cost_lteq, "1000" %>1000円以内
+        <%= f.radio_button :cooking_cost_lteq, "2000" %>2000円以内
+        <%= f.radio_button :cooking_cost_gt, "2000" %>それ以上
+        <br>
+        <%= f.radio_button :calorie_lteq, "500" %>500kcal以下
+        <%= f.radio_button :calorie_lteq, "1000" %>1000kcal以下
+        <%= f.radio_button :calorie_lteq, "2000" %>2000kcal以下
+        <%= f.radio_button :calorie_gt, "2000" %>それ以上
+        <br>
         <%= f.submit "検索" %>
       <% end %>
     </div>
