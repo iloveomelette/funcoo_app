@@ -1,8 +1,9 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[edit update destroy]
+  PER_PAGE = 20
 
   def index
-    @recipes = Recipe.includes(:user, :makes).order(created_at: :desc).limit(20)
+    @recipes = Recipe.includes(:user, :makes).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
     # レコメンド機能の呼び出し
     @recommend = Recipe.recommend(current_user) if current_user.characteristic == "general"
   end
