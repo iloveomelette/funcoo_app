@@ -1,5 +1,9 @@
 <section class="py-20">
   <div class="w-4/5 m-auto">
+    <div>
+      <p>Search for Recipe</p>
+      <%= render "search_form", url: search_recipes_path %>
+    </div>
     <% if current_user.characteristic == "general" %>
       <div>
         <h1>Recomend for you</h1>
@@ -20,4 +24,5 @@
       <%= render @recipes %>
     </div>
   </div>
+  <div><%= paginate @recipes %></div>
 </section>
