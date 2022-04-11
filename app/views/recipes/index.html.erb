@@ -19,6 +19,28 @@
         <%= f.radio_button :calorie_lteq, "2000" %>2000kcal以下
         <%= f.radio_button :calorie_gt, "2000" %>それ以上
         <br>
+        <%= f.check_box :genre_staple_food_eq_any, { multiple: true }, "1", "" %>ごはん
+        <%= f.check_box :genre_staple_food_eq_any, { multiple: true }, "2", "" %>パン
+        <%= f.check_box :genre_staple_food_eq_any, { multiple: true }, "3", "" %>麺類
+        <br>
+        <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "1", "" %>肉料理
+        <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "2", "" %>魚料理
+        <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "3", "" %>卵料理
+        <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "4", "" %>大豆料理
+        <br>
+        <%= f.check_box :genre_side_dish_eq_any, { multiple: true }, "1", "" %>野菜料理
+        <%= f.check_box :genre_side_dish_eq_any, { multiple: true }, "2", "" %>きのこ料理
+        <%= f.check_box :genre_side_dish_eq_any, { multiple: true }, "3", "" %>芋料理
+        <br>
+        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "1", "" %>日本料理
+        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "2", "" %>韓国料理
+        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "3", "" %>中華料理
+        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "4", "" %>イタリアン料理
+        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "5", "" %>アジア料理
+        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "6", "" %>エスニック料理
+        <br>
+        <%= f.check_box :genre_staple_food_or_genre_main_dish_or_genre_side_dish_or_genre_country_dish_eq_any, { multiple: true }, "0", "" %>その他
+        <br>
         <%= f.submit "検索" %>
       <% end %>
     </div>
