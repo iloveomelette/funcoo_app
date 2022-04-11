@@ -1,4 +1,4 @@
-<%= search_form_for @q, url: url do |f| %>
+<%= search_form_for @q, url: search_index_recipes_path do |f| %>
   <div>
     <p>レシピから検索</p>
     <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容" %><br>

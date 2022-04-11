@@ -2,7 +2,7 @@
   <div class="w-4/5 m-auto">
     <div>
       <p>Search for Recipe</p>
-      <%= render "search_form", url: search_recipes_path %>
+      <%= render "search_form", collection: @q %>
     </div>
     <% if current_user.characteristic == "general" %>
       <div>

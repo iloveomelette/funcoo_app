@@ -1,13 +1,13 @@
 <section class="py-20">
   <div class="w-4/5 m-auto">
     <h1>Recipes</h1>
-    <% if @recipes.present? %>
+    <% if @searched_recipes.present? %>
       <div class="grid grid-cols-3 gap-4 my-10">
-        <%= render @recipes %>
+        <%= render @searched_recipes %>
       </div>
     <% else %>
       <h1>検索されたレシピは見つかりませんでした...</h1>
     <% end %>
-    <div><%= paginate @recipes %></div>
+    <div><%= paginate @searched_recipes %></div>
   </div>
 </section>

@@ -1,9 +1,8 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[edit update destroy]
-  before_action :set_q, only: %i[index search]
-  PER_PAGE = 20
 
   def index
+    # PER_PAGEの参照先： ApplicationController
     @recipes = Recipe.includes(:user, :makes).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
     # レコメンド機能の呼び出し
     @recommend = Recipe.recommend(current_user) if current_user.characteristic == "general"
@@ -45,9 +44,7 @@ class RecipesController < ApplicationController
     end
   end
 
-  def search
-    @recipes = @q.result.includes(:user, :makes).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
-  end
+  def search_index; end
 
   private
 
@@ -63,9 +60,5 @@ class RecipesController < ApplicationController
   def set_recipe
     @recipe = current_user.recipes.find_by(id: params[:id])
     redirect_to recipes_path, alert: "権限がありません" if @recipe.nil?
-  end
-
-  def set_q
-    @q = Recipe.ransack(params[:q])
   end
 end
