@@ -2,7 +2,8 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[edit update destroy]
 
   def index
-    @recipes = Recipe.includes(:user, :makes).order(created_at: :desc).limit(20)
+    # PER_PAGEの参照先： ApplicationController
+    @recipes = Recipe.includes(:user, :makes).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
     # レコメンド機能の呼び出し
     @recommend = Recipe.recommend(current_user) if current_user.characteristic == "general"
   end
@@ -42,6 +43,8 @@ class RecipesController < ApplicationController
       redirect_to recipes_path, alert: "削除に失敗しました!"
     end
   end
+
+  def search_index; end
 
   private
 
