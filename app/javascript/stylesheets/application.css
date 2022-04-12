@@ -22,6 +22,20 @@
   @apply mx-10 text-tertiary font-bold;
 }
 
+/* ****検索フォーム**** */
+.header-right {
+  @apply flex max-w-xs;
+}
+.search-box {
+  @apply pt-4 pr-6;
+}
+.search-input {
+  @apply absolute right-6 h-10 rounded-xl py-3 outline-none bg-gray-200 w-52;
+}
+.search-submit {
+  @apply absolute right-6 top-3.5 text-lg text-gray-400;
+}
+
 /* ****新規投稿**** */
 .recipe-container {
   @apply py-20 w-2/3 m-auto;

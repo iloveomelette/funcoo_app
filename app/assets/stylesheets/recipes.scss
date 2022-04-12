@@ -1,7 +1,8 @@
 // Place all the styles related to the recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-// 変数定義
+
+// *-*-* レシピ投稿フォームのスタイル *-*-*
 .recipe-container {
   .field {
     margin-top: 2rem;
@@ -53,3 +54,5 @@
     }
   }
 }
+
+// *-*-* 検索フォームのスタイル *-*-*

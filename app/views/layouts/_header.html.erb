@@ -11,11 +11,11 @@
       <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'nav-link' %>
     <% end %>
   </nav>
-  <div>
-    <%= search_form_for @q, url: url do |f| %>
-      <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容" %>
-      <%= f.button :type => "submit", style: 'border-style: none;' do %>
-        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+  <div class="header-right">
+    <%= search_form_for @q, url: url, class: "search-box" do |f| %>
+      <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "search-input focus:ring-4 focus:ring-quaternary" %>
+      <%= f.button :type => "submit", class: 'search-submit' do %>
+        <span><i class="fa-solid fa-magnifying-glass search-submit hover:text-quaternary"></i></span>
       <% end %>
     <% end %>
   </div>
