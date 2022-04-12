@@ -9,6 +9,9 @@
   h2 {
     @apply text-4xl;
   }
+  h3 {
+    @apply text-2xl;
+  }
 }
 
 /* ****ヘッダー**** */
@@ -22,7 +25,7 @@
   @apply mx-10 text-tertiary font-bold;
 }
 
-/* ****検索フォーム**** */
+/* ****ヘッダー検索フォーム**** */
 .header-right {
   @apply flex max-w-xs;
 }
@@ -34,6 +37,11 @@
 }
 .search-submit {
   @apply absolute right-6 top-3.5 text-lg text-gray-400;
+}
+
+/* ****一覧検索フォーム**** */
+.radio-wrapper {
+  @apply pt-2;
 }
 
 /* ****新規投稿**** */

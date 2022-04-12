@@ -1,28 +1,29 @@
-<section class="py-20">
-  <div class="w-4/5 m-auto">
-    <div>
-      <p>Search for Recipe</p>
-      <%= render "search_form", collection: @q %>
-    </div>
-    <% if current_user.characteristic == "general" %>
-      <div>
-        <h1>Recomend for you</h1>
-        <div>
-          <% if @recommend.menu_image.present? %>
-            <%= image_tag @recommend.menu_image.thumb.url %>
-          <% else %>
-            <%= image_tag @recommend.menu_image.url %>
-          <% end %>
+<div class="flex recipes-container">
+  <aside class="py-20 pl-3">
+    <%= render "search_form", collection: @q %>
+  </aside>
+  <div class="py-20">
+    <div class="w-4/5 m-auto">
+      <% if current_user.characteristic == "general" %>
+        <section>
+          <h2>あなたへのおすすめ</h2>
+          <div>
+            <% if @recommend.menu_image.present? %>
+              <%= image_tag @recommend.menu_image.thumb.url %>
+            <% else %>
+              <%= image_tag @recommend.menu_image.url %>
+            <% end %>
+          </div>
+          <p><%= @recommend.title %></p>
+        </section>
+      <% end %>
+      <section>
+        <h2>レシピ一覧</h2>
+        <div class="grid grid-cols-3 gap-4 my-10">
+          <%= render @recipes %>
         </div>
-        <p><%= @recommend.title %></p>
-      </div>
-    <% end %>
-    <div>
-      <h1>Recipes</h1>
+      </section>
     </div>
-    <div class="grid grid-cols-3 gap-4 my-10">
-      <%= render @recipes %>
-    </div>
+    <div><%= paginate @recipes %></div>
   </div>
-  <div><%= paginate @recipes %></div>
-</section>
+</div>
