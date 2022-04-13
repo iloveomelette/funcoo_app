@@ -12,9 +12,11 @@
   </head>
 
   <body>
-    <header>
-      <%= render 'layouts/header', url: search_index_recipes_path %>
-    </header>
+    <% unless current_page?(root_path) %>
+      <header>
+        <%= render 'layouts/header', url: search_index_recipes_path %>
+      </header>
+    <% end %>
     <%= render 'layouts/flash' %>
     <%= yield %>
   </body>

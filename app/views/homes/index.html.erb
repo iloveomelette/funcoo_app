@@ -1,2 +1,30 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<section>
+  <div class="wrapper">
+    <div>
+      <div>
+        <div>
+          <%# SCSSでスタイリング %>
+          <%= image_tag "top-bg-img.jpg", class: "top-bg-img" %>
+        </div>
+        <div>
+          <h1>毎日の料理をもっと楽しく</h1>
+        </div>
+        <div>
+          <p>最高のレシピをあなたに。</p>
+          <p>達成感を持って毎日の料理が楽しくなります。</p>
+        </div>
+      </div>
+      <div>
+        <div>
+          <%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %>
+        </div>
+        <div>
+          <%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %>
+        </div>
+        <div>
+          <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'nav-link' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
