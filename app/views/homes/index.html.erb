@@ -1,28 +1,27 @@
 <section>
-  <div class="wrapper">
-    <div>
-      <div>
-        <div>
-          <%# SCSSでスタイリング %>
-          <%= image_tag "top-bg-img.jpg", class: "top-bg-img" %>
+  <div class="wrapper relative">
+    <%# image_tagはSCSSでスタイリング %>
+    <%= image_tag "top-bg-img.jpg", class: "top-bg-img", alt: "トップ画像" %>
+    <div class="absolute top-0 bottom-0 left-0 right-0 text-center p-4">
+      <div class="mb-32 pt-44">
+        <div class="mb-8">
+          <h1 class="font-semibold text-primary">毎日の料理をもっと楽しく</h1>
         </div>
         <div>
-          <h1>毎日の料理をもっと楽しく</h1>
-        </div>
-        <div>
-          <p>最高のレシピをあなたに。</p>
-          <p>達成感を持って毎日の料理が楽しくなります。</p>
+          <p class="font-semibold text-tertiary">最高のレシピをあなたに。</p>
+          <p class="font-semibold text-tertiary">達成感を持って毎日の料理が楽しくなります。</p>
         </div>
       </div>
-      <div>
-        <div>
-          <%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %>
+      <div class="flex justify-center">
+        <%# ボタンはSCSSでスタイリング %>
+        <div class="sign-up-btn px-4">
+          <%= link_to '新規登録', new_user_registration_path, class: 'top-sign-up' %>
         </div>
-        <div>
-          <%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %>
+        <div class="login-btn px-4">
+          <%= link_to 'ログイン', new_user_session_path, class: 'top-login' %>
         </div>
-        <div>
-          <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'nav-link' %>
+        <div class="login-btn px-4">
+          <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'top-login' %>
         </div>
       </div>
     </div>

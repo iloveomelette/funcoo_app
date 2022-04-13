@@ -2,11 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+@mixin common-btn($bg-color, $color-hover) {
+  color: #fbf6f0;
+  font-weight: bold;
+  background-color: $bg-color;
+  padding: 15px 15px;
+  width: 300px;
+  height: 50px;
+  border-radius: 15px;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-hover;
+  }
+}
+
 // *-*-* 初期に表示されるセクションのレイアウト *-*-*
-.top-bg-img {
-  min-height: 675px;
-  max-height: 95vh;
-  object-fit: cover;
+.wrapper {
   width: 100%;
-  object-position: left bottom;
+  .top-bg-img {
+    min-height: 675px;
+    max-height: 95vh;
+    object-fit: cover;
+    width: 100%;
+    object-position: left bottom;
+    filter: contrast(60%);
+  }
+  .sign-up-btn {
+    .top-sign-up {
+      @include common-btn(#ffa45b, #fa812b);
+    }
+  }
+  .login-btn {
+    .top-login {
+      @include common-btn(#ffda77, #ebbd65);
+    }
+  }
 }
