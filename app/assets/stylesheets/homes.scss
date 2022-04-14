@@ -21,20 +21,16 @@
   width: 100%;
   .top-bg-img {
     min-height: 675px;
-    max-height: 95vh;
+    max-height: 100vh;
     object-fit: cover;
     width: 100%;
     object-position: left bottom;
     filter: contrast(60%);
   }
   .sign-up-btn {
-    .top-sign-up {
-      @include common-btn(#ffa45b, #fa812b);
-    }
+    @include common-btn(#ffa45b, #fa812b);
   }
   .login-btn {
-    .top-login {
-      @include common-btn(#ffda77, #ebbd65);
-    }
+    @include common-btn(#ffda77, #ebbd65);
   }
 }
