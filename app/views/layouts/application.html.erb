@@ -17,7 +17,9 @@
         <%= render 'layouts/header', url: search_index_recipes_path %>
       </header>
     <% end %>
-    <%= render 'layouts/flash' %>
-    <%= yield %>
+    <div class="relative">
+      <%= render 'layouts/flash' %>
+      <%= yield %>
+    </div>
   </body>
 </html>
