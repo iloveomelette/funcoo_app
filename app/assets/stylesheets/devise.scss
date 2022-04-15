@@ -25,16 +25,19 @@
   border-radius: 30px;
   margin-top: 2rem;
   position: relative;
-  &:hover {
+  cursor: pointer;
+  &:active {
     top: 7px;
-    cursor: pointer;
-    background-color: $hoverColor;
     box-shadow: none;
+  }
+  &:hover {
+    background-color: $hoverColor;
   }
 }
 
 // **** ログインフォーム ****
 .devise-container {
+  background-color: #fbf6f0;
   .field {
     margin-top: 2rem;
   }
