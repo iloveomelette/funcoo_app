@@ -1,6 +1,7 @@
+<%# SCSSでスタイリング %>
 <% flash.each do |flash_type, msg| %>
-  <div>
-    <p class="<%= flash_type == 'notice' ? 'notice' : 'alert' %>">
+  <div class="flash-wrapper <%= flash_type == 'notice' ? 'notice' : 'alert' %>">
+    <p class="flash-msg">
       <%= msg %>
     </p>
   </div>

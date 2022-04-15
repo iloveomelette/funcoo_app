@@ -23,3 +23,26 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 a {
   text-decoration: none;
 }
+
+// *-*-* フラッシュのレイアウト *-*-*
+.flash-wrapper {
+  position: absolute;
+  left: 144px;
+  top: 15px;
+  width: 80%;
+  height: 60px;
+  text-align: center;
+  z-index: 1;
+  border-radius: 15px;
+  .flash-msg {
+    color: #fbf6f0;
+    font-weight: bold;
+    padding-top: 15px;
+  }
+}
+.notice {
+  background: rgba($color: #66b1f2, $alpha: 0.9);
+}
+.alert {
+  background: rgba($color: #f24130, $alpha: 0.9);
+}
