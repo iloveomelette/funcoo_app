@@ -12,6 +12,7 @@
     box-shadow: 0 0 8px 0 #aee6e6;
   }
 }
+// **** ボタン用ミックスイン ****
 @mixin submit-layout($bgColor, $hoverColor, $boxShadow) {
   min-width: 130px;
   height: 50px;
@@ -54,6 +55,11 @@
   input[type='submit'] {
     @include submit-layout(#ffa45b, #fa812b, #fa8d35);
   }
+  .texearea-box {
+    @include input-layout;
+    width: 100%;
+    height: 250px;
+  }
   .login-link {
     display: inline-block;
     margin: 20px 0 10px 0;
@@ -74,20 +80,8 @@
   .back-link {
     color: #ffa45b;
     font-weight: bold;
-    position: relative;
-    padding-left: 10px;
-    &::before {
-      position: absolute;
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-top: solid 2px #697b91;
-      border-right: solid 2px #697b91;
-      -webkit-transform: rotate(0.62turn);
-      transform: rotate(0.62turn);
-      top: 50%;
-      left: 0;
-      margin-top: -3px;
+    &:hover {
+      color: #fa812b;
     }
   }
 }
