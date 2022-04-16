@@ -1,83 +1,92 @@
-<div class="recipe-container">
-  <div class="recipe-form m-8">
+<div class="recipes-container">
+  <div class="recipe-form recipe-wrapper">
     <%= form_with model: @recipe_form, url: @recipe_form.persisted? ? recipe_path : recipes_path, local: true do |form| %>
       <div>
-        <%= form.text_field :title, required: true, placeholder: 'タイトル' %>
+        <%= form.text_field :title, required: true, placeholder: "タイトルを100文字以内で入力してください", autofocus: true %>
       </div>
-      <div class="flex field">
-        <div>
-          <%= form.label :content %><br>
-          <%= form.text_area :content, required: true %>
+
+      <div class="flex mb-8 field recipe-content">
+        <div class="recipe-content">
+          <%= form.label :content, "内容" %><br>
+          <%= form.text_area :content, required: true, placeholder: "レシピの内容を500文字以内で入力してください" %>
         </div>
         <%# 調理時間、調理費用、カロリー入力欄 %>
-        <div class="flex-col">
+        <div class="recipe-info p-4">
           <div>
-            <%= form.label :cooking_time %>
-            <%= form.number_field :cooking_time, in: 0..200 %>
+            <%= form.label :cooking_time, "調理時間" %> (0~200)
+            <%= form.number_field :cooking_time, in: 0..200 %> 分
           </div>
           <div>
-            <%= form.label :cooking_cost %>
-            <%= form.number_field :cooking_cost, in: 0..10000 %>
+            <%= form.label :cooking_cost, "調理コスト" %> (0~10000)
+            <%= form.number_field :cooking_cost, in: 0..10000 %> 円
           </div>
           <div>
-            <%= form.label :calorie %>
-            <%= form.number_field :calorie, in: 0..3000 %>
+            <%= form.label :calorie, "カロリー" %> (0~3000)
+            <%= form.number_field :calorie, in: 0..3000 %> kcal
           </div>
         </div>
       </div>
-      <div class="field">
-        <%= form.label :others, "その他" %>
-        <%= form.radio_button :staple_food, :others %>
-        <%= form.label :staple_food_rice, "ごはん" %>
-        <%= form.radio_button :staple_food, :rice %>
-        <%= form.label :staple_food_bread, "パン" %>
-        <%= form.radio_button :staple_food, :bread %>
-        <%= form.label :staple_food_noodles, "麺類" %>
-        <%= form.radio_button :staple_food, :noodles %>
+
+      <div class="recipe-genre">
+        <p class="mb-4">ジャンルを選択</p>
+        <div>
+          <p class="text-lg mb-2">主食</p>
+          <%= form.radio_button :staple_food, :others %>
+          <%= form.label :others, "その他" %>
+          <%= form.radio_button :staple_food, :rice %>
+          <%= form.label :staple_food_rice, "ごはん" %>
+          <%= form.radio_button :staple_food, :bread %>
+          <%= form.label :staple_food_bread, "パン" %>
+          <%= form.radio_button :staple_food, :noodles %>
+          <%= form.label :staple_food_noodles, "麺類" %>
+        </div>
+        <div class="field">
+          <p class="text-lg mb-2">主菜</p>
+          <%= form.radio_button :main_dish, :others %>
+          <%= form.label :others, "その他" %>
+          <%= form.radio_button :main_dish, :meat %>
+          <%= form.label :main_dish_meat, "肉料理" %>
+          <%= form.radio_button :main_dish, :fish %>
+          <%= form.label :main_dish_fish, "魚料理" %>
+          <%= form.radio_button :main_dish, :egg %>
+          <%= form.label :main_dish_egg, "卵料理" %>
+          <%= form.radio_button :main_dish, :soybean %>
+          <%= form.label :main_dish_soybean, "大豆料理" %>
+        </div>
+        <div class="field">
+          <p class="text-lg mb-2">副菜</p>
+          <%= form.radio_button :side_dish, :others %>
+          <%= form.label :others, "その他" %>
+          <%= form.radio_button :side_dish, :vegetables %>
+          <%= form.label :side_dish_vegetables, "野菜料理" %>
+          <%= form.radio_button :side_dish, :mushroom %>
+          <%= form.label :side_dish_mushroom, "きのこ料理" %>
+          <%= form.radio_button :side_dish, :potato %>
+          <%= form.label :side_dish_potato, "芋料理" %>
+        </div>
+        <div class="field">
+          <p class="text-lg mb-2">各国料理</p>
+          <%= form.radio_button :country_dish, :others %>
+          <%= form.label :others, "その他" %>
+          <%= form.radio_button :country_dish, :japanese %>
+          <%= form.label :country_dish_japanese, "日本料理" %>
+          <%= form.radio_button :country_dish, :korean %>
+          <%= form.label :country_dish_korean, "韓国料理" %>
+          <%= form.radio_button :country_dish, :chinese %>
+          <%= form.label :country_dish_chinese, "中国料理" %>
+          <%= form.radio_button :country_dish, :italian %>
+          <%= form.label :country_dish_italian, "イタリアン料理" %>
+          <%= form.radio_button :country_dish, :asian %>
+          <%= form.label :country_dish_asian, "アジア系料理" %>
+          <%= form.radio_button :country_dish, :ethnic %>
+          <%= form.label :country_dish_ethnic, "エスニック料理" %>
+        </div>
+        <div class="field">
+          <%= form.label :menu_image, "料理イメージ (5MBまで)" %>
+          <%= form.file_field :menu_image, accept: "image/png,image/jpeg,image/gif" %>
+        </div>
       </div>
-      <div class="field">
-        <%= form.label :others, "その他" %>
-        <%= form.radio_button :main_dish, :others %>
-        <%= form.label :main_dish_meat, "肉料理" %>
-        <%= form.radio_button :main_dish, :meat %>
-        <%= form.label :main_dish_fish, "魚料理" %>
-        <%= form.radio_button :main_dish, :fish %>
-        <%= form.label :main_dish_egg, "卵料理" %>
-        <%= form.radio_button :main_dish, :egg %>
-        <%= form.label :main_dish_soybean, "大豆料理" %>
-        <%= form.radio_button :main_dish, :soybean %>
-      </div>
-      <div class="field">
-        <%= form.label :others, "その他" %>
-        <%= form.radio_button :side_dish, :others %>
-        <%= form.label :side_dish_vegetables, "野菜料理" %>
-        <%= form.radio_button :side_dish, :vegetables %>
-        <%= form.label :side_dish_mushroom, "きのこ料理" %>
-        <%= form.radio_button :side_dish, :mushroom %>
-        <%= form.label :side_dish_potato, "芋料理" %>
-        <%= form.radio_button :side_dish, :potato %>
-      </div>
-      <div class="field">
-        <%= form.label :others, "その他" %>
-        <%= form.radio_button :country_dish, :others %>
-        <%= form.label :country_dish_japanese, "日本料理" %>
-        <%= form.radio_button :country_dish, :japanese %>
-        <%= form.label :country_dish_korean, "韓国料理" %>
-        <%= form.radio_button :country_dish, :korean %>
-        <%= form.label :country_dish_chinese, "中国料理" %>
-        <%= form.radio_button :country_dish, :chinese %>
-        <%= form.label :country_dish_italian, "イタリアン料理" %>
-        <%= form.radio_button :country_dish, :italian %>
-        <%= form.label :country_dish_asian, "アジア系料理" %>
-        <%= form.radio_button :country_dish, :asian %>
-        <%= form.label :country_dish_ethnic, "エスニック料理" %>
-        <%= form.radio_button :country_dish, :ethnic %>
-      </div>
-      <div class="field">
-        <%= form.label :menu_image %>
-        <%= form.file_field :menu_image, accept: "image/png,image/jpeg,image/gif" %>
-      </div>
-      <div><%= form.submit '投稿する' %></div>
+      <div class="text-center mt-10"><%= form.submit '投稿する' %></div>
     <% end %>
   </div>
 </div>

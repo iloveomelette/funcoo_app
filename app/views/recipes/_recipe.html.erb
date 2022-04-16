@@ -12,10 +12,7 @@
     <p>調理時間： <%= recipe.cooking_time %>分</p>
     <p>目安費用： <%= recipe.cooking_cost %>円</p>
     <p>カロリー： <%= recipe.calorie %>kcal</p>
-    <% if current_user.id == recipe.user_id %>
-      <p><%= link_to '編集', edit_recipe_path(recipe) %></p>
-      <p><%= link_to '削除', recipe_path(recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} %></p>
-    <% end %>
+
     <% if current_user.id != recipe.user_id %>
       <p id="recipe-<%= recipe.id %>">
         <% if recipe.maked_by?(current_user) %>
@@ -27,8 +24,21 @@
         <% end %>
       </p>
     <% end %>
-    <%= link_to recipe, class: "text-base hover:text-quaternary" do %>
-      <i class="fa-solid fa-caret-right"></i>  詳しく見る
-    <% end %>
+
+    <div class="flex justify-between px-4">
+      <%= link_to recipe, class: "text-base hover:text-quaternary" do %>
+        <i class="fa-solid fa-caret-right"></i>  詳しく見る
+      <% end %>
+      <div class="flex">
+        <% if current_user.id == recipe.user_id %>
+          <%= link_to edit_recipe_path(recipe) do %>
+            <i class="fa-solid fa-pen-to-square recipe-edit text-xl mr-4"></i>
+          <% end %>
+          <%= link_to recipe_path(recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} do %>
+            <i class="fa-solid fa-trash-can recipe-delete text-xl"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </article>
