@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[edit update destroy]
+  before_action :authenticate_user!
 
   def index
     # PER_PAGEの参照先： ApplicationController

@@ -3,7 +3,9 @@ class User < ApplicationRecord
   has_many :makes, dependent: :destroy
   has_many :maked_recipes, through: :makes, source: :recipe
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :email, presence: true, length: { maximum: 255 }
+  validates :introduction, length: { maximum: 200 }
   validates :characteristic, presence: true
   # 法人または一般の属性を定義
   enum characteristic: {
@@ -19,6 +21,7 @@ class User < ApplicationRecord
     find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザ"
+      user.characteristic = 1
     end
   end
 

@@ -12,29 +12,34 @@
     box-shadow: 0 0 8px 0 #aee6e6;
   }
 }
+// **** ボタン用ミックスイン ****
 @mixin submit-layout($bgColor, $hoverColor, $boxShadow) {
-  // カラー
-  color: #fbf6f0;
-  font-weight: bold;
-  background-color: $bgColor;
-  // シャドウ部分
-  box-shadow: 0 7px $boxShadow;
-  // 配置、レイアウト
-  width: 100%;
+  min-width: 130px;
   height: 50px;
-  border-radius: 30px;
-  margin-top: 2rem;
+  color: #fbf6f0;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
   position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 10px;
+  border: none;
+  background-color: $bgColor;
+  box-shadow: 0 3px 1px -2px $boxShadow, 0 2px 2px 0 $boxShadow, 0 1px 5px 0 $boxShadow;
   &:hover {
-    top: 7px;
-    cursor: pointer;
     background-color: $hoverColor;
-    box-shadow: none;
+  }
+  &:active {
+    box-shadow: 0 4px 2px -3px $boxShadow, 0 4px 5px 1px $boxShadow, 0 2px 7px 1px $boxShadow;
   }
 }
 
 // **** ログインフォーム ****
 .devise-container {
+  min-height: 100vh;
+  background-color: #fbf6f0;
   .field {
     margin-top: 2rem;
   }
@@ -49,6 +54,11 @@
   }
   input[type='submit'] {
     @include submit-layout(#ffa45b, #fa812b, #fa8d35);
+  }
+  .texearea-box {
+    @include input-layout;
+    width: 100%;
+    height: 250px;
   }
   .login-link {
     display: inline-block;
@@ -70,20 +80,18 @@
   .back-link {
     color: #ffa45b;
     font-weight: bold;
-    position: relative;
-    padding-left: 10px;
-    &::before {
-      position: absolute;
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-top: solid 2px #697b91;
-      border-right: solid 2px #697b91;
-      -webkit-transform: rotate(0.62turn);
-      transform: rotate(0.62turn);
-      top: 50%;
-      left: 0;
-      margin-top: -3px;
+    &:hover {
+      color: #fa812b;
+    }
+  }
+  #error_explanation {
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: rgba($color: #f27e93, $alpha: 0.8);
+    border-radius: 10px;
+    border: solid #f24130;
+    .error {
+      color: yellow;
     }
   }
 }
