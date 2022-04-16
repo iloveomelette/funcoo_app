@@ -1,29 +1,43 @@
-<div class="flex recipes-container">
-  <aside class="py-20 pl-3">
-    <%= render "search_form", collection: @q %>
-  </aside>
-  <div class="py-20">
-    <div class="w-4/5 m-auto">
-      <% if current_user.characteristic == "general" %>
+<div class="recipes-container">
+  <div class="flex">
+    <aside class="py-24 pl-3">
+      <%= render "search_form", collection: @q %>
+    </aside>
+
+    <div class="py-24">
+      <div class="w-4/5 m-auto">
+        <% if current_user.characteristic == "general" %>
+          <section class="mb-10">
+            <h2 class="mb-10">あなたへのおすすめ</h2>
+            <div class="flex">
+              <div class="flex-1 py-4 px-8">
+                <% if @recommend.menu_image.present? %>
+                  <%= image_tag @recommend.menu_image.thumb.url %>
+                <% else %>
+                  <%= image_tag @recommend.menu_image.url %>
+                <% end %>
+              </div>
+              <div class="flex-1 py-4 px-6">
+                <p class="text-2xl mb-4"><%= @recommend.title %></p>
+                <p>調理時間： <%= @recommend.cooking_time %>分</p>
+                <p>目安費用： <%= @recommend.cooking_cost %>円</p>
+                <p class="mb-4">カロリー： <%= @recommend.calorie %>kcal</p>
+                <%= link_to @recommend, class: "hover:text-quaternary" do %>
+                  <i class="fa-solid fa-caret-right"></i>  詳しく見る
+                <% end %>
+              </div>
+            </div>
+          </section>
+        <% end %>
+
         <section>
-          <h2>あなたへのおすすめ</h2>
-          <div>
-            <% if @recommend.menu_image.present? %>
-              <%= image_tag @recommend.menu_image.thumb.url %>
-            <% else %>
-              <%= image_tag @recommend.menu_image.url %>
-            <% end %>
+          <h2>レシピ一覧</h2>
+          <div class="grid grid-cols-3 gap-4 my-10">
+            <%= render @recipes %>
           </div>
-          <p><%= @recommend.title %></p>
         </section>
-      <% end %>
-      <section>
-        <h2>レシピ一覧</h2>
-        <div class="grid grid-cols-3 gap-4 my-10">
-          <%= render @recipes %>
-        </div>
-      </section>
+      </div>
+      <div><%= paginate @recipes %></div>
     </div>
-    <div><%= paginate @recipes %></div>
   </div>
 </div>

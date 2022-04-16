@@ -21,7 +21,11 @@
   }
 }
 // *-*-* レシピ投稿フォームのスタイル *-*-*
-.recipe-container {
+.recipes-container {
+  img {
+    object-fit: cover;
+  }
+  background-color: #fbf6f0;
   .field {
     margin-top: 2rem;
   }

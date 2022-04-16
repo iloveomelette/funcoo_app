@@ -27,6 +27,8 @@
         <% end %>
       </p>
     <% end %>
-    <p><%= link_to '詳しく見る', recipe %></p>
+    <%= link_to recipe, class: "text-base hover:text-quaternary" do %>
+      <i class="fa-solid fa-caret-right"></i>  詳しく見る
+    <% end %>
   </div>
 </article>
