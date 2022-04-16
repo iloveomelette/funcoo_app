@@ -23,12 +23,12 @@
         <%# お名前を入力するフォーム %>
         <div class="field">
           <%= f.label :name %><br />
-          <%= f.text_field :name %>
+          <%= f.text_field :name, required: true, placeholder: "50文字以内で入力してください" %>
         </div>
 
         <div class="field">
           <%= f.label :email %><br />
-          <%= f.email_field :email %>
+          <%= f.email_field :email, required: true %>
         </div>
 
         <div class="field">
