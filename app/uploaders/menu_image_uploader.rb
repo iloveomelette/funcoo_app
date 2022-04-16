@@ -51,7 +51,8 @@ class MenuImageUploader < CarrierWave::Uploader::Base
 
   # 投稿画像のファイルサイズを指定
   def size_range
-    0..5.megabytes
+    num = (0..5)
+    num.megabytes
   end
 
   # ファイル名をランダムに変更
