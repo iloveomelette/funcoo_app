@@ -1,5 +1,7 @@
 <div class="recipes-container">
   <div class="recipe-form recipe-wrapper">
+    <%= render "recipes/shared/error_messages", collection: @recipe_form %>
+
     <%= form_with model: @recipe_form, url: @recipe_form.persisted? ? recipe_path : recipes_path, local: true do |form| %>
       <div>
         <%= form.text_field :title, required: true, placeholder: "タイトルを100文字以内で入力してください", autofocus: true %>
