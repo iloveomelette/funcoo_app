@@ -4,7 +4,7 @@
       <%= render "search_form", collection: @q %>
     </aside>
 
-    <div class="py-24 flex-right">
+    <div class="pt-24 flex-right">
       <div class="w-4/5 m-auto">
         <% if current_user.characteristic == "general" %>
           <section class="mb-10">
@@ -37,7 +37,7 @@
           </div>
         </section>
       </div>
-      <div><%= paginate @recipes %></div>
     </div>
   </div>
+  <div class="paginate"><%= paginate @recipes %></div>
 </div>
