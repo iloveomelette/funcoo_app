@@ -24,6 +24,8 @@ class Recipe < ApplicationRecord
     base_recipes = Make.where(user_id: user.id).order(created_at: :desc)
     # その投稿の中で最新のものを取得
     base_recipe = base_recipes.first
+    return nil if base_recipe.nil?
+
     # その投稿に「作ってみた！」を押した全ての他ユーザを取得
     others = Make.where(recipe_id: base_recipe.recipe_id).order(created_at: :desc)
     # その投稿の中で最後に押した他ユーザを取得
