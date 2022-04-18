@@ -36,7 +36,7 @@ class MakeRecipeForm
   def update_recipe
     ActiveRecord::Base.transaction do
       recipe.update(user_id:, title:, content:, menu_image:, cooking_time:, cooking_cost:, calorie:)
-      Genre.update(recipe_id: recipe.id, staple_food:, main_dish:, side_dish:, country_dish:)
+      Genre.where(recipe_id: recipe.id).update(staple_food:, main_dish:, side_dish:, country_dish:)
     end
   rescue ActiveRecord::RecordInvalid
     false

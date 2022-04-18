@@ -25,9 +25,9 @@
         <%= f.radio_button :calorie_lteq, "500" %>
         <%= f.label :calorie_lteq_500, "500kcal以下" %>
         <%= f.radio_button :calorie_lteq, "1000" %>
-        <%= f.label :calorie_lteq_1000, "1000kcal以下" %>
+        <%= f.label :calorie_lteq_1000, "1000kcal以下" %><br>
         <%= f.radio_button :calorie_lteq, "2000" %>
-        <%= f.label :calorie_lteq_2000, "2000kcal以下" %><br>
+        <%= f.label :calorie_lteq_2000, "2000kcal以下" %>
         <%= f.radio_button :calorie_gt, "2000" %>
         <%= f.label :calorie_gt_2000, "それ以上" %>
       </div>
@@ -81,6 +81,6 @@
         <%= f.label :genre_staple_food_or_genre_main_dish_or_genre_side_dish_or_genre_country_dish_eq_any_0, "その他" %>
       </div>
     </div>
-    <div class="text-center"><%= f.submit "検索" %></div>
+    <div class="text-center mt-6"><%= f.submit "検索" %></div>
   <% end %>
 </div>

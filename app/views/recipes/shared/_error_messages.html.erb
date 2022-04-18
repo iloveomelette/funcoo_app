@@ -1,0 +1,15 @@
+<%# SCSSでスタイリング %>
+<% if @recipe_form.errors.any? %>
+  <div id="error_explanation">
+    <h3 class="mb-4 text-xl">
+      <i class="fa-solid fa-triangle-exclamation error"></i>
+      以下、<%= pluralize(@recipe_form.errors.count, "個") %>の条件を満たしてこのレシピを保存しましょう！
+    </h3>
+
+    <ul>
+      <% @recipe_form.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
