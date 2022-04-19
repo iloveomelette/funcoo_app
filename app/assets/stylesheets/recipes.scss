@@ -94,6 +94,17 @@
   .flex-right {
     flex-basis: 75%;
   }
+  // *-*-* 「作ってみた！」を促すコンテンツのスタイル *-*-*
+  .makes-info-wrapper {
+    height: 80px;
+    background: rgba($color: #aee6e6, $alpha: 0.8);
+    border: #344963 solid 2px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 5px 12px 1px #d5d5d5;
+  }
   // *-*-* ページネーションのスタイル *-*-*
   .paginate {
     padding-bottom: 40px;
