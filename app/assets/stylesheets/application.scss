@@ -56,3 +56,12 @@ a {
     color: yellow;
   }
 }
+// *-*-* ヘッダーのレイアウト *-*-*
+.header-logo {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100px;
+}
