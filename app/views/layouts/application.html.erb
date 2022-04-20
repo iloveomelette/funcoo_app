@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= favicon_link_tag('funcooapp_favicon.png') %>
 
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <% unless current_page?(root_path) %>
+      <header>
+        <%= render 'layouts/header', url: search_index_recipes_path %>
+      </header>
+    <% end %>
+    <div class="relative">
+      <%= render 'layouts/flash' %>
+      <%= yield %>
+    </div>
+    <footer>
+      <div class="flex items-center justify-center h-16 bg-quaternary">
+        <p class="text-xs text-gray-500">©︎ 2022 FunCooApp:iloveomelette:v1.0.0</p>
+      </div>
+    </footer>
   </body>
 </html>

@@ -9,6 +9,7 @@ AllCops:
     - 'assets/**/*'
     - 'bin/**/*'
     - 'db/schema.rb'
+    - 'db/migrate/*'
     - 'log/**/*'
     - 'node_modules/**/*'
     - 'tmp/**/*'
@@ -42,3 +43,34 @@ Style/WordArray:
 
 Style/SymbolArray:
   Enabled: false
+
+# プロック内の行数を除外
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'db/**/*'
+Rails/I18nLocaleTexts:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 20
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - 'app/forms/*'
+
+# デフォルト値をnested形式からcompact形式に変更
+ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    - 'app/channels/application_cable/*'
+    - 'config/*'
+
+# deviseのアクションのため除外
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/users/*'
+
+# seedファイルの正常確認のため除外
+Rails/Output:
+  Exclude:
+    - 'db/seeds.rb'

@@ -1,0 +1,36 @@
+<div class="devise-container pt-20 px-40">
+  <div>
+    <h2>ログイン</h2>
+
+    <div class="flex">
+      <div class="flex-1 px-8">
+        <%= image_tag "login-bro.png", alt: "おかえりなさい" %>
+        <a href="https://storyset.com/user" class="text-gray-300">User illustrations by Storyset</a>
+      </div>
+
+      <div class="flex-1 px-8 mb-20">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+          </div>
+
+          <div class="field">
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="check_box">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="actions mt-8 text-center">
+            <%= f.submit t('.sign_in') %><br>
+            <%= render "devise/shared/links" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

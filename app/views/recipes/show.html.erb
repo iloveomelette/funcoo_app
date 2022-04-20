@@ -1,0 +1,53 @@
+<article class="recipes-container">
+  <div class="py-24 px-16">
+    <%= link_to :back, class: "back-link text-xl" do %>
+      <i class="fa-solid fa-angles-left"></i> 戻る
+    <% end %>
+
+    <header>
+      <div class="flex justify-end mb-8">
+        <p>
+          投稿日 <%= l @recipe.created_at %>
+          <% if @recipe.created_at != @recipe.updated_at %>
+            更新日 <%= l @recipe.updated_at %>
+          <% end %>
+        </p>
+        <div class="flex">
+          <% if current_user.id == @recipe.user_id %>
+            <%= link_to edit_recipe_path(@recipe) do %>
+              <i class="fa-solid fa-pen-to-square recipe-edit text-3xl mr-4"></i>
+            <% end %>
+            <%= link_to recipe_path(@recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} do %>
+              <i class="fa-solid fa-trash-can recipe-delete text-3xl"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      
+      <div><%= image_tag @recipe.menu_image.url, class: "m-auto" %></div>
+      <div class="text-center"><h2><%= @recipe.title %></h2></div>
+    </header>
+    
+    <section>
+      <div class="flex justify-around w-8/12 m-auto">
+        <p>調理時間 <%= @recipe.cooking_time %>分</p>
+        <p>目安費用 <%= @recipe.cooking_cost %>円</p>
+        <p>カロリー <%= @recipe.calorie %>kcal</p>
+      </div>
+      <div>
+        <p class="text-xl"><%= @recipe.content %></p>
+      </div>
+      <% if current_user.id != @recipe.user_id %>
+        <p id="recipe-<%= @recipe.id %>">
+          <% if @recipe.maked_by?(current_user) %>
+            <%# 「作ってみた!」を押している状態 %>
+            <%= render "make", recipe: @recipe %>
+          <% else %>
+            <%# 「作ってみた!」を押していない状態 %>
+            <%= render "nonmake", recipe: @recipe %>
+          <% end %>
+        </p>
+      <% end %>
+    </section>
+  </div>
+</article>

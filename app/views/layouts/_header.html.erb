@@ -1,0 +1,24 @@
+<div class="header-container">
+  <nav class="nav-wrapper">
+    <% if user_signed_in? %>
+      <%= link_to '一覧', recipes_path, class: 'nav-link' %>
+      <% if current_user.characteristic == "corporation" && current_user.name != "ゲストユーザ" %>
+        <%= link_to '投稿する', new_recipe_path, class: 'nav-link' %>
+      <% end %>
+      <%= link_to 'アカウント編集', edit_user_registration_path,class: 'nav-link' %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+    <% else %>
+      <%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %>
+      <%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %>
+      <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'nav-link' %>
+    <% end %>
+  </nav>
+  <div class="header-right">
+    <%= search_form_for @q, url: url, class: "search-box" do |f| %>
+      <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "search-input focus:ring-4 focus:ring-quaternary" %>
+      <%= f.button :type => "submit", class: 'search-submit' do %>
+        <span><i class="fa-solid fa-magnifying-glass search-submit hover:text-quaternary"></i></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>

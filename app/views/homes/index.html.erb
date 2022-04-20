@@ -1,0 +1,122 @@
+<section>
+  <div class="wrapper relative">
+    <%# image_tagはSCSSでスタイリング %>
+    <%= image_tag "top-bg-img.jpg", class: "top-bg-img", alt: "トップ画像" %>
+    <div class="absolute top-0 bottom-0 left-0 right-0 text-center p-4">
+      <div class="mb-32 pt-44">
+        <div class="mb-8">
+          <h1 class="font-semibold text-primary">毎日の料理をもっと楽しく</h1>
+        </div>
+        <div>
+          <p class="font-semibold text-tertiary">最高のレシピをあなたに。</p>
+          <p class="font-semibold text-tertiary">達成感を持って毎日の料理が楽しくなります。</p>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <%# ボタンはSCSSでスタイリング %>
+        <div class="px-4">
+          <%= link_to '新規登録', new_user_registration_path, class: 'sign-up-btn' %>
+        </div>
+        <div class="px-4">
+          <%= link_to 'ログイン', new_user_session_path, class: 'login-btn' %>
+        </div>
+        <div class="px-4">
+          <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'login-btn' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bg-tertiary pt-12 pb-40">
+  <div  class="wrapper py-12 px-6">
+    <div class="justify-center mb-20">
+      <div class="text-center  mb-16">
+        <h2 class="text-primary font-semibold">FunCooAppとは？</h2>
+      </div>
+      <div>
+        <div class="flex mx-12">
+          <div class="flex-1 p-4">
+            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", width: 650 %>
+          </div>
+          <div class="flex-1 px-4">
+            <p class="text-3xl font-semibold text-secondary pt-4 pl-4">直感的に「これだ！」と思う</p>
+            <p class="text-3xl mb-4 font-semibold text-secondary pl-4">レシピを届けたい</p>
+            <p class="pt-4 pl-4 leading-loose">
+              FunCooAppでは、食に精通した方々が想いを込めて考案したレシピをあなたにお届けします。毎日の面倒なレシピを考えることに集中するのではなく、料理自体を楽しむことに集中してほしいと願っております。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-32">
+      <div class="text-center mb-16">
+        <h2 class="text-primary font-semibold">おもな機能</h2>
+      </div>
+      <div class="mb-16">
+        <div class="mb-12 ml-8">
+          <h3 class="text-quaternary">個人利用者の方</h3>
+        </div>
+        <div class="flex justify-center">
+          <div class="mx-8">
+            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8" %>
+            <div class="px-4">
+              <p class="mb-4 text-center font-semibold text-secondary">レシピの検索</p>
+              <p>レシピのタイトルから内容、料理時間、カロリー、日本食などのジャンルと様々な視点からレシピを探せます。</p>
+            </div>
+          </div>
+          <div class="mx-8">
+            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8" %>
+            <div class="px-4">
+              <p class="mb-4 text-center font-semibold text-secondary">おすすめ機能</p>
+              <p>あなたの好みに合わせておすすめのレシピを提案いたします。今日のご飯にいかがでしょうか。</p>
+            </div>
+          </div>
+          <div class="mx-8">
+            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8" %>
+            <div class="px-4">
+              <p class="mb-4 text-center font-semibold text-secondary">ステータス機能</p>
+              <p>当アプリ機能である「作ってみた！」を押すことでレベルを上げるとステータス機能が上がります。達成感を持って毎日楽しく料理をすることができます。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="mb-12 ml-8">
+          <h3 class="text-quaternary">個人農家/個人飲食店経営の方</h3>
+        </div>
+        <div class="flex justify-center">
+          <div class="mx-8">
+            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8", height: 100 %>
+            <div class="px-4">
+              <p class="mb-4 text-center font-semibold text-secondary">魅力ある食材を紹介</p>
+              <p>ご自身で生産、考案した魅力ある食材やレシピを投稿してアプリを利用する方々に知ってもらうことができます。</p>
+            </div>
+          </div>
+          <div class="mx-8">
+            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8", height: 100 %>
+            <div class="px-4">
+              <p class="mb-4 text-center font-semibold text-secondary">自身が運営するURLを載せる</p>
+              <p>ご自身が持っているHPなどのリンクを共有してアプリを利用する方々に訪れてもらいましょう。</p>
+            </div>
+          </div>
+          <div class="mx-8">
+            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8", height: 100 %>
+            <div class="px-4">
+              <p class="mb-4 text-center font-semibold text-secondary">ランキング機能</p>
+              <p>魅力あふれるレシピを投稿して多くの「作ってみた！」を押してもらうことで一覧ページにてそのレシピが表示されアプリを利用する方々の目に留まります。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="text-center mb-20">
+        <p class="font-semibold text-primary">毎日楽しく料理ができる</p>
+        <p class="font-semibold text-primary">さあ、今すぐ始めましょう！</p>
+      </div>
+      <div class="text-center">
+        <%= link_to '新規登録', new_user_registration_path, class: 'sign-up-btn' %>
+      </div>
+    </div>
+  </div>
+</section>

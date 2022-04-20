@@ -1,0 +1,44 @@
+<article>
+  <div>
+    <%#　投稿画像があればサムネイル用を表示、ない場合はデフォルト画像を表示 %>
+    <div>
+      <% if recipe.menu_image.present? %>
+        <%= image_tag recipe.menu_image.thumb.url %>
+      <% else %>
+        <%= image_tag recipe.menu_image.url %>
+      <% end %>
+    </div>
+    <p><%= recipe.title %></p>
+    <p>調理時間： <%= recipe.cooking_time %>分</p>
+    <p>目安費用： <%= recipe.cooking_cost %>円</p>
+    <p>カロリー： <%= recipe.calorie %>kcal</p>
+
+    <% if current_user.id != recipe.user_id %>
+      <p id="recipe-<%= recipe.id %>">
+        <% if recipe.maked_by?(current_user) %>
+          <%# 「作ってみた!」を押している状態 %>
+          <%= render "make", recipe: recipe %>
+        <% else %>
+          <%# 「作ってみた!」を押していない状態 %>
+          <%= render "nonmake", recipe: recipe %>
+        <% end %>
+      </p>
+    <% end %>
+
+    <div class="flex justify-between px-4">
+      <%= link_to recipe, class: "text-base hover:text-quaternary" do %>
+        <i class="fa-solid fa-caret-right"></i>  詳しく見る
+      <% end %>
+      <div class="flex">
+        <% if current_user.id == recipe.user_id %>
+          <%= link_to edit_recipe_path(recipe) do %>
+            <i class="fa-solid fa-pen-to-square recipe-edit text-xl mr-4"></i>
+          <% end %>
+          <%= link_to recipe_path(recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} do %>
+            <i class="fa-solid fa-trash-can recipe-delete text-xl"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</article>
