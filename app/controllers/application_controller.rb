@@ -8,13 +8,19 @@ class ApplicationController < ActionController::Base
                                         :name,
                                         :characteristic,
                                         :introduction,
-                                        :profile_image
+                                        :profile_image,
+                                        :level,
+                                        :experience_point,
+                                        :rest_point
                                       ])
     devise_parameter_sanitizer.permit(:account_update, keys: [
                                         :name,
                                         :characteristic,
                                         :introduction,
-                                        :profile_image
+                                        :profile_image,
+                                        :level,
+                                        :experience_point,
+                                        :rest_point
                                       ])
   end
 
