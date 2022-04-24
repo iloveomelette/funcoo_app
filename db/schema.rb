@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_24_014559) do
+ActiveRecord::Schema.define(version: 2022_04_24_015932) do
 
   create_table "genres", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "recipe_id", null: false
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 2022_04_24_014559) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_genres_on_recipe_id"
+  end
+
+  create_table "level_settings", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "passing_level"
+    t.integer "threshold"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "makes", charset: "utf8mb4", force: :cascade do |t|
