@@ -9,18 +9,13 @@ class LevelSetting < ApplicationRecord
 
     def down_level(user)
       current_point = user.experience_point
-      reducing_point = current_point * 0.2
-      reducing_point = reducing_point.round
-      current_point -= reducing_point
-      user.update!(experience_point: current_point)
-      current_level = LevelSetting.find_by(passing_level: user.level)
-      return unless current_level.present? && current_level.threshold >= current_point
-
-      user.level -= 1
-      user.update!(level: user.level)
+      reducing_point = calc_reducing_point(current_point)
+      reducing_current_point(user, current_point, reducing_point)
+      down_current_level(user)
     end
 
-    # *-*-* ここからprivateメソッド *-*-*
+    # *-*-* ここからclass_privateメソッド *-*-*
+    # *-*-* ここからcalc_levelメソッドの呼び出し先 *-*-*
     def calc_adding_point(user)
       adding_point = user.experience_point * 0.2
       adding_point.round
@@ -38,8 +33,30 @@ class LevelSetting < ApplicationRecord
       current_user.level += 1
       current_user.update!(level: current_user.level)
     end
+
+    # *-*-* ここからdown_levelメソッドの呼び出し先 *-*-*
+    def calc_reducing_point(current_point)
+      reducing_point = current_point * 0.2
+      reducing_point.round
+    end
+
+    def reducing_current_point(current_user, current_point, reducing_point)
+      current_point -= reducing_point
+      current_user.update!(experience_point: current_point)
+    end
+
+    def down_current_level(current_user)
+      current_level = LevelSetting.find_by(passing_level: current_user.level)
+      return unless current_level.present? && current_level.threshold >= current_user.experience_point
+
+      current_user.level -= 1
+      current_user.update!(level: current_user.level)
+    end
   end
   private_class_method :calc_adding_point,
                        :update_experience_point,
-                       :update_level
+                       :update_level,
+                       :calc_reducing_point,
+                       :reducing_current_point,
+                       :down_current_level
 end
