@@ -7,6 +7,20 @@ class LevelSetting < ApplicationRecord
       update_level(user)
     end
 
+    def down_level(user)
+      current_point = user.experience_point
+      reducing_point = current_point * 0.2
+      reducing_point = reducing_point.round
+      current_point -= reducing_point
+      user.update!(experience_point: current_point)
+      current_level = LevelSetting.find_by(passing_level: user.level)
+      return unless current_level.present? && current_level.threshold >= current_point
+
+      user.level -= 1
+      user.update!(level: user.level)
+    end
+
+    # *-*-* ここからprivateメソッド *-*-*
     def calc_adding_point(user)
       adding_point = user.experience_point * 0.2
       adding_point.round
