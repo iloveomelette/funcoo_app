@@ -4,6 +4,7 @@ ActiveRecord::Base.connection.execute("TRUNCATE TABLE users")
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE recipes")
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE makes")
 ActiveRecord::Base.connection.execute("TRUNCATE TABLE genres")
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE level_settings")
 ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 1")
 
 require "faker"
@@ -31,6 +32,15 @@ recipe_ids.each do |id|
   Make.create!(user_id: 3, recipe_id: id)
   Make.create!(user_id: 4, recipe_id: id)
   Make.create!(user_id: 5, recipe_id: id)
+end
+
+i = 2
+point = 30
+50.times do
+  LevelSetting.create!(passing_level: i, threshold: point)
+  i += 1
+  point *= 1.2
+  point = point.round
 end
 
 puts "初期データの挿入に成功しました！"

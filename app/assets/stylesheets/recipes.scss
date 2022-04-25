@@ -89,10 +89,16 @@
   }
   // *-*-* 一覧ページのスタイル *-*-*
   .flex-left {
-    flex-basis: 25%;
+    flex-basis: 20%;
   }
   .flex-right {
-    flex-basis: 75%;
+    flex-basis: 60%;
+  }
+  .flex-right {
+    flex-basis: 20%;
+  }
+  .login-btn {
+    @include submit-btn;
   }
   // *-*-* 「作ってみた！」を促すコンテンツのスタイル *-*-*
   .makes-info-wrapper {
