@@ -1,5 +1,5 @@
 <%# 「作ってみた!」を押している状態 %>
-<%= link_to recipe_makes_path(recipe), method: :delete, remote: true do %>
+<%= link_to recipe_makes_path(recipe), method: :delete, data: { confirm: 'レベルが下がる可能性がありますが、実行しますか？'}, remote: true do %>
   <i class="fa-solid fa-thumbs-up text-primary"></i>
   <%= recipe.makes_count %>
 <% end %>

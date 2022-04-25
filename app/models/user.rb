@@ -3,10 +3,15 @@ class User < ApplicationRecord
   has_many :makes, dependent: :destroy
   has_many :maked_recipes, through: :makes, source: :recipe
 
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, length: { maximum: 255 }
+  with_options presence: true do
+    validates :name, length: { maximum: 50 }
+    validates :email, length: { maximum: 255 }
+    validates :characteristic
+    validates :level
+    validates :experience_point
+    validates :rest_point
+  end
   validates :introduction, length: { maximum: 200 }
-  validates :characteristic, presence: true
   # 法人または一般の属性を定義
   enum characteristic: {
     general: 0,

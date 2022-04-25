@@ -17,6 +17,14 @@
             </div>
             <%# 名前を更新するフォーム %>
             <div class="flex-1">
+              <div class="pt-6">
+                <div class="flex">
+                  <p class="mr-8">現在の Lv. <%= current_user.level %></p>
+                  <p>経験値 <%= current_user.experience_point %>Exp</p>
+                </div>
+                <p>次のレベルまであと <%= current_user.rest_point %>Exp</p>
+              </div>
+
               <div class="field">
                 <%= f.label :name %> (50文字以内で入力してください)<br>
                 <%= f.text_field :name, autofocus: true %>
