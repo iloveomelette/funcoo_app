@@ -1,10 +1,10 @@
 <div class="recipes-container">
-  <div class="flex">
-    <aside class="pt-24 pl-3 flex-left">
+  <div class="flex pt-24">
+    <aside class="pl-3 flex-left">
       <%= render "search_form", collection: @q %>
     </aside>
 
-    <div class="pt-24 flex-right">
+    <div class="flex-center">
       <div class="w-4/5 m-auto">
         <% if current_user.characteristic == "general" %>
           <section class="mb-10">
@@ -40,12 +40,33 @@
 
         <section>
           <h2>レシピ一覧</h2>
-          <div class="grid grid-cols-3 gap-4 my-10">
+          <div class="grid grid-cols-2 gap-4 my-10">
             <%= render @recipes %>
           </div>
         </section>
       </div>
     </div>
+
+    <aside class="pr-3 flex-right">
+      <% if user_signed_in? %>
+        <div>
+          <p><%= current_user.name %>さんの情報</p>
+          <p>現在の Lv. <%= current_user.level %></p>
+          <p>経験値 <%= current_user.experience_point %>Exp</p>
+          <p>次のレベルまであと <%= current_user.rest_point %>Exp</p>
+        </div>
+      <% else %>
+        <div>
+          <p>ユーザ情報</p>
+          <p>新規登録 or ログインをするとユーザ情報を表示します</p>
+          <%= link_to 'ログイン', new_user_session_path, class: 'login-btn' %>
+        </div>
+      <% end %>
+      <div class="mt-8">
+        <p>運営からのお知らせ</p>
+        <p>4/26 レベル機能を追加しました</p>
+      </div>
+    </aside>
   </div>
   <div class="paginate"><%= paginate @recipes %></div>
 </div>
