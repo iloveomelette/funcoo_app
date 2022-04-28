@@ -28,62 +28,64 @@ class User < ApplicationRecord
   # 画像投稿のためのアップローダをprofile_imageと連携
   mount_uploader :profile_image, ProfileImageUploader
 
-  def self.guest
-    find_or_create_by!(email: "guest@example.com") do |user|
-      user.password = SecureRandom.urlsafe_base64
-      user.name = "ゲストユーザ"
-      user.characteristic = 1
+  class << self
+    def guest
+      find_or_create_by!(email: "guest@example.com") do |user|
+        user.password = SecureRandom.urlsafe_base64
+        user.name = "ゲストユーザ"
+        user.characteristic = 1
+      end
     end
-  end
 
-  # ここからOmniauth関連のメソッド
-  def self.without_sns_data(auth)
-    user = User.where(email: auth.info.email).first
+    # ここからOmniauth関連のメソッド
+    def without_sns_data(auth)
+      user = User.where(email: auth.info.email).first
 
-    if user.present?
-      sns = SnsCredential.create(
-        uid: auth.uid,
-        provider: auth.provider,
-        user_id: user.id
-      )
-    else
-      user = User.create(
-        name: auth.info.name,
-        email: auth.info.email,
-        profile_image: auth.info.image,
-        password: Devise.friendly_token(10)
-      )
-      sns = SnsCredential.create(
-        user_id: user.id,
-        uid: auth.uid,
-        provider: auth.provider
-      )
+      if user.present?
+        sns = SnsCredential.create(
+          uid: auth.uid,
+          provider: auth.provider,
+          user_id: user.id
+        )
+      else
+        user = User.create(
+          name: auth.info.name,
+          email: auth.info.email,
+          profile_image: auth.info.image,
+          password: Devise.friendly_token(10)
+        )
+        sns = SnsCredential.create(
+          user_id: user.id,
+          uid: auth.uid,
+          provider: auth.provider
+        )
+      end
+      { user:, sns: }
     end
-    { user:, sns: }
-  end
 
-  def self.with_sns_data(auth, snscredential)
-    user = User.where(id: snscredential.user_id).first
-    if user.blank?
-      user = User.new(
-        name: auth.info.name,
-        email: auth.info.email
-      )
+    def with_sns_data(auth, snscredential)
+      user = User.where(id: snscredential.user_id).first
+      if user.blank?
+        user = User.new(
+          name: auth.info.name,
+          email: auth.info.email
+        )
+      end
+      { user: }
     end
-    { user: }
-  end
 
-  def self.find_oauth(auth)
-    uid = auth.uid
-    provider = auth.provider
-    snscredential = SnsCredential.where(uid:, provider:).first
-    if snscredential.present?
-      user = with_sns_data(auth, snscredential)[:user]
-      sns = snscredential
-    else
-      user = without_sns_data(auth)[:user]
-      sns = without_sns_data(auth)[:sns]
+    def find_oauth(auth)
+      uid = auth.uid
+      provider = auth.provider
+      snscredential = SnsCredential.where(uid:, provider:).first
+      if snscredential.present?
+        user = with_sns_data(auth, snscredential)[:user]
+        sns = snscredential
+      else
+        user = without_sns_data(auth)[:user]
+        sns = without_sns_data(auth)[:sns]
+      end
+      { user:, sns: }
     end
-    { user:, sns: }
   end
 end
