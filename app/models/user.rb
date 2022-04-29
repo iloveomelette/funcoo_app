@@ -66,9 +66,11 @@ class User < ApplicationRecord
     def with_sns_data(auth, snscredential)
       user = User.where(id: snscredential.user_id).first
       if user.blank?
-        user = User.new(
+        user = User.create(
           name: auth.info.name,
-          email: auth.info.email
+          email: auth.info.email,
+          profile_image: auth.info.image,
+          password: Devise.friendly_token(10)
         )
       end
       { user: }
