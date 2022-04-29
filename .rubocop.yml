@@ -52,9 +52,9 @@ Metrics/BlockLength:
 Rails/I18nLocaleTexts:
   Enabled: false
 Metrics/MethodLength:
-  Max: 20
+  Max: 25
 Metrics/AbcSize:
-  Max: 20
+  Max: 25
   Exclude:
     - 'app/forms/*'
 
