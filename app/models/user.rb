@@ -28,6 +28,20 @@ class User < ApplicationRecord
   # 画像投稿のためのアップローダをprofile_imageと連携
   mount_uploader :profile_image, ProfileImageUploader
 
+  # パスワードの入力なしで更新する処理
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update(params, *options)
+    clean_up_passwords
+    result
+  end
+
   class << self
     def guest
       find_or_create_by!(email: "guest@example.com") do |user|
