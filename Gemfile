@@ -37,6 +37,8 @@ gem "mini_magick"
 gem "net-imap"
 gem "net-pop"
 gem "net-smtp"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
 gem "rails-i18n", "~> 6.0"
 gem "ransack"
 

@@ -14,7 +14,7 @@
 }
 // **** ボタン用ミックスイン ****
 @mixin submit-layout($bgColor, $hoverColor, $boxShadow) {
-  min-width: 130px;
+  min-width: 290px;
   height: 50px;
   color: #fbf6f0;
   padding: 5px 10px;
@@ -82,6 +82,21 @@
     font-weight: bold;
     &:hover {
       color: #fa812b;
+    }
+  }
+  .google-wrapper {
+    margin-top: 10px;
+    text-align: center;
+    .google {
+      @include submit-layout(#eb5043, #e94233, #dc4a3d);
+      padding-top: 15px;
+    }
+  }
+  .another-choice {
+    text-align: center;
+    margin-top: 10px;
+    p {
+      color: rgb(107, 114, 128);
     }
   }
 }
