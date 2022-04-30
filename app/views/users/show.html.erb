@@ -1,0 +1,38 @@
+<div>
+	<div>
+		<% if current_user.profile_image.present? %>
+      <%= image_tag current_user.profile_image.thumb.url %>
+    <% else %>
+      <%= image_tag current_user.profile_image.url %>
+    <% end %>
+		<%= link_to edit_user_registration_path do %>
+			<i class="fa-solid fa-pen-to-square recipe-edit text-xl mr-4"></i> アカウント編集
+		<% end %>
+		<%= current_user.name %>
+		<%= current_user.level %>
+		<%= current_user.experience_point %>
+		<%= current_user.rest_point %>
+		<%= current_user.introduction %>
+	</div>
+
+	<div>
+    <p>作ってみたを押した投稿</p>
+		<% if current_user.characteristic == "general" %>
+      <% @maked_recipes.each do |recipe| %>
+        <%= recipe.title %>
+      <% end %>
+		<% else %>
+      <% @post_recipes.each do |recipe| %>
+        <%= recipe.title %>
+      <% end %>
+		<% end %>
+	</div>
+
+  <div class="paginate">
+    <% if @maked_recipes.present? %>
+      <%= paginate @maked_recipes %>
+    <% else %>
+      <%= paginate @post_recipes %>
+    <% end %>
+  </div>
+</div>
