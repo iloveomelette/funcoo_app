@@ -1,0 +1,46 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.my-page-wrapper {
+  padding: 100px 100px;
+  .user-info {
+    display: flex;
+    .user-info-left {
+      text-align: center;
+      flex-basis: 50%;
+      .user-info-image {
+        margin: 0 auto;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .user-info-link {
+        display: inline-block;
+        color: #fff;
+        border: 2px solid #878787;
+        border-radius: 10px;
+        background-color: #bbbbbb;
+        margin-top: 15px;
+        padding: 5px 10px;
+        &:hover {
+          color: #ffa45b;
+        }
+      }
+    }
+    .user-info-right {
+      display: flex;
+      flex-basis: 50%;
+      .main-user-info {
+        flex-basis: 50%;
+      }
+      .user-info-level {
+        flex-basis: 50%;
+      }
+    }
+  }
+  .user-recipes {
+    margin-top: 24px;
+  }
+}

@@ -10,7 +10,7 @@
 <% end %>
 
 <%- if controller_name != 'sessions' %>
-  <%= link_to t(".sign_in"), new_session_path(resource_name), class: 'login-link' %><br />
+  <div><%= link_to t(".sign_in"), new_session_path(resource_name), class: 'login-link' %></div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
@@ -22,9 +22,9 @@
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to t('.didn_t_receive_confirmation_instructions'), new_confirmation_path(resource_name) %><br />
+  <div><%= link_to t('.didn_t_receive_confirmation_instructions'), new_confirmation_path(resource_name) %></div>
 <% end %>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to t('.didn_t_receive_unlock_instructions'), new_unlock_path(resource_name) %><br />
+  <div><%= link_to t('.didn_t_receive_unlock_instructions'), new_unlock_path(resource_name) %></div>
 <% end %>

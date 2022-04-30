@@ -49,6 +49,7 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'db/**/*'
+    - 'config/environments/*'
 Rails/I18nLocaleTexts:
   Enabled: false
 Metrics/MethodLength:
