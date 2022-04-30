@@ -15,4 +15,5 @@ Rails.application.routes.draw do
       get "search_index"
     end
   end
+  resource :users, only: :show
 end
