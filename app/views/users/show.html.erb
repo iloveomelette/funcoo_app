@@ -1,0 +1,32 @@
+<div class="my-page-wrapper">
+	<div class="user-info">
+    <div class="user-info-left">
+      <%= image_tag check_user_profile_image(current_user), class: "user-info-image" %>
+      <%= link_to "アカウント編集", edit_user_registration_path, class: "user-info-link" %>
+    </div>
+    <div class="user-info-right">
+      <div class="main-user-info">
+        <p><%= current_user.name %></p>
+        <p><%= current_user.introduction %></p>
+      </div>
+      <div class="user-info-level">
+        <p>現在の Lv. <%= current_user.level %></p>
+        <p>経験値 <%= current_user.experience_point %>Exp</p>
+        <p>次のレベルまであと <%= current_user.rest_point %>Exp</p>
+      </div>
+    </div>
+	</div>
+
+	<div class="user-recipes">
+    <p><%= check_user_characteristic(current_user) %></p>
+    <div class="grid grid-cols-2 gap-4">
+      <% @recipes.each do |recipe| %>
+        <%= render "/recipes/recipe", recipe: recipe %>
+      <% end %>
+    </div>
+	</div>
+
+  <div class="paginate">
+    <%= paginate @recipes %>
+  </div>
+</div>
