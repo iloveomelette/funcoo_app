@@ -1,5 +1,6 @@
 // *-*-* フラッシュのレイアウト *-*-*
 .flash-wrapper {
+  display: flex;
   position: absolute;
   left: 144px;
   top: 15px;
@@ -20,11 +21,22 @@
       transform: translateY(0);
     }
   }
-  .flash-msg {
-    color: #fbf6f0;
-    font-weight: bold;
-    padding-top: 15px;
+  .flashMsg-container {
+    flex-basis: 95%;
+    .flash-msg {
+      color: #fbf6f0;
+      font-weight: bold;
+      padding-top: 15px;
+    }
   }
+  .close {
+    flex-basis: 5%;
+    display: flex;
+    align-items: center;
+  }
+}
+#flash-wrapper.hidden {
+  display: none;
 }
 .notice {
   background: rgba($color: #66b1f2, $alpha: 0.9);

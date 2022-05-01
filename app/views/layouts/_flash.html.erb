@@ -1,7 +1,10 @@
 <% flash.each do |flash_type, msg| %>
-  <div class="flash-wrapper <%= flash_type == 'notice' ? 'notice' : 'alert' %>">
-    <p class="flash-msg">
-      <%= msg %>
-    </p>
+  <div id="flash-wrapper" class="flash-wrapper <%= flash_type == 'notice' ? 'notice' : 'alert' %>">
+    <div class="flashMsg-container">
+      <p class="flash-msg"><%= msg %></p>
+    </div>
+    <div id="close" class="close">
+      <button><i class="fa-solid fa-xmark text-white"></i></button>
+    </div>
   </div>
 <% end %>
