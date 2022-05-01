@@ -17,13 +17,6 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 @import '@fortawesome/fontawesome-free/scss/regular';
 
-* {
-  box-sizing: border-box;
-}
-a {
-  text-decoration: none;
-}
-
 // *-*-* フラッシュのレイアウト *-*-*
 .flash-wrapper {
   position: absolute;

@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Klee+One&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Klee One', cursive;
+}
+
+html,
+input,
+textarea,
+select,
+button {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+html {
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+  word-break: break-all;
+  position: relative;
+}
+
+body {
+  background-color: #fbf6f0;
+  margin-top: 0;
+  position: relative;
+  min-height: 100vh;
+}
+
+img {
+  border: 0;
+  margin: 0;
+  vertical-align: top;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
+  margin: 0;
+  padding: 0;
+}
