@@ -1,4 +1,3 @@
-<%# SCSSでスタイリング %>
 <% flash.each do |flash_type, msg| %>
   <div class="flash-wrapper <%= flash_type == 'notice' ? 'notice' : 'alert' %>">
     <p class="flash-msg">
