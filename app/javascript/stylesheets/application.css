@@ -1,3 +1,11 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+/* *-*-*トップページ*-*-* */
+.tail-toUser-msg {
+  @apply mb-12 ml-8 text-center;
+}
+.tail-function-wrapper {
+  @apply mx-8 flex-1;
+}

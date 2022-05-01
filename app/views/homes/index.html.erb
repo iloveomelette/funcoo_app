@@ -32,7 +32,7 @@
 <section class="main-section">
     <div class="mb-20">
       <div class="text-center mb-16">
-        <h2 class="what-app">FunCooAppとは？</h2>
+        <h2 class="main-section-heading2">FunCooAppとは？</h2>
       </div>
       <div>
         <div class="flex mx-20">
@@ -53,69 +53,75 @@
 
     <div class="mb-32">
       <div class="text-center mb-16">
-        <h2 class="text-primary font-semibold">おもな機能</h2>
+        <h2 class="main-section-heading2">おもな機能</h2>
       </div>
       <div class="mb-16">
-        <div class="mb-12 ml-8">
-          <h3 class="text-quaternary">個人利用者の方</h3>
+        <div class="tail-toUser-msg">
+          <h3 class="main-section-heading3">個人利用者の方</h3>
         </div>
         <div class="flex justify-center">
-          <div class="mx-8">
-            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8" %>
+          <div class="tail-function-wrapper">
+            <%= image_tag "search.png", alt: "検索機能が利用できる", class: "main-section-img" %>
             <div class="px-4">
-              <p class="mb-4 text-center font-semibold text-secondary">レシピの検索</p>
+              <p class="function-title">レシピの検索</p>
               <p>レシピのタイトルから内容、料理時間、カロリー、日本食などのジャンルと様々な視点からレシピを探せます。</p>
             </div>
           </div>
-          <div class="mx-8">
-            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8" %>
+
+          <div class="tail-function-wrapper">
+            <%= image_tag "recommend.png", alt: "レコメンド機能が利用できる", class: "main-section-img" %>
             <div class="px-4">
-              <p class="mb-4 text-center font-semibold text-secondary">おすすめ機能</p>
+              <p class="function-title">おすすめ機能</p>
               <p>あなたの好みに合わせておすすめのレシピを提案いたします。今日のご飯にいかがでしょうか。</p>
             </div>
           </div>
-          <div class="mx-8">
-            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8" %>
+
+          <div class="tail-function-wrapper">
+            <%= image_tag "level-status.png", alt: "レベル機能が利用できる", class: "main-section-img" %>
             <div class="px-4">
-              <p class="mb-4 text-center font-semibold text-secondary">ステータス機能</p>
+              <p class="function-title">ステータス機能</p>
               <p>当アプリ機能である「作ってみた！」を押すことでレベルを上げるとステータス機能が上がります。達成感を持って毎日楽しく料理をすることができます。</p>
             </div>
           </div>
         </div>
       </div>
-      <div>
-        <div class="mb-12 ml-8">
-          <h3 class="text-quaternary">個人農家/個人飲食店経営の方</h3>
+
+      <div class="mt-8">
+        <div class="tail-toUser-msg">
+          <h3 class="main-section-heading3">個人農家/個人飲食店経営の方</h3>
         </div>
         <div class="flex justify-center">
-          <div class="mx-8">
-            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8", height: 100 %>
+          <div class="tail-function-wrapper">
+            <%= image_tag "appeal-food.png", alt: "魅力ある食材をアピールしよう", class: "main-section-img" %>
             <div class="px-4">
-              <p class="mb-4 text-center font-semibold text-secondary">魅力ある食材を紹介</p>
+              <p class="function-title">魅力ある食材を紹介</p>
               <p>ご自身で生産、考案した魅力ある食材やレシピを投稿してアプリを利用する方々に知ってもらうことができます。</p>
             </div>
           </div>
-          <div class="mx-8">
-            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8", height: 100 %>
+
+          <div class="tail-function-wrapper">
+            <%= image_tag "lead-url.png", alt: "URLを載せよう", class: "main-section-img" %>
             <div class="px-4">
-              <p class="mb-4 text-center font-semibold text-secondary">自身が運営するURLを載せる</p>
+              <p class="function-title">自身が運営するHPを載せる</p>
               <p>ご自身が持っているHPなどのリンクを共有してアプリを利用する方々に訪れてもらいましょう。</p>
             </div>
           </div>
-          <div class="mx-8">
-            <%= image_tag "top-bg-img.jpg", alt: "アプリ説明画像", class: "w-full mb-8", height: 100 %>
+
+          <div class="tail-function-wrapper">
+            <%= image_tag "ranking.png", alt: "ランキング機能が利用できる", class: "main-section-img" %>
             <div class="px-4">
-              <p class="mb-4 text-center font-semibold text-secondary">ランキング機能</p>
+              <p class="function-title">ランキング機能</p>
               <p>魅力あふれるレシピを投稿して多くの「作ってみた！」を押してもらうことで一覧ページにてそのレシピが表示されアプリを利用する方々の目に留まります。</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <div>
-      <div class="text-center mb-20">
-        <p class="font-semibold text-primary">毎日楽しく料理ができる</p>
-        <p class="font-semibold text-primary">さあ、今すぐ始めましょう！</p>
+      <div class="text-center mb-16">
+        <h3 class="lead-signUp-msg">毎日楽しく料理ができる</h3>
+        <h3 class="lead-signUp-msg">さあ、今すぐ始めましょう！</h3>
       </div>
       <div class="text-center">
         <%= link_to '新規登録', new_user_registration_path, class: 'sign-up-btn' %>
