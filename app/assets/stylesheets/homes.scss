@@ -2,35 +2,113 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-@mixin common-btn($bg-color, $color-hover) {
+@mixin submit-layout($bgColor, $hoverColor, $boxShadow) {
   color: #fbf6f0;
-  font-weight: bold;
-  background-color: $bg-color;
-  padding: 15px 15px;
-  width: 300px;
-  height: 50px;
-  border-radius: 15px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  outline: none;
+  border-radius: 10px;
+  border: none;
+  background-color: $bgColor;
+  box-shadow: 0 3px 1px -2px $boxShadow, 0 2px 2px 0 $boxShadow, 0 1px 5px 0 $boxShadow;
   &:hover {
-    background-color: $color-hover;
+    background-color: $hoverColor;
+  }
+  &:active {
+    box-shadow: 0 4px 2px -3px $boxShadow, 0 4px 5px 1px $boxShadow, 0 2px 7px 1px $boxShadow;
   }
 }
 
-// *-*-* 初期に表示されるセクションのレイアウト *-*-*
-.wrapper {
-  width: 100%;
-  .top-bg-img {
-    min-height: 675px;
-    max-height: 100vh;
-    object-fit: cover;
-    width: 100%;
-    object-position: left bottom;
-    filter: contrast(60%);
+// *-*-* トップセクションのレイアウト *-*-*
+.top-section {
+  min-height: 100vh;
+  background-color: #ffa45b;
+  display: flex;
+  .top-left {
+    flex-basis: 50%;
+    .top-heading {
+      color: #5eaf23;
+      font-size: 5em;
+      font-weight: 900;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .sub-heading {
+      color: #fbf6f0;
+      font-size: 2em;
+      font-weight: 800;
+    }
+    .top-msg {
+      color: #e8e8e8;
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+  .top-right {
+    flex-basis: 50%;
+    position: relative;
+    .top-img {
+      position: absolute;
+      width: 400px;
+      height: 300px;
+      right: 100px;
+      top: 50px;
+      box-shadow: 4px 4px 50px rgba(0, 0, 0, 0.25);
+      border-radius: 15px;
+      transform: rotate(5deg);
+      object-position: left bottom;
+    }
   }
   .sign-up-btn {
-    @include common-btn(#ffa45b, #fa812b);
+    @include submit-layout(#5eaf23, #8ec22f, #2f630a);
+    width: 100px;
+    height: 50px;
+    font-weight: 900;
+    padding: 10px 0px;
   }
   .login-btn {
-    @include common-btn(#ffda77, #ebbd65);
+    @include submit-layout(#ffda77, #ffe291, #b39542);
+    width: 100px;
+    height: 50px;
+    font-weight: 900;
+    padding: 10px 0px;
+  }
+  .login-btn-guest {
+    @include submit-layout(#ffda77, #ffe291, #b39542);
+    width: 140px;
+    height: 50px;
+    font-weight: 900;
+    padding: 0px 3px;
+  }
+}
+// *-*-* メインセクションのレイアウト *-*-*
+.main-section {
+  margin: 80px auto;
+  .what-app {
+    color: #ffa45b;
+    font-size: 2.5em;
+    font-weight: 900;
+  }
+  .what-app-img {
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+  }
+  .license {
+    color: #c0c4cc;
+    font-size: 10px;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .main-section-heading3 {
+    color: #5eaf23;
+    font-size: 2em;
+    font-weight: 900;
+  }
+  .app-description {
+    line-height: 2;
+    margin-top: 10px;
+    padding-right: 15px;
   }
 }
