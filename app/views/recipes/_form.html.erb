@@ -1,5 +1,5 @@
 <div class="recipes-container">
-  <div class="recipe-form recipe-wrapper">
+  <div class="recipe-form py-20 w-2/3 m-auto">
     <%= render "recipes/shared/error_messages", collection: @recipe_form %>
 
     <%= form_with model: @recipe_form, url: @recipe_form.persisted? ? recipe_path : recipes_path, local: true do |form| %>

@@ -1,24 +1,24 @@
-<div class="header-container">
-  <nav class="nav-wrapper">
+<div class="text-center bg-primary h-20 flex border-b-8 border-secondary">
+  <nav class="w-10/12 m-auto">
     <% if user_signed_in? %>
-      <%= link_to '一覧', recipes_path, class: 'nav-link' %>
+      <%= link_to '一覧', recipes_path, class: 'mx-10 text-tertiary font-bold' %>
       <% if current_user.characteristic == "corporation" && current_user.name != "ゲストユーザ" %>
-        <%= link_to '投稿する', new_recipe_path, class: 'nav-link' %>
+        <%= link_to '投稿する', new_recipe_path, class: 'mx-10 text-tertiary font-bold' %>
       <% end %>
-      <%= link_to 'アカウント編集', edit_user_registration_path,class: 'nav-link' %>
-      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-      <%= link_to 'マイページ', users_path, class: 'nav-link' %>
+      <%= link_to 'アカウント編集', edit_user_registration_path,class: 'mx-10 text-tertiary font-bold' %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'mx-10 text-tertiary font-bold' %>
+      <%= link_to 'マイページ', users_path, class: 'mx-10 text-tertiary font-bold' %>
     <% else %>
-      <%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %>
-      <%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %>
-      <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'nav-link' %>
+      <%= link_to '新規登録', new_user_registration_path, class: 'mx-10 text-tertiary font-bold' %>
+      <%= link_to 'ログイン', new_user_session_path, class: 'mx-10 text-tertiary font-bold' %>
+      <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'mx-10 text-tertiary font-bold' %>
     <% end %>
   </nav>
-  <div class="header-right">
-    <%= search_form_for @q, url: url, class: "search-box" do |f| %>
-      <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "search-input focus:ring-4 focus:ring-quaternary" %>
-      <%= f.button :type => "submit", class: 'search-submit' do %>
-        <span><i class="fa-solid fa-magnifying-glass search-submit hover:text-quaternary"></i></span>
+  <div class="flex max-w-xs">
+    <%= search_form_for @q, url: url, class: "pt-4 pr-6" do |f| %>
+      <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "absolute right-6 h-10 rounded-xl py-3 outline-none bg-gray-200 w-52 focus:ring-4 focus:ring-quaternary" %>
+      <%= f.button :type => "submit", class: 'absolute right-6 top-3.5 text-lg text-gray-400' do %>
+        <span><i class="fa-solid fa-magnifying-glass absolute right-6 top-3.5 text-lg text-gray-400 hover:text-quaternary"></i></span>
       <% end %>
     <% end %>
   </div>

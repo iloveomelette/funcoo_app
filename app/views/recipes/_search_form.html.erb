@@ -3,7 +3,7 @@
   <%= search_form_for @q, url: search_index_recipes_path, class: "pt-5" do |f| %>
     <div>
       <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "rounded-xl py-1 outline-none bg-gray-200 w-52 focus:ring-4 focus:ring-quaternary" %>
-      <div class="radio-wrapper">
+      <div class="pt-2">
         <%= f.radio_button :cooking_time_lteq, "30" %>
         <%= f.label :cooking_time_lteq_30, "30分以内" %>
         <%= f.radio_button :cooking_time_lteq, "60" %>
@@ -11,7 +11,7 @@
         <%= f.radio_button :cooking_time_gt, "60" %>
         <%= f.label :cooking_time_gt_60, "それ以上" %>
       </div>
-      <div class="radio-wrapper">
+      <div class="pt-2">
         <%= f.radio_button :cooking_cost_lteq, "500" %>
         <%= f.label :cooking_cost_lteq_500, "500円以内" %>
         <%= f.radio_button :cooking_cost_lteq, "1000" %>
@@ -21,7 +21,7 @@
         <%= f.radio_button :cooking_cost_gt, "2000" %>
         <%= f.label :cooking_cost_gt_2000, "それ以上" %>
       </div>
-      <div class="radio-wrapper">
+      <div class="pt-2">
         <%= f.radio_button :calorie_lteq, "500" %>
         <%= f.label :calorie_lteq_500, "500kcal以下" %>
         <%= f.radio_button :calorie_lteq, "1000" %>
