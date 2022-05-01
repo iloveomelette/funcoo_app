@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener('load', () => {
   const flash = document.getElementById('flash-wrapper');
   const close = document.getElementById('close');
 

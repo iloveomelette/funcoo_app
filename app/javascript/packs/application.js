@@ -14,4 +14,3 @@ import './flash';
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
-repuire('./flash');

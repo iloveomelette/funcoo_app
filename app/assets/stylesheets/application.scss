@@ -17,15 +17,6 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 @import '@fortawesome/fontawesome-free/scss/regular';
 
-// *-*-* ヘッダーのレイアウト *-*-*
-.header-logo {
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 60px;
-  width: 100px;
-}
 // *-*-* ページネーションのスタイル *-*-*
 .paginate {
   padding-bottom: 40px;
