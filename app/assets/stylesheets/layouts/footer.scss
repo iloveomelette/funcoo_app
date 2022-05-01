@@ -1,0 +1,16 @@
+.footer-wrapper {
+  text-align: center;
+  height: 100px;
+  background-color: #aee6e6;
+  .footer-app-name {
+    color: #6b7280;
+    font-size: 14px;
+    padding-top: 10px;
+  }
+  .footer-twitter {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 10px;
+    display: inline-block;
+  }
+}
