@@ -11,9 +11,9 @@
       <% if current_user.characteristic == "corporation" && current_user.name != "ゲストユーザ" %>
         <%= link_to '投稿する', new_recipe_path, class: 'mx-10 text-tertiary font-bold' %>
       <% end %>
+      <%= link_to 'マイページ', users_path, class: 'mx-10 text-tertiary font-bold' %>
       <%= link_to 'アカウント編集', edit_user_registration_path,class: 'mx-10 text-tertiary font-bold' %>
       <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'mx-10 text-tertiary font-bold' %>
-      <%= link_to 'マイページ', users_path, class: 'mx-10 text-tertiary font-bold' %>
     <% else %>
       <%= link_to '新規登録', new_user_registration_path, class: 'mx-10 text-tertiary font-bold' %>
       <%= link_to 'ログイン', new_user_session_path, class: 'mx-10 text-tertiary font-bold' %>
@@ -25,7 +25,7 @@
     <% if user_signed_in? %>
       <div class="header-searchContainer">
         <%= search_form_for @q, url: url do |f| %>
-          <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "header-searchBox" %>
+          <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "header-q searchForm-outstyle" %>
           <%= f.button :type => "submit" do %>
             <span><i class="fa-solid fa-magnifying-glass searchIcon"></i></span>
           <% end %>

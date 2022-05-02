@@ -27,10 +27,8 @@
 }
 
 .recipes-container {
-  background-color: #fbf6f0;
-  img {
-    object-fit: cover;
-  }
+  display: flex;
+  padding-top: 6rem;
   .recipe-edit {
     color: rgb(157, 252, 13);
     &:hover {
@@ -89,10 +87,10 @@
   }
   // *-*-* 一覧ページのスタイル *-*-*
   .flex-left {
-    flex-basis: 20%;
+    flex-basis: 30%;
   }
   .flex-right {
-    flex-basis: 60%;
+    flex-basis: 50%;
   }
   .flex-right {
     flex-basis: 20%;
@@ -125,5 +123,13 @@
 .search-container {
   input[type='submit'] {
     @include submit-btn;
+  }
+  .q-SearchBox {
+    padding: 10px;
+    .recipes-q {
+      height: 30px;
+      width: 200px;
+      border-radius: 10px;
+    }
   }
 }
