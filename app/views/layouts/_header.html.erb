@@ -9,7 +9,7 @@
     <% if user_signed_in? %>
       <%= link_to '一覧', recipes_path, class: 'mx-10 text-tertiary font-bold' %>
       <% if current_user.characteristic == "corporation" && current_user.name != "ゲストユーザ" %>
-        <%= link_to '投稿する', new_recipe_path, class: 'mx-10 text-tertiary font-bold' %>
+        <%= link_to '投稿する', new_recipe_path, class: 'mx-10 text-tertiary font-bold' unless current_page?(new_recipe_path) %>
       <% end %>
       <%= link_to 'マイページ', users_path, class: 'mx-10 text-tertiary font-bold' %>
       <%= link_to 'アカウント編集', edit_user_registration_path,class: 'mx-10 text-tertiary font-bold' %>

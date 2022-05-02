@@ -33,7 +33,6 @@
 }
 
 .recipes-container {
-  display: flex;
   padding-top: 6rem;
   .recipe-edit {
     color: #8ec22f;
@@ -51,6 +50,9 @@
     }
   }
   // *-*-* レシピ投稿フォームのスタイル *-*-*
+  .recipe-form {
+    max-width: 960px;
+  }
   .field {
     margin-top: 2rem;
   }

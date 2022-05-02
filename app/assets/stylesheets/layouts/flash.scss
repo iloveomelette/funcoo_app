@@ -1,14 +1,6 @@
 // *-*-* フラッシュのレイアウト *-*-*
-.flash-wrapper {
-  display: flex;
-  position: absolute;
-  left: 144px;
-  top: 15px;
-  width: 80%;
-  height: 60px;
-  text-align: center;
+@mixin flash-animation {
   z-index: 1;
-  border-radius: 15px;
   box-shadow: 4px 4px 50px rgba(0, 0, 0, 0.25);
   animation: fadein-anim 1s linear forwards;
   @keyframes fadein-anim {
@@ -21,6 +13,17 @@
       transform: translateY(0);
     }
   }
+}
+.flash-wrapper {
+  display: flex;
+  position: absolute;
+  left: 144px;
+  top: 15px;
+  width: 80%;
+  height: 60px;
+  text-align: center;
+  border-radius: 15px;
+  @include flash-animation;
   .flashMsg-container {
     flex-basis: 95%;
     .flash-msg {
@@ -45,11 +48,13 @@
   background: rgba($color: #f24130, $alpha: 0.9);
 }
 #error_explanation {
-  margin-bottom: 10px;
+  margin: 15px auto 0;
   padding: 8px;
+  max-width: 960px;
   background-color: rgba($color: #f27e93, $alpha: 0.8);
   border-radius: 10px;
-  border: solid #f24130;
+  border: 2px solid #f24130;
+  @include flash-animation;
   .error {
     color: yellow;
   }
