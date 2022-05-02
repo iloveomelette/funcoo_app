@@ -1,4 +1,4 @@
-<div class="devise-container pt-20 px-40">
+<div class="devise-container pt-20">
   <div class="px-12 m-auto">
     <%= link_to :back, class: "back-link text-xl", data: { confirm: "入力したものは保存されませんがよろしいですか？" } do %>
       <i class="fa-solid fa-angles-left"></i> キャンセル
@@ -6,20 +6,27 @@
 
     <div class="mt-10">
       <%= render "devise/shared/error_messages", resource: resource %>
-      <h2>アカウント編集</h2>
+      <h2 class="text-3xl">アカウント編集</h2>
       <div>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
           <div class="flex mt-10">
             <div class="flex-1">
-              <div class="m-8"><%= image_tag current_user.profile_image.url %></div>
-              <p>プロフィール画像：<%= f.file_field :profile_image, accept: "image/png,image/jpeg,image/gif" %></p>
+              <div class="pt-8 mb-8">
+                <%= image_tag current_user.profile_image.url, class: "devise-profileImg" %>
+              </div>
+              <div class="text-center">
+                <%= f.label :profile_image, class: "select-profileImg" do %>
+                  <i class="fa-solid fa-images mr-3"></i>プロフィール画像を変更する
+                <% end %>
+                <%= f.file_field :profile_image, accept: "image/png,image/jpeg,image/gif" %>
+              </div>
             </div>
             <%# 名前を更新するフォーム %>
             <div class="flex-1">
               <div class="pt-6">
                 <div class="flex">
-                  <p class="mr-8">現在の Lv. <%= current_user.level %></p>
+                  <p class="mr-8">現在 Lv. <%= current_user.level %></p>
                   <p>経験値 <%= current_user.experience_point %>Exp</p>
                 </div>
                 <p>次のレベルまであと <%= current_user.rest_point %>Exp</p>
