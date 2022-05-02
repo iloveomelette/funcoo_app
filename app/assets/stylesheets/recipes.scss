@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-// *-*-* 検索ボタンのミックスイン *-*-*
+// *-*-* 検索ボタン *-*-*
 @mixin submit-btn {
   min-width: 130px;
   height: 50px;
@@ -25,18 +25,27 @@
     box-shadow: 0 4px 2px -3px #fa8d35, 0 4px 5px 1px #fa8d35, 0 2px 7px 1px #fa8d35;
   }
 }
+// *-*-* 料理イメージの共通スタイル *-*-*
+@mixin menu-image($height, $width) {
+  border-radius: 15px;
+  height: $height;
+  width: $width;
+}
 
 .recipes-container {
   display: flex;
   padding-top: 6rem;
   .recipe-edit {
-    color: rgb(157, 252, 13);
+    color: #8ec22f;
+    font-size: 24px;
+    margin-right: 1em;
     &:hover {
       color: green;
     }
   }
   .recipe-delete {
     color: #f06060;
+    font-size: 24px;
     &:hover {
       color: #f03c3c;
     }
@@ -87,10 +96,10 @@
   }
   // *-*-* 一覧ページのスタイル *-*-*
   .flex-left {
-    flex-basis: 30%;
+    flex-basis: 20%;
   }
-  .flex-right {
-    flex-basis: 50%;
+  .flex-center {
+    flex-basis: 60%;
   }
   .flex-right {
     flex-basis: 20%;
@@ -98,7 +107,44 @@
   .login-btn {
     @include submit-btn;
   }
-  // *-*-* 「作ってみた！」を促すコンテンツのスタイル *-*-*
+  .recipeArticles-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+    margin: 20px 0px 40px;
+    .recipe-wrapper {
+      width: 340px;
+      padding: 15px;
+      .make-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        .make-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #5eaf23;
+          border-radius: 50%;
+          box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+          width: 50px;
+          height: 50px;
+          background-color: #fff;
+        }
+      }
+    }
+    .recipes-menuImg {
+      @include menu-image(210, 340);
+    }
+  }
+  // *-*-* レコメンド機能のスタイル *-*-*
+  .recommend-wrapper {
+    display: flex;
+    padding: 15px;
+    .recommed-img {
+      @include menu-image(220, 330);
+    }
+  }
   .makes-info-wrapper {
     height: 80px;
     background: rgba($color: #aee6e6, $alpha: 0.8);
