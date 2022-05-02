@@ -17,10 +17,10 @@
       <p id="recipe-<%= recipe.id %>" class="make-icon">
         <% if recipe.maked_by?(current_user) %>
           <%# 「作ってみた!」を押している状態 %>
-          <%= render "make", recipe: recipe %>
+          <%= render "recipes/make", recipe: recipe %>
         <% else %>
           <%# 「作ってみた!」を押していない状態 %>
-          <%= render "nonmake", recipe: recipe %>
+          <%= render "recipes/nonmake", recipe: recipe %>
         <% end %>
       </p>
     <% end %>
