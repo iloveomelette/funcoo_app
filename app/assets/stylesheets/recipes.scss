@@ -137,6 +137,15 @@
       @include menu-image(210, 340);
     }
   }
+  .info-msg {
+    margin-top: 15px;
+    padding-top: 5px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    .info-date {
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 12px;
+    }
+  }
   // *-*-* レコメンド機能のスタイル *-*-*
   .recommend-wrapper {
     display: flex;
