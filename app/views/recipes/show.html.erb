@@ -29,10 +29,10 @@
           <div class="flex">
             <% if current_user.id == @recipe.user_id %>
               <%= link_to edit_recipe_path(@recipe) do %>
-                <i class="fa-solid fa-pen-to-square recipe-edit text-3xl mr-4"></i>
+                <i class="fa-solid fa-pen-to-square recipe-editIcon recipe-edit"></i>
               <% end %>
               <%= link_to recipe_path(@recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} do %>
-                <i class="fa-solid fa-trash-can recipe-delete text-3xl"></i>
+                <i class="fa-solid fa-trash-can recipe-deleteIcon recipe-delete"></i>
               <% end %>
             <% end %>
           </div>

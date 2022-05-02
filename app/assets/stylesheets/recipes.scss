@@ -31,31 +31,9 @@
   height: $height;
   width: $width;
 }
-// *-*-* 編集削除アイコンの共通スタイル *-*-*
-@mixin recipe-edit {
-  color: #8ec22f;
-  font-size: 24px;
-  margin-right: 1em;
-  &:hover {
-    color: green;
-  }
-}
-@mixin recipe-delete {
-  color: #f06060;
-  font-size: 24px;
-  &:hover {
-    color: #f03c3c;
-  }
-}
 
 .recipes-container {
   padding-top: 6rem;
-  .recipe-edit {
-    @include recipe-edit;
-  }
-  .recipe-delete {
-    @include recipe-delete;
-  }
   // *-*-* レシピ投稿フォームのスタイル *-*-*
   .recipe-form {
     max-width: 960px;
@@ -183,12 +161,11 @@
     margin: 16px 0 100px;
     padding: 16px;
     flex-basis: 90%;
-    .recipe-edit {
-      @include recipe-edit;
+    .recipe-editIcon {
       font-size: 30px;
+      margin-right: 1em;
     }
-    .recipe-delete {
-      @include recipe-delete;
+    .recipe-deleteIcon {
       font-size: 30px;
       padding-right: 10px;
       margin-left: 10px;
