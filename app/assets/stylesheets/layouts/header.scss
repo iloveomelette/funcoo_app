@@ -1,0 +1,46 @@
+// *-*-* ヘッダーのレイアウト *-*-*
+.header-wrapper {
+  text-align: center;
+  background-color: rgba($color: #ffa45b, $alpha: 0.8);
+  border-bottom: 8px solid #ffda77;
+  display: flex;
+  height: 80px;
+  .header-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 20%;
+  }
+  .nav-wrapper {
+    flex-basis: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    flex-basis: 20%;
+    .header-searchContainer {
+      position: relative;
+      .header-q {
+        width: 180px;
+        height: 50px;
+      }
+      .searchIcon {
+        position: absolute;
+        color: #aaa;
+        top: 50%;
+        right: 8%;
+        transform: translateY(-50%);
+      }
+    }
+    .user-profileImage {
+      height: 32px;
+      width: 32px;
+      margin-left: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+}
