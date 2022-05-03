@@ -1,12 +1,12 @@
-<div class="devise-container pt-20 px-40">
+<div class="devise-container pt-20">
   <%= render "devise/shared/error_messages", resource: resource %>
-  <h2>Welcome!</h2>
-  <p class="pl-8 pt-4">- <%= t('.sign_up') %> -</p>
+  <h2 class="text-2xl pl-3">Welcome!</h2>
+  <p>- <%= t('.sign_up') %> -</p>
 
   <div class="flex">
-    <div class="flex-1 px-4">
+    <div class="flex-1">
       <%= image_tag "Welcome-bro.png", alt: "新規登録へようこそ" %>
-      <a href="https://storyset.com/event" class="text-gray-300">Event illustrations by Storyset</a>
+      <a href="https://storyset.com/event" class="text-gray-300 text-xs">Event illustrations by Storyset</a>
     </div>
 
     <div class="flex-1 px-4 mb-20">
@@ -18,30 +18,31 @@
           <%= f.label :characteristic_general, "個人利用者", class: "mr-4" %>
           <%= f.radio_button :characteristic, :corporation %>
           <%= f.label :characteristic_general, "法人(個人農家/個人飲食店経営の方はこちら)" %>
+          <p class="text-sm">＊個人利用の場合、レシピを投稿できません。</p>
         </div>
 
         <%# お名前を入力するフォーム %>
         <div class="field">
-          <%= f.label :name %><br />
-          <%= f.text_field :name, required: true, placeholder: "50文字以内で入力してください" %>
+          <%= f.text_field :name, required: true, placeholder: "ユーザ名を50文字以内で入力してください", class: "pl-7" %>
+          <i class="fa-solid fa-circle-user form-icon"></i>
         </div>
 
         <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, required: true %>
+          <%= f.email_field :email, required: true, placeholder: "メールアドレス", class: "pl-7" %>
+          <i class="fa-solid fa-envelope form-icon"></i>
         </div>
 
         <div class="field">
-          <%= f.label :password %>
-          <% if @minimum_password_length %>
-          <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-          <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%# if @minimum_password_length %>
+          <%# t('devise.shared.minimum_password_length', count: @minimum_password_length) %>
+          <%# end %>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワードを6文字以上で入力してください", class: "pl-7" %>
+          <i class="fa-solid fa-lock form-icon"></i>
         </div>
 
         <div class="field">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認のためパスワードを再入力してください", class: "pl-7" %>
+          <i class="fa-solid fa-circle-check form-icon"></i>
         </div>
 
         <div class="actions mt-4 text-center">
