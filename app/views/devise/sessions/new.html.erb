@@ -1,21 +1,23 @@
-<div class="devise-container pt-20 px-40">
+<div class="devise-container pt-20">
   <div>
-    <h2>ログイン</h2>
+    <h2 class="text-2xl">ログイン</h2>
 
-    <div class="flex">
+    <div class="flex mt-8">
       <div class="flex-1 px-8">
         <%= image_tag "login-bro.png", alt: "おかえりなさい" %>
-        <a href="https://storyset.com/user" class="text-gray-300">User illustrations by Storyset</a>
+        <a href="https://storyset.com/user" class="credit">User illustrations by Storyset</a>
       </div>
 
-      <div class="flex-1 px-8 mb-20">
+      <div class="flex-1 px-8 pt-8">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "pl-7" %>
+            <i class="fa-solid fa-envelope form-icon"></i>
           </div>
 
           <div class="field">
-            <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "pl-7" %>
+            <i class="fa-solid fa-lock form-icon"></i>
           </div>
 
           <% if devise_mapping.rememberable? %>
@@ -29,7 +31,9 @@
             <%= f.submit t('.sign_in') %><br>
           </div>
 
-          <div class="another-choice"><p>OR</p></div>
+          <div class="another-choice">
+            <span class="inline-block px-2.5"><p>OR</p></span>
+          </div>
 
           <div class="google-wrapper">
             <%= render "devise/shared/links" %>

@@ -1,25 +1,37 @@
-<div class="header-container">
+<div class="header-wrapper">
+  <div class="header-left">
+    <%= link_to recipes_path do %>
+      <%= image_tag "logo-green.png", alt: "ロゴ画像", class: "header-logo" %>
+    <% end %>
+  </div>
+
   <nav class="nav-wrapper">
     <% if user_signed_in? %>
-      <%= link_to '一覧', recipes_path, class: 'nav-link' %>
+      <%= link_to '一覧', recipes_path, class: 'mx-10 text-tertiary font-bold' %>
       <% if current_user.characteristic == "corporation" && current_user.name != "ゲストユーザ" %>
-        <%= link_to '投稿する', new_recipe_path, class: 'nav-link' %>
+        <%= link_to '投稿する', new_recipe_path, class: 'mx-10 text-tertiary font-bold' unless current_page?(new_recipe_path) %>
       <% end %>
-      <%= link_to 'アカウント編集', edit_user_registration_path,class: 'nav-link' %>
-      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-      <%= link_to 'マイページ', users_path, class: 'nav-link' %>
+      <%= link_to 'マイページ', users_path, class: 'mx-10 text-tertiary font-bold' %>
+      <%= link_to 'アカウント編集', edit_user_registration_path,class: 'mx-10 text-tertiary font-bold' %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'mx-10 text-tertiary font-bold' %>
     <% else %>
-      <%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %>
-      <%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %>
-      <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'nav-link' %>
+      <%= link_to '新規登録', new_user_registration_path, class: 'mx-10 text-tertiary font-bold' %>
+      <%= link_to 'ログイン', new_user_session_path, class: 'mx-10 text-tertiary font-bold' %>
+      <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'mx-10 text-tertiary font-bold' %>
     <% end %>
   </nav>
+
   <div class="header-right">
-    <%= search_form_for @q, url: url, class: "search-box" do |f| %>
-      <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "search-input focus:ring-4 focus:ring-quaternary" %>
-      <%= f.button :type => "submit", class: 'search-submit' do %>
-        <span><i class="fa-solid fa-magnifying-glass search-submit hover:text-quaternary"></i></span>
-      <% end %>
+    <% if user_signed_in? %>
+      <div class="header-searchContainer">
+        <%= search_form_for @q, url: url do |f| %>
+          <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "header-q searchForm-outstyle" %>
+          <%= f.button :type => "submit" do %>
+            <span><i class="fa-solid fa-magnifying-glass searchIcon"></i></span>
+          <% end %>
+        <% end %>
+      </div>
+      <%= image_tag check_user_profile_image(current_user), class: "user-profileImage" %>
     <% end %>
   </div>
 </div>

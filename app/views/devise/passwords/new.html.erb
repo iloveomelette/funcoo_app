@@ -1,11 +1,13 @@
 <div class="devise-container reset-password">
   <%= render "devise/shared/error_messages", resource: resource %>
-  <h2><%= t('.forgot_your_password') %></h2>
+  <h2 class="text-2xl pl-3"><%= t('.forgot_your_password') %></h2>
+  <p class="mt-4">パスワード再設定をしましょう！</p>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 
     <div class="field">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力してください" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力してください", class: "pl-7" %>
+      <i class="fa-solid fa-envelope form-icon"></i>
     </div>
 
     <div class="actions mt-8">
@@ -13,7 +15,7 @@
     </div>
   <% end %>
   
-  <p class="m-6">or</p>
+  <div class="another-choice"><p>OR</p></div>
 
   <div class="google-wrapper">
     <%= render "devise/shared/links" %>

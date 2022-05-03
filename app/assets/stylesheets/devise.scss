@@ -5,11 +5,13 @@
   border: 2px solid #aaa;
   border-radius: 4px;
   outline: none;
-  padding: 8px;
   transition: 0.3s;
   &:focus {
     border-color: #aee6e6;
     box-shadow: 0 0 8px 0 #aee6e6;
+  }
+  &:focus::placeholder {
+    color: transparent;
   }
 }
 // **** ボタン用ミックスイン ****
@@ -39,9 +41,22 @@
 // **** ログインフォーム ****
 .devise-container {
   min-height: 100vh;
-  background-color: #fbf6f0;
+  max-width: 1050px;
+  margin: 0 auto;
   .field {
     margin-top: 1rem;
+    position: relative;
+    .form-icon {
+      color: #aaa;
+      position: absolute;
+      top: 50%;
+      left: 7px;
+      transform: translateY(-40%);
+      opacity: 0.7;
+      &:focus {
+        color: transparent;
+      }
+    }
   }
   input[type='text'] {
     @include input-layout;
@@ -85,7 +100,7 @@
     }
   }
   .google-wrapper {
-    margin-top: 10px;
+    margin-top: 15px;
     text-align: center;
     .google {
       @include submit-layout(#eb5043, #e94233, #dc4a3d);
@@ -94,10 +109,39 @@
   }
   .another-choice {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
+    flex-shrink: 0;
+    display: flex;
+    white-space: nowrap;
+    border: 0;
     p {
       color: rgb(107, 114, 128);
     }
+    &::before,
+    &::after {
+      position: relative;
+      width: 100%;
+      border-top: thin solid rgba(107, 114, 128, 0.24);
+      top: 50%;
+      content: '';
+      transform: translateY(50%);
+    }
+  }
+  .devise-profileImg {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  .select-profileImg {
+    cursor: pointer;
+    font-size: 14px;
+    &:hover {
+      color: #aee6e6;
+    }
+  }
+  input[type='file'] {
+    display: none;
   }
 }
 .reset-password {

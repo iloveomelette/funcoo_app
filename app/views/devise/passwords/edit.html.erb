@@ -1,5 +1,5 @@
 <div class="devise-container reset-password">
-  <h2><%= t('.change_your_password') %></h2>
+  <h2 class="text-2xl mb-8"><%= t('.change_your_password') %>する</h2>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -9,11 +9,13 @@
       <%# if @minimum_password_length %>
         <%# <em> t('devise.shared.minimum_password_length', count: @minimum_password_length) </em><br /> %>
       <%# end %>
-      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "6文字以上の#{t('.new_password')}を入力してください" %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "6文字以上の#{t('.new_password')}を入力してください", class: "pl-7" %>
+      <i class="fa-solid fa-lock form-icon"></i>
     </div>
 
     <div class="field">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('.confirm_new_password') %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認のためパスワードを再入力してください", class: "pl-7" %>
+      <i class="fa-solid fa-circle-check form-icon"></i>
     </div>
 
     <div class="actions mt-8">
@@ -21,7 +23,7 @@
     </div>
   <% end %>
 
-  <p class="m-6">or</p>
+  <div class="another-choice"><p>OR</p></div>
 
   <div class="google-wrapper"><%= render "devise/shared/links" %></div>
 </div>

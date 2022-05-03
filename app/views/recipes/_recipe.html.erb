@@ -1,44 +1,42 @@
-<article>
+<article class="commonCard-outstyle recipe-wrapper">
+  <%#　投稿画像があればサムネイル用を表示、ない場合はデフォルト画像を表示 %>
   <div>
-    <%#　投稿画像があればサムネイル用を表示、ない場合はデフォルト画像を表示 %>
-    <div>
-      <% if recipe.menu_image.present? %>
-        <%= image_tag recipe.menu_image.thumb.url %>
-      <% else %>
-        <%= image_tag recipe.menu_image.url %>
-      <% end %>
-    </div>
-    <p><%= recipe.title %></p>
-    <p>調理時間： <%= recipe.cooking_time %>分</p>
-    <p>目安費用： <%= recipe.cooking_cost %>円</p>
-    <p>カロリー： <%= recipe.calorie %>kcal</p>
+    <% if recipe.menu_image.present? %>
+      <%= image_tag recipe.menu_image.thumb.url, class: "recipes-menuImg" %>
+    <% else %>
+      <%= image_tag recipe.menu_image.url, class: "recipes-menuImg" %>
+    <% end %>
+  </div>
+  <p class="text-xl mt-2"><%= recipe.title %></p>
+  <p>調理時間： <%= recipe.cooking_time %>分</p>
+  <p>目安費用： <%= recipe.cooking_cost %>円</p>
+  <p>カロリー： <%= recipe.calorie %>kcal</p>
 
+  <div class="make-wrapper">
     <% if current_user.id != recipe.user_id %>
-      <p id="recipe-<%= recipe.id %>">
+      <p id="recipe-<%= recipe.id %>" class="make-icon">
         <% if recipe.maked_by?(current_user) %>
           <%# 「作ってみた!」を押している状態 %>
-          <%= render "make", recipe: recipe %>
+          <%= render "recipes/make", recipe: recipe %>
         <% else %>
           <%# 「作ってみた!」を押していない状態 %>
-          <%= render "nonmake", recipe: recipe %>
+          <%= render "recipes/nonmake", recipe: recipe %>
         <% end %>
       </p>
     <% end %>
-
-    <div class="flex justify-between px-4">
-      <%= link_to recipe, class: "text-base hover:text-quaternary" do %>
-        <i class="fa-solid fa-caret-right"></i>  詳しく見る
-      <% end %>
+    <%= link_to recipe, class: "text-base hover:text-quaternary" do %>
+      <i class="fa-solid fa-caret-right"></i>  詳しく見る
+    <% end %>
+    <% if current_user.id == recipe.user_id %>
       <div class="flex">
-        <% if current_user.id == recipe.user_id %>
-          <%= link_to edit_recipe_path(recipe) do %>
-            <i class="fa-solid fa-pen-to-square recipe-edit text-xl mr-4"></i>
-          <% end %>
-          <%= link_to recipe_path(recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} do %>
-            <i class="fa-solid fa-trash-can recipe-delete text-xl"></i>
-          <% end %>
+        <%= link_to edit_recipe_path(recipe) do %>
+          <i class="fa-solid fa-pen-to-square recipe-edit"></i>
+        <% end %>
+        <%= link_to recipe_path(recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} do %>
+          <i class="fa-solid fa-trash-can recipe-delete"></i>
         <% end %>
       </div>
-    </div>
+    <% end %>
   </div>
+
 </article>
