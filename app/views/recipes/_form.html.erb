@@ -1,6 +1,6 @@
+<%= render "recipes/shared/error_messages", collection: @recipe_form %>
 <div class="recipes-container">
-  <div class="recipe-form recipe-wrapper">
-    <%= render "recipes/shared/error_messages", collection: @recipe_form %>
+  <div class="recipe-form m-auto">
 
     <%= form_with model: @recipe_form, url: @recipe_form.persisted? ? recipe_path : recipes_path, local: true do |form| %>
       <div>
@@ -9,7 +9,6 @@
 
       <div class="flex mb-8 field recipe-content">
         <div class="recipe-content">
-          <%= form.label :content, "内容" %><br>
           <%= form.text_area :content, required: true, placeholder: "レシピの内容を500文字以内で入力してください" %>
         </div>
         <%# 調理時間、調理費用、カロリー入力欄 %>
@@ -30,7 +29,7 @@
       </div>
 
       <div class="recipe-genre">
-        <p class="mb-4">ジャンルを選択</p>
+        <p class="mb-4 text-xl">ジャンルを選択</p>
         <div>
           <p class="text-lg mb-2">主食</p>
           <%= form.radio_button :staple_food, :others %>
@@ -88,7 +87,7 @@
           <%= form.file_field :menu_image, accept: "image/png,image/jpeg,image/gif" %>
         </div>
       </div>
-      <div class="text-center mt-10"><%= form.submit '投稿する' %></div>
+      <div class="text-center mt-10 mb-20"><%= form.submit '投稿する' %></div>
     <% end %>
   </div>
 </div>

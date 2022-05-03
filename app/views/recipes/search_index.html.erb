@@ -1,13 +1,18 @@
-<section class="py-20">
-  <div class="w-4/5 m-auto">
-    <h1>Recipes</h1>
-    <% if @searched_recipes.present? %>
-      <div class="grid grid-cols-3 gap-4 my-10">
-        <%= render @searched_recipes %>
-      </div>
-    <% else %>
-      <h1>検索されたレシピは見つかりませんでした...</h1>
-    <% end %>
-    <div><%= paginate @searched_recipes %></div>
+<section class="recipes-container">
+  <div class="q-resultPage">
+    <div>
+      <h2 class="text-3xl mb-8">Recipes</h2>
+      <% if @searched_recipes.present? %>
+        <p>ページ内検索結果 > <span class="q-count"><%= @searched_recipes.count %></span>レシピ</p>
+        <div class="grid grid-cols-3 gap-4 my-10">
+          <%= render @searched_recipes %>
+        </div>
+      <% else %>
+        <h3 class="text-xl">検索されたレシピは見つかりませんでした...</h3>
+        <%= image_tag "no-result-found.png", alt: "検索結果が0件です", class: "no-resultFound" %>
+        <%= link_to "Brought to you by Designs.ai", "https://designs.ai/", class: "credit" %>
+      <% end %>
+    </div>
   </div>
+  <div class="paginate"><%= paginate @searched_recipes %></div>
 </section>

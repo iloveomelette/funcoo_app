@@ -1,0 +1,98 @@
+// *-*-* カード *-*-*
+.commonCard-outstyle {
+  box-shadow: 3px 4px 10px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+// *-*-* 検索フォーム *-*-*
+.searchForm-outstyle {
+  font-size: 14px;
+  border: 2px solid #aaa;
+  border-radius: 15px;
+  outline: none;
+  padding: 8px;
+  transition: 0.3s;
+  &:focus {
+    border-color: #aee6e6;
+    box-shadow: 0 0 8px 0 #aee6e6;
+  }
+}
+// *-*-* ページネーションのスタイル *-*-*
+.paginate {
+  padding-bottom: 40px;
+  text-align: center;
+  height: 100px;
+  nav {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    ul {
+      display: flex;
+      column-gap: 4px;
+      li {
+        font-size: 1.25rem;
+        width: 50px;
+        padding-top: 8px;
+        border: solid 1px #344963;
+        border-radius: 50%;
+        vertical-align: middle;
+        transition: 0.3s;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        &:hover {
+          color: #ffa45b;
+          background-color: #fbf6f0;
+          border: solid 1px #fa812b;
+          transition: 0.3s;
+          -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+        }
+      }
+      .current {
+        background-color: #aee6e6;
+        border: solid 1px #00aaff;
+      }
+    }
+  }
+}
+// *-*-* 作ってみた！のスタイル *-*-*
+.make-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #5eaf23;
+  border-radius: 50%;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  transition: 0.3s;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  &:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+// *-*-* 編集削除アイコンの共通スタイル *-*-*
+.recipe-edit {
+  color: #8ec22f;
+  font-size: 24px;
+  margin-right: 1em;
+  &:hover {
+    color: green;
+  }
+}
+.recipe-delete {
+  color: #f06060;
+  font-size: 24px;
+  &:hover {
+    color: #f03c3c;
+  }
+}
+.credit {
+  color: #c0c4cc;
+  font-size: 10px;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0;
+}

@@ -1,74 +1,61 @@
-<div class="recipes-container">
-  <div class="flex pt-24">
-    <aside class="pl-3 flex-left">
-      <%= render "search_form", collection: @q %>
-    </aside>
+<div class="recipes-container flex">
+  <aside class="pl-3 flex-left">
+    <%= render "search_form", collection: @q %>
+  </aside>
 
-    <div class="flex-center">
-      <div class="w-4/5 m-auto">
-        <% if current_user.characteristic == "general" %>
-          <section class="mb-10">
-            <h2 class="mb-10">あなたへのおすすめ</h2>
-            <% if @recommend != nil %>
-              <div class="flex">
-                <div class="flex-1 py-4 px-8">
-                  <% if @recommend.menu_image.present? %>
-                    <%= image_tag @recommend.menu_image.thumb.url %>
-                  <% else %>
-                    <%= image_tag @recommend.menu_image.url %>
-                  <% end %>
-                </div>
-                <div class="flex-1 py-4 px-6">
-                  <p class="text-2xl mb-4"><%= @recommend.title %></p>
-                  <p>調理時間： <%= @recommend.cooking_time %>分</p>
-                  <p>目安費用： <%= @recommend.cooking_cost %>円</p>
-                  <p class="mb-4">カロリー： <%= @recommend.calorie %>kcal</p>
-                  <%= link_to @recommend, class: "hover:text-quaternary" do %>
-                    <i class="fa-solid fa-caret-right"></i>  詳しく見る
-                  <% end %>
-                </div>
-              </div>
-            <% else %>
-              <div class="makes-info-wrapper">
-                <p>
-                  <i class="fa-solid fa-circle-info text-blue-700"></i> 「作ってみた！ <i class="fa-regular fa-thumbs-up"></i>」を押すと、あなたにおすすめのレシピを表示します
-                </p>
-              </div>
-            <% end %>
-          </section>
-        <% end %>
-
-        <section>
-          <h2>レシピ一覧</h2>
-          <div class="grid grid-cols-2 gap-4 my-10">
-            <%= render @recipes %>
-          </div>
+  <main class="flex-center">
+    <div class="px-10 m-auto">
+      <% if current_user.characteristic == "general" %>
+        <section class="mb-10">
+          <h2 class="mb-3.5 text-2xl">あなたへのおすすめ</h2>
+          <%= render "recipes/shared/recommend", recommend: @recommend %>
         </section>
-      </div>
-    </div>
+      <% end %>
 
-    <aside class="pr-3 flex-right">
-      <% if user_signed_in? %>
-        <div>
-          <p><%= current_user.name %>さんの情報</p>
-          <p>現在の Lv. <%= current_user.level %></p>
-          <p>経験値 <%= current_user.experience_point %>Exp</p>
-          <p>次のレベルまであと <%= current_user.rest_point %>Exp</p>
+      <section>
+        <h2 class="text-2xl">レシピ一覧</h2>
+        <div class="recipeArticles-wrapper">
+          <%= render @recipes %>
         </div>
-      <% else %>
-        <div>
-          <p>ユーザ情報</p>
-          <p>新規登録 or ログインをするとユーザ情報を表示します</p>
+      </section>
+    </div>
+  </main>
+
+  <aside class="pr-3 flex-right">
+    <% if user_signed_in? %>
+      <div class="commonCard-outstyle p-2.5">
+        <p class="text-xl"><%= current_user.name %>さんの情報</p>
+        <div class="info-msg">
+          <p class="text-sm">現在 Lv. <%= current_user.level %></p>
+          <p class="text-sm mt-4">経験値 <%= current_user.experience_point %>Exp</p>
+          <p class="text-sm mt-4">次のレベルまであと <%= current_user.rest_point %>Exp</p>
+        </div>
+      </div>
+    <% else %>
+      <div class="commonCard-outstyle p-2.5">
+        <p class="text-xl">ユーザ情報</p>
+        <p class="text-sm mt-4">新規登録 or ログインをするとユーザ情報を表示します</p>
+        <div class="text-center mt-8">
           <%= link_to 'ログイン', new_user_session_path, class: 'login-btn' %>
         </div>
-      <% end %>
-      <div class="mt-8">
-        <p>運営からのお知らせ</p>
-        <p>5/1 マイページの閲覧などができるようになりました</p>
-        <p>4/29 Googleアカウントでのログインができるようになりました</p>
-        <p>4/26 レベル機能を追加しました</p>
       </div>
-    </aside>
-  </div>
-  <div class="paginate"><%= paginate @recipes %></div>
+    <% end %>
+
+    <div class="commonCard-outstyle p-2.5 mt-8">
+      <p>運営からのお知らせ</p>
+      <div class="info-msg">
+        <span class="info-date">2022/05/01</span>
+        <p class="text-sm">マイページの閲覧などができるようになりました</p>
+      </div>
+      <div class="info-msg">
+        <span class="info-date">2022/04/29</span>
+        <p class="text-sm">Googleアカウントでのログインができるようになりました</p>
+      </div>
+      <div class="info-msg">
+        <span class="info-date">2022/04/26</span>
+        <p class="text-sm">レベル機能を追加しました</p>
+      </div>
+    </div>
+  </aside>
 </div>
+<div class="paginate"><%= paginate @recipes %></div>
