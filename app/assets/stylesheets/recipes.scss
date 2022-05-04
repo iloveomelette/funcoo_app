@@ -57,6 +57,13 @@
   // *-*-* レシピ投稿フォームのスタイル *-*-*
   .recipe-form {
     max-width: 960px;
+    @include tb {
+      padding: 0 10px;
+    }
+    @include sp {
+      max-width: 390px;
+      padding: 0 10px;
+    }
   }
   .field {
     margin-top: 2rem;
@@ -92,9 +99,20 @@
   }
   .recipe-content {
     flex-basis: 70%;
+    @include tb {
+      flex-basis: 60%;
+    }
   }
   .recipe-info {
     flex-basis: 30%;
+    @include tb {
+      flex-basis: 40%;
+    }
+    @include sp {
+      padding: 0;
+      text-align: center;
+      margin-top: 30px;
+    }
   }
   .recipe-genre {
     label {
@@ -208,10 +226,33 @@
       font-size: 20px;
       color: #5eaf23;
     }
+    .q-text-position {
+      @include sp-tb {
+        text-align: center;
+      }
+    }
+    .recipe-results {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1em;
+      margin: 40px 0;
+      @include tb {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-items: center;
+      }
+      @include sp {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        justify-items: center;
+      }
+    }
     .no-resultFound {
       max-width: 600px;
       max-height: 600px;
       margin: 0 auto;
+      @include sp {
+        max-width: 390px;
+        max-height: 390px;
+      }
     }
   }
 }
