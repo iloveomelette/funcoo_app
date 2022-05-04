@@ -227,15 +227,37 @@
     &:hover {
       color: #fa812b;
     }
+    @include tb {
+      padding: 0 30px;
+    }
+    @include sp {
+      display: none;
+    }
+  }
+  .recipeDetaile-flex {
+    @include sp-tb {
+      display: inherit;
+      padding: 0 10px;
+    }
   }
   .makeRecipe-wrapper {
     flex-basis: 10%;
     padding-top: 5em;
+    margin-right: 10px;
+    @include sp-tb {
+      display: none;
+    }
   }
   .recipe-card {
     margin: 16px 0 100px;
     padding: 16px;
     flex-basis: 90%;
+    .rsp-makeIcon {
+      display: none;
+      @include sp-tb {
+        display: inherit;
+      }
+    }
     .recipe-editIcon {
       font-size: 30px;
       margin-right: 1em;
@@ -249,9 +271,27 @@
       @include menu-image(335px, 500px);
       margin: 0 auto;
     }
+    .recipiSub_info {
+      display: flex;
+      justify-content: space-around;
+      margin: 0 auto;
+      width: 964px;
+      @include sp-tb {
+        font-size: 12px;
+        width: 100%;
+      }
+      .sub-info {
+        @include sp {
+          display: none;
+        }
+      }
+    }
     .show-recipeContent {
       padding: 0px 20px 50px;
       margin-top: 16px;
+      @include sp {
+        padding: 8px;
+      }
     }
   }
 }
