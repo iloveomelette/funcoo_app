@@ -1,11 +1,11 @@
-<section class="top-section pt-44 px-20">
+<section class="top-section lg:pt-44 lg:px-20">
   <div class="top-left">
-    <div class="mb-20">
-      <div class="mb-6 text-center">
+    <div class="my-2 lg:mb-20">
+      <div class="mb-1 md:mb-6 text-center">
         <h1 class="top-heading">FunCooApp</h1>
         <h2 class="sub-heading">- 毎日の料理をもっと楽しく -</h2>
       </div>
-      <div class="flex justify-center">
+      <div class="topMsg-wrapper">
         <div>
           <p class="top-msg">最高のレシピをあなたに。</p>
           <p class="top-msg">達成感を持って毎日の料理が楽しくなります。</p>
@@ -13,8 +13,8 @@
       </div>
     </div>
 
-    <div class="flex justify-center text-center">
-      <div class="px-4">
+    <div class="sign-wrapper">
+      <div class="md:px-2 lg:px-4">
         <%= link_to '新規登録', new_user_registration_path, class: 'sign-up-btn' %>
       </div>
       <div class="px-4">
@@ -30,18 +30,18 @@
 </section>
 
 <section class="main-section">
-    <div class="mb-20">
+    <div class="px-4 md:p-0 mb-20">
       <div class="text-center mb-16">
         <h2 class="main-section-heading2">FunCooAppとは？</h2>
       </div>
       <div>
-        <div class="flex mx-20">
+        <div class="flex md:px-8 lg:px-20">
           <div class="flex-1 text-center">
             <%= image_tag "what-app.png", alt: "アプリ説明画像", class: "what-app-img" %>
             <%= link_to "Idea illustrations by Storyset", "https://storyset.com/idea", class: "credit" %>
           </div>
           <div class="flex-1">
-            <h3 class="main-section-heading3 pt-4">直感的に「これだ！」と思う</h3>
+            <h3 class="main-section-heading3 pt-10 md:pt-4">直感的に「これだ！」と思う</h3>
             <h3 class="main-section-heading3">レシピを届けたい</h3>
             <p class="app-description">
               FunCooAppでは、食に精通した方々が想いを込めて考案したレシピをあなたにお届けします。毎日の面倒なレシピを考えることに集中するのではなく、料理自体を楽しむことに集中してほしいと願っております。
@@ -56,11 +56,11 @@
         <h2 class="main-section-heading2">おもな機能</h2>
       </div>
       <div class="mb-16">
-        <div class="tail-toUser-msg">
+        <div class="tail-toUser-msg toUser-scss-rsp">
           <h3 class="main-section-heading3">個人利用者の方</h3>
         </div>
         <div class="flex justify-center">
-          <div class="tail-function-wrapper">
+          <div class="tail-function-wrapper function-scss-rsp1">
             <%= image_tag "search.png", alt: "検索機能が利用できる", class: "main-section-img" %>
             <div class="px-4">
               <p class="function-title">レシピの検索</p>
@@ -68,7 +68,7 @@
             </div>
           </div>
 
-          <div class="tail-function-wrapper">
+          <div class="tail-function-wrapper function-scss-rsp2">
             <%= image_tag "recommend.png", alt: "レコメンド機能が利用できる", class: "main-section-img" %>
             <div class="px-4">
               <p class="function-title">おすすめ機能</p>
@@ -76,7 +76,7 @@
             </div>
           </div>
 
-          <div class="tail-function-wrapper">
+          <div class="tail-function-wrapper function-scss-rsp2">
             <%= image_tag "level-status.png", alt: "レベル機能が利用できる", class: "main-section-img" %>
             <div class="px-4">
               <p class="function-title">ステータス機能</p>
@@ -91,7 +91,7 @@
           <h3 class="main-section-heading3">個人農家/個人飲食店経営の方</h3>
         </div>
         <div class="flex justify-center">
-          <div class="tail-function-wrapper">
+          <div class="tail-function-wrapper function-scss-rsp1">
             <%= image_tag "appeal-food.png", alt: "魅力ある食材をアピールしよう", class: "main-section-img" %>
             <div class="px-4">
               <p class="function-title">魅力ある食材を紹介</p>
@@ -99,7 +99,7 @@
             </div>
           </div>
 
-          <div class="tail-function-wrapper">
+          <div class="tail-function-wrapper function-scss-rsp2">
             <%= image_tag "lead-url.png", alt: "URLを載せよう", class: "main-section-img" %>
             <div class="px-4">
               <p class="function-title">自身が運営するHPを載せる</p>
@@ -107,7 +107,7 @@
             </div>
           </div>
 
-          <div class="tail-function-wrapper">
+          <div class="tail-function-wrapper function-scss-rsp2">
             <%= image_tag "ranking.png", alt: "ランキング機能が利用できる", class: "main-section-img" %>
             <div class="px-4">
               <p class="function-title">ランキング機能</p>
