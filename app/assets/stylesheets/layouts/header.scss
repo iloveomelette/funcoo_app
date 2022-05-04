@@ -1,3 +1,19 @@
+@mixin tb {
+  @media screen and (min-width: 790px) and (max-width: 1030px) {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: 790px) {
+    @content;
+  }
+}
+@mixin sp-tb {
+  @media screen and (max-width: 1030px) {
+    @content;
+  }
+}
+
 // *-*-* ヘッダーのレイアウト *-*-*
 .header-wrapper {
   text-align: center;
@@ -5,6 +21,9 @@
   border-bottom: 8px solid #ffda77;
   display: flex;
   height: 80px;
+  @include sp-tb {
+    display: none;
+  }
   .header-left {
     display: flex;
     align-items: center;
