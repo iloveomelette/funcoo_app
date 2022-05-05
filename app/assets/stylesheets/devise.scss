@@ -131,6 +131,9 @@
     &:hover {
       color: #fa812b;
     }
+    @include sp {
+      display: none;
+    }
   }
   .google-wrapper {
     margin-top: 15px;

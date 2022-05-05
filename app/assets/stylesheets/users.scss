@@ -1,14 +1,35 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@mixin tb {
+  @media screen and (min-width: 790px) and (max-width: 1030px) {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: 790px) {
+    @content;
+  }
+}
+@mixin sp-tb {
+  @media screen and (max-width: 1030px) {
+    @content;
+  }
+}
 
 .my-page-wrapper {
   padding: 100px 0px;
   margin: 0 auto;
   max-width: 1050px;
+  @include sp {
+    padding: 100px 15px;
+  }
   .user-info {
     display: flex;
     padding: 16px;
+    @include sp {
+      display: inherit;
+    }
     .user-info-left {
       text-align: center;
       flex-basis: 50%;
@@ -52,6 +73,16 @@
   }
   .user-recipes {
     margin-top: 5em;
+    .user-makedRecipes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      grid-gap: 1rem;
+      @include sp {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        justify-items: center;
+      }
+    }
     .recipe-wrapper {
       width: 340px;
       padding: 15px;

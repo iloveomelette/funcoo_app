@@ -20,9 +20,9 @@
 	</div>
 
 	<div class="user-recipes">
-    <p class="text-2xl pb-10"><%= check_user_characteristic(current_user) %></p>
+    <p class="text-2xl pb-10 text-center md:text-left"><%= check_user_characteristic(current_user) %></p>
     <% if @recipes.present? %>
-      <div class="grid grid-cols-3 gap-4">
+      <div class="user-makedRecipes">
         <% @recipes.each do |recipe| %>
           <%= render "recipes/recipe", recipe: recipe %>
         <% end %>
