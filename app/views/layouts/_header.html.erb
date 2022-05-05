@@ -21,15 +21,15 @@
         </div>
       </div>
     <% else %>
-      <div>
-        <ul>
-          <li>
-            <%= link_to '新規登録', new_user_registration_path %>
+      <div class="md-headerRight">
+        <ul class="flex">
+          <li class="text-white mx-2 lg:mx-7">
+            <%= link_to '新規登録', new_user_registration_path if !current_page?(new_user_registration_path) %>
           </li>
-          <li>
-            <%= link_to 'ログイン', new_user_session_path %>
+          <li class="text-white mx-2 lg:mx-7">
+            <%= link_to 'ログイン', new_user_session_path if !current_page?(new_user_session_path) %>
           </li>
-          <li>
+          <li class="text-white mx-2 lg:mx-7">
             <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post %>
           </li>
         </ul>
@@ -95,10 +95,10 @@
         </li>
       <% else %>
         <li>
-          <%= link_to '新規登録', new_user_registration_path %>
+          <%= link_to '新規登録', new_user_registration_path if !current_page?(new_user_registration_path) %>
         </li>
         <li>
-          <%= link_to 'ログイン', new_user_session_path %>
+          <%= link_to 'ログイン', new_user_session_path if !current_page?(new_user_session_path) %>
         </li>
         <li>
           <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post %>
