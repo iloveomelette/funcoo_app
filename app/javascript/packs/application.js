@@ -10,6 +10,7 @@ import 'channels';
 import '@fortawesome/fontawesome-free/js/all';
 import 'stylesheets/application.css';
 import './flash';
+import './header';
 
 Rails.start();
 Turbolinks.start();
