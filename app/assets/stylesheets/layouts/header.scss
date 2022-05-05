@@ -16,50 +16,80 @@
 
 // *-*-* ヘッダーのレイアウト *-*-*
 .header-wrapper {
-  text-align: center;
+  // text-align: center;
   background-color: rgba($color: #ffa45b, $alpha: 0.8);
   border-bottom: 8px solid #ffda77;
   display: flex;
+  align-items: center;
   height: 80px;
-  @include sp-tb {
-    display: none;
-  }
-  .header-left {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-basis: 20%;
-  }
-  .nav-wrapper {
-    flex-basis: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .header-right {
-    display: flex;
-    align-items: center;
-    flex-basis: 20%;
-    .header-searchContainer {
-      position: relative;
-      .header-q {
-        width: 180px;
-        height: 50px;
-      }
-      .searchIcon {
-        position: absolute;
-        color: #aaa;
-        top: 50%;
-        right: 8%;
-        transform: translateY(-50%);
-      }
-    }
-    .user-profileImage {
-      height: 32px;
-      width: 32px;
-      margin-left: 20px;
-      border-radius: 50%;
+  padding: 0 1em;
+  // .header-left {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   flex-basis: 20%;
+  // }
+  // .nav-wrapper {
+  //   flex-basis: 60%;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  // }
+  // .header-right {
+  //   display: flex;
+  //   align-items: center;
+  //   flex-basis: 20%;
+  //   .header-searchContainer {
+  //     position: relative;
+  //     .header-q {
+  //       width: 180px;
+  //       height: 50px;
+  //     }
+  //     .searchIcon {
+  //       position: absolute;
+  //       color: #aaa;
+  //       top: 50%;
+  //       right: 8%;
+  //       transform: translateY(-50%);
+  //     }
+  //   }
+  //   .user-profileImage {
+  //     height: 32px;
+  //     width: 32px;
+  //     margin-left: 20px;
+  //     border-radius: 50%;
+  //     cursor: pointer;
+  //   }
+  // }
+  .sp-navOpen {
+    margin-left: auto;
+    #open {
+      font-size: 2em;
+      color: #fbf6f0;
       cursor: pointer;
     }
+  }
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba($color: #8ec22f, $alpha: 0.95);
+  z-index: 2;
+  text-align: center;
+  padding: 64px;
+  opacity: 0;
+  pointer-events: none;
+  .sp-navclose {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 32px;
+    cursor: pointer;
+  }
+  .overlay li {
+    margin-top: 1.5em;
   }
 }
