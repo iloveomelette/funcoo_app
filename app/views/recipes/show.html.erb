@@ -2,7 +2,7 @@
   <%= link_to :back, class: "back-link text-xl" do %>
     <i class="fa-solid fa-angles-left"></i> 戻る
   <% end %>
-  <div class="flex">
+  <div class="flex recipeDetaile-flex">
     <div class="makeRecipe-wrapper">
       <% if current_user.id != @recipe.user_id %>
           <p id="recipe-<%= @recipe.id %>" class="make-icon">
@@ -34,6 +34,16 @@
               <%= link_to recipe_path(@recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} do %>
                 <i class="fa-solid fa-trash-can recipe-deleteIcon recipe-delete"></i>
               <% end %>
+            <% else %>
+              <p id="recipe-<%= @recipe.id %>" class="make-icon rsp-makeIcon">
+                <% if @recipe.maked_by?(current_user) %>
+                  <%# 「作ってみた!」を押している状態 %>
+                  <%= render "make", recipe: @recipe %>
+                <% else %>
+                  <%# 「作ってみた!」を押していない状態 %>
+                  <%= render "nonmake", recipe: @recipe %>
+                <% end %>
+              </p>
             <% end %>
           </div>
         </div>
@@ -47,10 +57,10 @@
       </header>
       
       <section>
-        <div class="flex justify-around w-8/12 m-auto">
-          <p>調理時間 <%= @recipe.cooking_time %>分</p>
-          <p>目安費用 <%= @recipe.cooking_cost %>円</p>
-          <p>カロリー <%= @recipe.calorie %>kcal</p>
+        <div class="recipiSub_info">
+          <p><span class="sub-info">調理時間</span> <%= @recipe.cooking_time %>分</p>
+          <p><span class="sub-info">目安費用</span> <%= @recipe.cooking_cost %>円</p>
+          <p><span class="sub-info">カロリー</span> <%= @recipe.calorie %>kcal</p>
         </div>
         <div class="show-recipeContent">
           <p class="text-xl"><%= @recipe.content %></p>

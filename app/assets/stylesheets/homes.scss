@@ -19,6 +19,21 @@
     box-shadow: 0 4px 2px -3px $boxShadow, 0 4px 5px 1px $boxShadow, 0 2px 7px 1px $boxShadow;
   }
 }
+@mixin tb {
+  @media screen and (min-width: 790px) and (max-width: 1030px) {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: 790px) {
+    @content;
+  }
+}
+@mixin sp-tb {
+  @media screen and (max-width: 1030px) {
+    @content;
+  }
+}
 
 // *-*-* 共通のレイアウト *-*-*
 .sign-up-btn {
@@ -27,6 +42,9 @@
   height: 50px;
   font-weight: 900;
   padding: 10px 0px;
+  @include sp {
+    width: 140px;
+  }
 }
 
 // *-*-* トップセクションのレイアウト *-*-*
@@ -34,28 +52,80 @@
   min-height: 100vh;
   background-color: rgba($color: #ffa45b, $alpha: 0.95);
   display: flex;
+  @include tb {
+    min-height: 50vh;
+  }
+  @include sp-tb {
+    flex-direction: inherit;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px;
+  }
+  @include sp {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    padding-top: 20px;
+  }
   .top-left {
     flex-basis: 50%;
+    @include sp-tb {
+      flex-basis: auto;
+    }
     .top-heading {
       color: #5eaf23;
       font-size: 5em;
       font-weight: 900;
       text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      @include tb {
+        font-size: 4em;
+      }
+      @include sp {
+        font-size: 3em;
+      }
     }
     .sub-heading {
       color: #fbf6f0;
       font-size: 2em;
       font-weight: 800;
+      @include sp-tb {
+        font-size: 1.5em;
+      }
     }
-    .top-msg {
-      color: #e8e8e8;
-      font-size: 20px;
-      font-weight: 700;
+    .topMsg-wrapper {
+      display: flex;
+      justify-content: center;
+      @include sp {
+        margin-top: 30px;
+        text-align: center;
+      }
+      .top-msg {
+        color: #e8e8e8;
+        font-size: 20px;
+        font-weight: 700;
+        @include sp-tb {
+          font-size: 1em;
+        }
+      }
+    }
+    .sign-wrapper {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      @include sp-tb {
+        margin-top: 30px;
+      }
+      @include sp {
+        flex-direction: column;
+      }
     }
   }
   .top-right {
     flex-basis: 50%;
     position: relative;
+    @include sp-tb {
+      position: inherit;
+      flex-basis: auto;
+    }
     .top-img {
       position: absolute;
       width: 400px;
@@ -66,6 +136,15 @@
       border-radius: 15px;
       transform: rotate(5deg);
       object-position: left bottom;
+      @include sp-tb {
+        position: inherit;
+        transform: none;
+        width: 370px;
+        height: 260px;
+      }
+      @include sp {
+        margin: 0 auto;
+      }
     }
   }
   .login-btn {
@@ -75,6 +154,10 @@
     font-weight: 900;
     padding: 10px 0px;
     color: rgba(0, 0, 0, 0.6);
+    @include sp {
+      width: 140px;
+      margin-top: 30px;
+    }
   }
   .login-btn-guest {
     @include submit-layout(#ffda77, #ffe291, #b39542);
@@ -83,15 +166,45 @@
     font-weight: 900;
     padding: 0px 3px;
     color: rgba(0, 0, 0, 0.6);
+    @include sp {
+      margin-top: 30px;
+    }
   }
 }
+
 // *-*-* メインセクションのレイアウト *-*-*
 .main-section {
   margin: 80px auto 120px;
+  .flex {
+    @include sp {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
   .main-section-heading2 {
     color: #ffa45b;
     font-size: 2.5em;
     font-weight: 900;
+    @include sp {
+      font-size: 2em;
+    }
+  }
+  .toUser-scss-rsp {
+    @include sp {
+      margin: 0;
+    }
+  }
+  .function-scss-rsp1 {
+    @include sp {
+      margin: 0;
+      padding: 0 16px;
+    }
+  }
+  .function-scss-rsp2 {
+    @include sp {
+      margin: 3em 0px 0px;
+      padding: 0 16px;
+    }
   }
   .what-app-img {
     height: 300px;
@@ -102,6 +215,9 @@
     color: #5eaf23;
     font-size: 2em;
     font-weight: 900;
+    @include sp-tb {
+      font-size: 1.5em;
+    }
   }
   .app-description {
     margin-top: 10px;
@@ -123,5 +239,8 @@
     color: #5eaf23;
     font-size: 2em;
     font-weight: 900;
+    @include sp {
+      font-size: 1.5em;
+    }
   }
 }

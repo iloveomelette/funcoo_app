@@ -1,11 +1,11 @@
-<div class="devise-container pt-20">
+<div class="devise-container">
   <%= render "devise/shared/error_messages", resource: resource %>
-  <h2 class="text-2xl pl-3">Welcome!</h2>
-  <p>- <%= t('.sign_up') %> -</p>
+  <h2 class="rsp-textCenter text-2xl lg:pl-3">Welcome!</h2>
+  <p class="rsp-textCenter">- <%= t('.sign_up') %> -</p>
 
-  <div class="flex">
-    <div class="flex-1">
-      <%= image_tag "Welcome-bro.png", alt: "新規登録へようこそ" %>
+  <div class="rsp-deviseContainer flex-none md:flex">
+    <div class="flex-1 text-center">
+      <%= image_tag "Welcome-bro.png", alt: "新規登録へようこそ", class: "welcome-bro" %>
       <a href="https://storyset.com/event" class="credit">Event illustrations by Storyset</a>
     </div>
 
@@ -16,8 +16,10 @@
         <div class="field">
           <%= f.radio_button :characteristic, :general %>
           <%= f.label :characteristic_general, "個人利用者", class: "mr-4" %>
-          <%= f.radio_button :characteristic, :corporation %>
-          <%= f.label :characteristic_general, "法人(個人農家/個人飲食店経営の方はこちら)" %>
+          <span class="inline-block">
+            <%= f.radio_button :characteristic, :corporation %>
+            <%= f.label :characteristic_corporation, "法人(個人農家/個人飲食店経営の方はこちら)" %>
+          </span>
           <p class="text-sm">＊個人利用の場合、レシピを投稿できません。</p>
         </div>
 
@@ -49,7 +51,9 @@
           <%= f.submit t('.sign_up') %>
         </div>
 
-        <div class="another-choice"><p>OR</p></div>
+        <div class="another-choice">
+            <span class="inline-block px-2.5"><p>OR</p></span>
+          </div>
 
         <div class="field google-wrapper">
           <div class="google">
