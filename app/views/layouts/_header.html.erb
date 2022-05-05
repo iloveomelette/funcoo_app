@@ -6,11 +6,58 @@
       <% end %>
     </div>
 
+    <% if user_signed_in? %>
+      <div class="md-navOpen">
+        <%= image_tag check_user_profile_image(current_user), class: "user-profileImage" %>
+      </div>
+    <% else %>
+      <div>
+        <ul>
+          <li>
+            <%= link_to '新規登録', new_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to 'ログイン', new_user_session_path %>
+          </li>
+          <li>
+            <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="sp-navOpen">
       <span class="sp-navIcon" id="open"><i class="fa-solid fa-bars"></i></span>
     </div>
   </div>
 </header>
+
+<%# *-*-* ここからタブレット/PC用のナビ *-*-* %>
+<div class="md-navWrapper commonCard-outstyle">
+  <nav class="nav-wrapper">
+    <ul>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to 'マイページ', users_path %>
+        </li>
+        <li>
+          <%= link_to '一覧', recipes_path %>
+        </li>
+        <% if current_user.characteristic == "corporation" && current_user.name != "ゲストユーザ" %>
+          <li>
+            <%= link_to '投稿する', new_recipe_path unless current_page?(new_recipe_path) %>
+          </li>
+        <% end %>
+        <li>
+          <%= link_to 'アカウント編集', edit_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしてもよろしいですか？'}, class: "log-out" %>
+        </li>
+      <% end %>
+    </ul>    
+  </nav>
+</div>
 
 <%# *-*-* ここからスマートフォン用のナビ *-*-* %>
 <div class="overlay">
@@ -22,11 +69,11 @@
         <li>
           <%= link_to '一覧', recipes_path %>
         </li>
-        <li>
-          <% if current_user.characteristic == "corporation" && current_user.name != "ゲストユーザ" %>
+        <% if current_user.characteristic == "corporation" && current_user.name != "ゲストユーザ" %>
+          <li>
             <%= link_to '投稿する', new_recipe_path unless current_page?(new_recipe_path) %>
-          <% end %>
-        </li>
+          </li>
+        <% end %>
         <li>
           <%= link_to 'マイページ', users_path %>
         </li>
@@ -34,7 +81,7 @@
           <%= link_to 'アカウント編集', edit_user_registration_path %>
         </li>
         <li>
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしてもよろしいですか？'} %>
         </li>
       <% else %>
         <li>
