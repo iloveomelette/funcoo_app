@@ -7,7 +7,7 @@
     </div>
 
     <% if user_signed_in? %>
-      <div class="md-navOpen">
+      <div class="md-navOpen" id="md-navOpen">
         <%= image_tag check_user_profile_image(current_user), class: "user-profileImage" %>
       </div>
     <% else %>
@@ -27,7 +27,7 @@
     <% end %>
 
     <div class="sp-navOpen">
-      <span class="sp-navIcon" id="open"><i class="fa-solid fa-bars"></i></span>
+      <span class="sp-navIcon" id="sp-navOpen"><i class="fa-solid fa-bars"></i></span>
     </div>
   </div>
 </header>

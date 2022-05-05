@@ -1,17 +1,22 @@
 document.addEventListener('turbolinks:load', () => {
-  const open = document.getElementById('open');
+  const spNavOpen = document.getElementById('sp-navOpen');
+  const mdNavOpen = document.getElementById('md-navOpen');
   const overlay = document.querySelector('.overlay');
-  const close = document.getElementById('sp-navclose');
+  const mdNavWrapper = document.querySelector('.md-navWrapper');
+  const spNavclose = document.getElementById('sp-navclose');
 
-  if (!open) {
+  if (!spNavOpen) {
     return false;
   }
-  open.addEventListener('click', () => {
+  spNavOpen.addEventListener('click', () => {
     overlay.classList.add('show');
-    open.classList.add('hide');
+    spNavOpen.classList.add('hide');
   });
-  close.addEventListener('click', () => {
+  spNavclose.addEventListener('click', () => {
     overlay.classList.remove('show');
-    open.classList.remove('hide');
+    spNavOpen.classList.remove('hide');
+  });
+  mdNavOpen.addEventListener('click', () => {
+    mdNavWrapper.classList.toggle('show');
   });
 });

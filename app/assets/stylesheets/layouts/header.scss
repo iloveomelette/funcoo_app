@@ -13,6 +13,16 @@
     @content;
   }
 }
+@mixin nav-parts {
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s;
+}
+@mixin show {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 // *-*-* ヘッダーのレイアウト *-*-*
 .header-wrapper {
@@ -22,38 +32,10 @@
   display: flex;
   align-items: center;
   height: 80px;
-  padding: 0 1em;
-  // .header-left {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   flex-basis: 20%;
-  // }
-  // .nav-wrapper {
-  //   flex-basis: 60%;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  // }
-  // .header-right {
-  //   display: flex;
-  //   align-items: center;
-  //   flex-basis: 20%;
-  //   .header-searchContainer {
-  //     position: relative;
-  //     .header-q {
-  //       width: 180px;
-  //       height: 50px;
-  //     }
-  //     .searchIcon {
-  //       position: absolute;
-  //       color: #aaa;
-  //       top: 50%;
-  //       right: 8%;
-  //       transform: translateY(-50%);
-  //     }
-  //   }
-  // }
+  padding: 0 4em;
+  @include sp {
+    padding: 0 1.5em;
+  }
   .md-navOpen {
     margin-left: auto;
     @include sp {
@@ -72,7 +54,7 @@
       display: block;
       margin-left: auto;
     }
-    #open {
+    #sp-navOpen {
       @include sp {
         display: block;
         font-size: 2em;
@@ -94,10 +76,7 @@
   right: 8px;
   padding: 15px;
   width: 170px;
-  z-index: 2;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s;
+  @include nav-parts;
   li {
     cursor: pointer;
     .log-out {
@@ -107,6 +86,9 @@
       padding: 8px 0;
       border-top: 1px solid rgba(0, 0, 0, 0.12);
     }
+  }
+  &.show {
+    @include show;
   }
 }
 
@@ -118,12 +100,9 @@
   right: 0;
   left: 0;
   background: rgba($color: #8ec22f, $alpha: 0.95);
-  z-index: 2;
   text-align: center;
   padding: 64px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s;
+  @include nav-parts;
   #sp-navclose {
     position: absolute;
     color: #fbf6f0;
@@ -138,7 +117,6 @@
     color: #fbf6f0;
   }
   &.show {
-    opacity: 1;
-    pointer-events: auto;
+    @include show;
   }
 }
