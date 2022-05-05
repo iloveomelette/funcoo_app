@@ -1,85 +1,89 @@
 <div class="search-container">
-  <h3 class="text-2xl">レシピから検索</h3>
   <%= search_form_for @q, url: search_index_recipes_path, class: "pt-5" do |f| %>
-    <div class="commonCard-outstyle q-SearchBox">
-      <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "searchForm-outstyle recipes-q" %>
-      <div class="pt-2">
-        <%= f.radio_button :cooking_time_lteq, "30" %>
-        <%= f.label :cooking_time_lteq_30, "30分以内" %>
-        <%= f.radio_button :cooking_time_lteq, "60" %>
-        <%= f.label :cooking_time_lteq_60, "60分以内" %>
-        <%= f.radio_button :cooking_time_gt, "60" %>
-        <%= f.label :cooking_time_gt_60, "それ以上" %>
+    <div class="q-SearchBox">
+      <div class="commonCard-outstyle search-common mb-10">
+        <h3 class="text-2xl">レシピから検索</h3>
+        <span class="search-span"></span>
+        <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "searchForm-outstyle recipes-q" %>
+        <div class="pt-2">
+          <%= f.radio_button :cooking_time_lteq, "30" %>
+          <%= f.label :cooking_time_lteq_30, "30分以内" %>
+          <%= f.radio_button :cooking_time_lteq, "60" %>
+          <%= f.label :cooking_time_lteq_60, "60分以内" %>
+          <%= f.radio_button :cooking_time_gt, "60" %>
+          <%= f.label :cooking_time_gt_60, "それ以上" %>
+        </div>
+        <div class="pt-2">
+          <%= f.radio_button :cooking_cost_lteq, "500" %>
+          <%= f.label :cooking_cost_lteq_500, "500円以内" %>
+          <%= f.radio_button :cooking_cost_lteq, "1000" %>
+          <%= f.label :cooking_cost_lteq_1000, "1000円以内" %><br>
+          <%= f.radio_button :cooking_cost_lteq, "2000" %>
+          <%= f.label :cooking_cost_lteq_2000, "2000円以内" %>
+          <%= f.radio_button :cooking_cost_gt, "2000" %>
+          <%= f.label :cooking_cost_gt_2000, "それ以上" %>
+        </div>
+        <div class="pt-2">
+          <%= f.radio_button :calorie_lteq, "500" %>
+          <%= f.label :calorie_lteq_500, "500kcal以下" %>
+          <%= f.radio_button :calorie_lteq, "1000" %>
+          <%= f.label :calorie_lteq_1000, "1000kcal以下" %><br>
+          <%= f.radio_button :calorie_lteq, "2000" %>
+          <%= f.label :calorie_lteq_2000, "2000kcal以下" %>
+          <%= f.radio_button :calorie_gt, "2000" %>
+          <%= f.label :calorie_gt_2000, "それ以上" %>
+        </div>
       </div>
-      <div class="pt-2">
-        <%= f.radio_button :cooking_cost_lteq, "500" %>
-        <%= f.label :cooking_cost_lteq_500, "500円以内" %>
-        <%= f.radio_button :cooking_cost_lteq, "1000" %>
-        <%= f.label :cooking_cost_lteq_1000, "1000円以内" %><br>
-        <%= f.radio_button :cooking_cost_lteq, "2000" %>
-        <%= f.label :cooking_cost_lteq_2000, "2000円以内" %>
-        <%= f.radio_button :cooking_cost_gt, "2000" %>
-        <%= f.label :cooking_cost_gt_2000, "それ以上" %>
-      </div>
-      <div class="pt-2">
-        <%= f.radio_button :calorie_lteq, "500" %>
-        <%= f.label :calorie_lteq_500, "500kcal以下" %>
-        <%= f.radio_button :calorie_lteq, "1000" %>
-        <%= f.label :calorie_lteq_1000, "1000kcal以下" %><br>
-        <%= f.radio_button :calorie_lteq, "2000" %>
-        <%= f.label :calorie_lteq_2000, "2000kcal以下" %>
-        <%= f.radio_button :calorie_gt, "2000" %>
-        <%= f.label :calorie_gt_2000, "それ以上" %>
-      </div>
-    </div>
 
-    <h3 class="text-2xl mt-10 mb-6">ジャンルから検索</h3>
-    <div class="commonCard-outstyle q-SearchBox">
-      <div>
-        <p class="pb-2 text-lg">主食</p>
-        <%= f.check_box :genre_staple_food_eq_any, { multiple: true }, "1", "" %>
-        <%= f.label :genre_staple_food_eq_any_1, "ごはん" %>
-        <%= f.check_box :genre_staple_food_eq_any, { multiple: true }, "2", "" %>
-        <%= f.label :genre_staple_food_eq_any_2, "パン" %>
-        <%= f.check_box :genre_staple_food_eq_any, { multiple: true }, "3", "" %>
-        <%= f.label :genre_staple_food_eq_any_3, "麺類" %>
-      </div>
-      <div>
-        <p class="pb-2 pt-3 text-lg">主菜</p>
-        <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "1", "" %>
-        <%= f.label :genre_main_dish_eq_any_1, "肉料理" %>
-        <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "2", "" %>
-        <%= f.label :genre_main_dish_eq_any_2, "魚料理" %>
-        <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "3", "" %>
-        <%= f.label :genre_main_dish_eq_any_3, "卵料理" %>
-        <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "4", "" %>
-        <%= f.label :genre_main_dish_eq_any_4, "大豆料理" %>
-      </div>
-      <div>
-        <p class="pb-2 pt-3 text-lg">副菜</p>
-        <%= f.check_box :genre_side_dish_eq_any, { multiple: true }, "1", "" %>
-        <%= f.label :genre_side_dish_eq_any_1, "野菜料理" %>
-        <%= f.check_box :genre_side_dish_eq_any, { multiple: true }, "2", "" %>
-        <%= f.label :genre_side_dish_eq_any_2, "きのこ料理" %>
-        <%= f.check_box :genre_side_dish_eq_any, { multiple: true }, "3", "" %>
-        <%= f.label :genre_side_dish_eq_any_3, "芋料理" %>
-      </div>
-      <div>
-        <p class="pb-2 pt-3 text-lg">各国料理</p>
-        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "1", "" %>
-        <%= f.label :genre_country_dish_eq_any_1, "日本料理" %>
-        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "2", "" %>
-        <%= f.label :genre_country_dish_eq_any_2, "韓国料理" %>
-        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "3", "" %>
-        <%= f.label :genre_country_dish_eq_any_3, "中華料理" %><br>
-        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "4", "" %>
-        <%= f.label :genre_country_dish_eq_any_4, "イタリアン料理" %>
-        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "5", "" %>
-        <%= f.label :genre_country_dish_eq_any_5, "アジア料理" %><br>
-        <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "6", "" %>
-        <%= f.label :genre_country_dish_eq_any_6, "エスニック料理" %>
-        <%= f.check_box :genre_staple_food_or_genre_main_dish_or_genre_side_dish_or_genre_country_dish_eq_any, { multiple: true }, "0", "" %>
-        <%= f.label :genre_staple_food_or_genre_main_dish_or_genre_side_dish_or_genre_country_dish_eq_any_0, "その他" %>
+      <div class="commonCard-outstyle search-common">
+        <h3 class="text-2xl">ジャンルから検索</h3>
+        <span class="search-span"></span>
+        <div>
+          <p class="pb-2 text-lg">主食</p>
+          <%= f.check_box :genre_staple_food_eq_any, { multiple: true }, "1", "" %>
+          <%= f.label :genre_staple_food_eq_any_1, "ごはん" %>
+          <%= f.check_box :genre_staple_food_eq_any, { multiple: true }, "2", "" %>
+          <%= f.label :genre_staple_food_eq_any_2, "パン" %>
+          <%= f.check_box :genre_staple_food_eq_any, { multiple: true }, "3", "" %>
+          <%= f.label :genre_staple_food_eq_any_3, "麺類" %>
+        </div>
+        <div>
+          <p class="pb-2 pt-3 text-lg">主菜</p>
+          <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "1", "" %>
+          <%= f.label :genre_main_dish_eq_any_1, "肉料理" %>
+          <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "2", "" %>
+          <%= f.label :genre_main_dish_eq_any_2, "魚料理" %>
+          <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "3", "" %>
+          <%= f.label :genre_main_dish_eq_any_3, "卵料理" %>
+          <%= f.check_box :genre_main_dish_eq_any, { multiple: true }, "4", "" %>
+          <%= f.label :genre_main_dish_eq_any_4, "大豆料理" %>
+        </div>
+        <div>
+          <p class="pb-2 pt-3 text-lg">副菜</p>
+          <%= f.check_box :genre_side_dish_eq_any, { multiple: true }, "1", "" %>
+          <%= f.label :genre_side_dish_eq_any_1, "野菜料理" %>
+          <%= f.check_box :genre_side_dish_eq_any, { multiple: true }, "2", "" %>
+          <%= f.label :genre_side_dish_eq_any_2, "きのこ料理" %>
+          <%= f.check_box :genre_side_dish_eq_any, { multiple: true }, "3", "" %>
+          <%= f.label :genre_side_dish_eq_any_3, "芋料理" %>
+        </div>
+        <div>
+          <p class="pb-2 pt-3 text-lg">各国料理</p>
+          <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "1", "" %>
+          <%= f.label :genre_country_dish_eq_any_1, "日本料理" %>
+          <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "2", "" %>
+          <%= f.label :genre_country_dish_eq_any_2, "韓国料理" %>
+          <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "3", "" %>
+          <%= f.label :genre_country_dish_eq_any_3, "中華料理" %><br>
+          <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "4", "" %>
+          <%= f.label :genre_country_dish_eq_any_4, "イタリアン料理" %>
+          <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "5", "" %>
+          <%= f.label :genre_country_dish_eq_any_5, "アジア料理" %><br>
+          <%= f.check_box :genre_country_dish_eq_any, { multiple: true }, "6", "" %>
+          <%= f.label :genre_country_dish_eq_any_6, "エスニック料理" %>
+          <%= f.check_box :genre_staple_food_or_genre_main_dish_or_genre_side_dish_or_genre_country_dish_eq_any, { multiple: true }, "0", "" %>
+          <%= f.label :genre_staple_food_or_genre_main_dish_or_genre_side_dish_or_genre_country_dish_eq_any_0, "その他" %>
+        </div>
       </div>
     </div>
     <div class="text-center mt-6"><%= f.submit "検索" %></div>
