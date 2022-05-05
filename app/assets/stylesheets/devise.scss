@@ -180,4 +180,7 @@
 .reset-password {
   text-align: center;
   padding: 70px 100px;
+  @include sp {
+    padding: 5rem 0.625rem;
+  }
 }
