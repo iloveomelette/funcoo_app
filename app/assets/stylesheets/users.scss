@@ -27,6 +27,9 @@
   .user-info {
     display: flex;
     padding: 16px;
+    @include tb {
+      margin: 0 10px;
+    }
     @include sp {
       display: inherit;
     }
@@ -78,6 +81,10 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
       grid-gap: 1rem;
+      @include tb {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-items: center;
+      }
       @include sp {
         grid-template-columns: repeat(1, minmax(0, 1fr));
         justify-items: center;

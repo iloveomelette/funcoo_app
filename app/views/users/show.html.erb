@@ -10,7 +10,7 @@
         <div class="user-infoLevel">
           <p>現在 Lv. <span><%= current_user.level %></span></p>
           <p>経験値 <span><%= current_user.experience_point %>Exp</span></p>
-          <p>次のレベルまであと <span><%= current_user.rest_point %>Exp</span></p>
+          <p>次のレベルまであと <span class="inline-block"><%= current_user.rest_point %>Exp</span></p>
         </div>
       </div>
       <div class="text-lg mt-3">
@@ -20,7 +20,7 @@
 	</div>
 
 	<div class="user-recipes">
-    <p class="text-2xl pb-10 text-center md:text-left"><%= check_user_characteristic(current_user) %></p>
+    <p class="text-2xl pb-10 text-center lg:text-left"><%= check_user_characteristic(current_user) %></p>
     <% if @recipes.present? %>
       <div class="user-makedRecipes">
         <% @recipes.each do |recipe| %>

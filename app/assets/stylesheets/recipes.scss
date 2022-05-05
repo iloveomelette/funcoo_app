@@ -226,11 +226,6 @@
       font-size: 20px;
       color: #5eaf23;
     }
-    .q-text-position {
-      @include sp-tb {
-        text-align: center;
-      }
-    }
     .recipe-results {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));

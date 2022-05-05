@@ -1,16 +1,16 @@
 <section class="recipes-container">
   <div class="q-resultPage">
-    <div>
-      <h2 class="text-3xl mb-8 q-text-position">Recipes</h2>
+    <div class="text-center lg:text-left">
+      <h2 class="text-3xl mb-8">Recipes</h2>
       <% if @searched_recipes.present? %>
-        <p class="q-text-position">ページ内検索結果 > <span class="q-count"><%= @searched_recipes.count %></span>レシピ</p>
+        <p>ページ内検索結果 > <span class="q-count"><%= @searched_recipes.count %></span>レシピ</p>
         <div class="recipe-results">
           <%= render @searched_recipes %>
         </div>
       <% else %>
-        <h3 class="text-xl q-text-position">検索されたレシピは見つかりませんでした...</h3>
+        <h3 class="text-xl">検索されたレシピは<span class="inline-block">見つかりませんでした...</span></h3>
         <%= image_tag "no-result-found.png", alt: "検索結果が0件です", class: "no-resultFound" %>
-        <%= link_to "Brought to you by Designs.ai", "https://designs.ai/", class: "credit" %>
+        <%= link_to "Brought to you by Designs.ai", "https://designs.ai/", class: "credit text-center" %>
       <% end %>
     </div>
   </div>
