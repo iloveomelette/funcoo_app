@@ -36,16 +36,35 @@
   @include sp {
     padding: 0 1.5em;
   }
-  .md-navOpen {
+  .md-headerRight {
     margin-left: auto;
+    display: flex;
+    align-items: center;
     @include sp {
       display: none;
     }
-    .user-profileImage {
-      height: 32px;
-      width: 32px;
-      border-radius: 50%;
-      cursor: pointer;
+    .header-searchContainer {
+      position: relative;
+      margin-right: 10px;
+      .header-q {
+        width: 180px;
+        height: 50px;
+      }
+      .searchIcon {
+        position: absolute;
+        color: #aaa;
+        top: 50%;
+        right: 8%;
+        transform: translateY(-50%);
+      }
+    }
+    .md-navOpen {
+      .user-profileImage {
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
     }
   }
   .sp-navOpen {
@@ -72,19 +91,22 @@
 .md-navWrapper {
   background-color: #fbf6f0;
   position: absolute;
-  top: 56px;
-  right: 8px;
+  top: 60px;
+  right: 4em;
   padding: 15px;
   width: 170px;
   @include nav-parts;
   li {
-    cursor: pointer;
     .log-out {
       color: #f24130;
     }
     &:nth-child(n + 2) {
       padding: 8px 0;
       border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+    a:hover {
+      cursor: pointer;
+      color: #aee6e6;
     }
   }
   &.show {

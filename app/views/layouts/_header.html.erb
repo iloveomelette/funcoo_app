@@ -7,8 +7,18 @@
     </div>
 
     <% if user_signed_in? %>
-      <div class="md-navOpen" id="md-navOpen">
-        <%= image_tag check_user_profile_image(current_user), class: "user-profileImage" %>
+      <div class="md-headerRight">
+        <div class="header-searchContainer">
+          <%= search_form_for @q, url: url do |f| %>
+            <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "header-q searchForm-outstyle" %>
+            <%= f.button :type => "submit" do %>
+              <span><i class="fa-solid fa-magnifying-glass searchIcon"></i></span>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="md-navOpen" id="md-navOpen">
+          <%= image_tag check_user_profile_image(current_user), class: "user-profileImage" %>
+        </div>
       </div>
     <% else %>
       <div>
