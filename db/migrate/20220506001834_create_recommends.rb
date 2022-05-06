@@ -7,6 +7,10 @@ class CreateRecommends < ActiveRecord::Migration[6.1]
       t.float :avg_main, null: false, default: 0
       t.float :avg_side, null: false, default: 0
       t.float :avg_country, null: false, default: 0
+      t.integer :sum_staple, null: false, default: 0
+      t.integer :sum_main, null: false, default: 0
+      t.integer :sum_side, null: false, default: 0
+      t.integer :sum_country, null: false, default: 0
 
       t.timestamps
     end

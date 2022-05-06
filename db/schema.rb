@@ -61,6 +61,10 @@ ActiveRecord::Schema.define(version: 2022_05_06_001834) do
     t.float "avg_main", default: 0.0, null: false
     t.float "avg_side", default: 0.0, null: false
     t.float "avg_country", default: 0.0, null: false
+    t.integer "sum_staple", default: 0, null: false
+    t.integer "sum_main", default: 0, null: false
+    t.integer "sum_side", default: 0, null: false
+    t.integer "sum_country", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_recommends_on_user_id"
