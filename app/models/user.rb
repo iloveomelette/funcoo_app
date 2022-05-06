@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :makes, dependent: :destroy
   has_many :maked_recipes, through: :makes, source: :recipe
   has_many :sns_credential, dependent: :destroy
+  has_one :recommend, dependent: :destroy
 
   with_options presence: true do
     validates :name, length: { maximum: 50 }
