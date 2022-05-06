@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2022_05_06_001834) do
 
   create_table "recommends", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "recommend_recipe", null: false
+    t.integer "recommend_recipe", default: 0, null: false
     t.float "avg_staple", default: 0.0, null: false
     t.float "avg_main", default: 0.0, null: false
     t.float "avg_side", default: 0.0, null: false
