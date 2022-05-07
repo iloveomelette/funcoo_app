@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_28_060200) do
+ActiveRecord::Schema.define(version: 2022_05_06_001834) do
 
   create_table "genres", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "recipe_id", null: false
@@ -54,6 +54,22 @@ ActiveRecord::Schema.define(version: 2022_04_28_060200) do
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
+  create_table "recommends", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "recommend_recipe", default: 0, null: false
+    t.float "avg_staple", default: 0.0, null: false
+    t.float "avg_main", default: 0.0, null: false
+    t.float "avg_side", default: 0.0, null: false
+    t.float "avg_country", default: 0.0, null: false
+    t.integer "sum_staple", default: 0, null: false
+    t.integer "sum_main", default: 0, null: false
+    t.integer "sum_side", default: 0, null: false
+    t.integer "sum_country", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_recommends_on_user_id"
+  end
+
   create_table "sns_credentials", charset: "utf8mb4", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
@@ -87,5 +103,6 @@ ActiveRecord::Schema.define(version: 2022_04_28_060200) do
   add_foreign_key "makes", "recipes"
   add_foreign_key "makes", "users"
   add_foreign_key "recipes", "users"
+  add_foreign_key "recommends", "users"
   add_foreign_key "sns_credentials", "users"
 end
