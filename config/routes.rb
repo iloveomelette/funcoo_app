@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :recipes do
-    resource :makes, only: %i[create destroy]
+    resource :makes, only: %i[create]
     resource :favorites, only: %i[create destroy]
     collection do
       get "search_index"
