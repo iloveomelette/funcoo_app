@@ -14,26 +14,31 @@
 
   <div class="make-wrapper">
     <% if current_user.id != recipe.user_id %>
-      <p id="recipe-<%= recipe.id %>" class="make-icon">
-        <% if recipe.maked_by?(current_user) %>
-          <%# 「作ってみた!」を押している状態 %>
-          <%= render "recipes/make", recipe: recipe %>
-        <% else %>
-          <%# 「作ってみた!」を押していない状態 %>
-          <%= render "recipes/nonmake", recipe: recipe %>
-        <% end %>
-      </p>
-      <p id="favorite-<%= recipe.id %>" class="make-icon">
-        <% if recipe.favorited_by?(current_user) %>
-          <%= render "favorites/favorite", recipe: recipe %>
-        <% else %>
-          <%= render "favorites/nonfavorite", recipe: recipe %>
-        <% end %>
-      </p>
+      <div class="flex">
+        <p id="recipe-<%= recipe.id %>" class="make-icon mr-4">
+          <% if recipe.maked_by?(current_user) %>
+            <%# 「作ってみた!」を押している状態 %>
+            <%= render "recipes/make", recipe: recipe %>
+          <% else %>
+            <%# 「作ってみた!」を押していない状態 %>
+            <%= render "recipes/nonmake", recipe: recipe %>
+          <% end %>
+        </p>
+        <%# ===== お気に入り機能 ===== %>
+        <p id="favorite-<%= recipe.id %>" class="make-icon favorite-btn">
+          <% if recipe.favorited_by?(current_user) %>
+            <%= render "favorites/favorite", recipe: recipe %>
+          <% else %>
+            <%= render "favorites/nonfavorite", recipe: recipe %>
+          <% end %>
+        </p>
+      </div>
     <% end %>
+
     <%= link_to recipe, class: "text-base hover:text-quaternary" do %>
       <i class="fa-solid fa-caret-right"></i>  詳しく見る
     <% end %>
+
     <% if current_user.id == recipe.user_id %>
       <div class="flex">
         <%= link_to edit_recipe_path(recipe) do %>
