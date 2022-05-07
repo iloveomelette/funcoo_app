@@ -23,6 +23,13 @@
           <%= render "recipes/nonmake", recipe: recipe %>
         <% end %>
       </p>
+      <p>
+        <% if recipe.favorited_by?(current_user) %>
+          <%= link_to "◉", recipe_favorites_path(recipe), method: :delete %>
+        <% else %>
+          <%= link_to "○", recipe_favorites_path(recipe), method: :post %>
+        <% end %>
+      </p>
     <% end %>
     <%= link_to recipe, class: "text-base hover:text-quaternary" do %>
       <i class="fa-solid fa-caret-right"></i>  詳しく見る

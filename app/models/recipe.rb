@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   has_many :makes, dependent: :destroy
   has_many :maked_users, through: :makes, source: :user
   has_many :favorites, dependent: :destroy
-  has_many :favorited_user, through: :favorites, source: :user
+  has_many :favorited_users, through: :favorites, source: :user
   has_one :genre, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 100 }
