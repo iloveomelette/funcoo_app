@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   has_many :makes, dependent: :destroy
   has_many :maked_users, through: :makes, source: :user
   has_many :favorites, dependent: :destroy
+  has_many :favorited_user, through: :favorites, source: :user
   has_one :genre, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 100 }
@@ -17,6 +18,11 @@ class Recipe < ApplicationRecord
   # 「作ってみた!」を押しているかどうか判定するメソッド
   def maked_by?(user)
     makes.any? { |make| make.user_id == user.id }
+  end
+
+  # お気に入りを押しているかどうか判定するメソッド
+  def favorited_by?(user)
+    favorites.any? { |favorite| favorite.user_id == user.id }
   end
 
   class << self

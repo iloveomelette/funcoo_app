@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :recipes do
     resource :makes, only: %i[create destroy]
+    resource :favorites, only: %i[create destroy]
     collection do
       get "search_index"
     end
