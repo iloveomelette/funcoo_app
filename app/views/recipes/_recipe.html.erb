@@ -23,11 +23,11 @@
           <%= render "recipes/nonmake", recipe: recipe %>
         <% end %>
       </p>
-      <p>
+      <p id="favorite-<%= recipe.id %>" class="make-icon">
         <% if recipe.favorited_by?(current_user) %>
-          <%= link_to "◉", recipe_favorites_path(recipe), method: :delete %>
+          <%= render "favorites/favorite", recipe: recipe %>
         <% else %>
-          <%= link_to "○", recipe_favorites_path(recipe), method: :post %>
+          <%= render "favorites/nonfavorite", recipe: recipe %>
         <% end %>
       </p>
     <% end %>
