@@ -20,7 +20,7 @@
 .my-page-wrapper {
   padding: 100px 0px;
   margin: 0 auto;
-  max-width: 1050px;
+  max-width: 1100px;
   @include sp {
     padding: 100px 15px;
   }
@@ -74,44 +74,77 @@
       }
     }
   }
-  .user-recipes {
-    margin-top: 5em;
-    .user-makedRecipes {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      grid-gap: 1rem;
-      @include tb {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        justify-items: center;
-      }
-      @include sp {
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-        justify-items: center;
+
+  // ===== 投稿/作ってみたを押したレシピとお気に入りレシピのスタイル =====
+  .myRecipes-show {
+    margin-top: 20px;
+    .myRecipes-menu {
+      display: flex;
+      li a {
+        display: inline-block;
+        width: 250px;
+        text-align: center;
+        padding: 8px 0;
+        color: #333;
+        border-radius: 10px 10px 0 0;
+        &:not(.active):hover {
+          opacity: 0.5;
+          transition: 0.4s;
+        }
+        &.myRecipes-active {
+          background-color: rgba($color: #ffa45b, $alpha: 0.9);
+          color: #fff;
+        }
       }
     }
-    .recipe-wrapper {
-      width: 340px;
-      padding: 15px;
-      .make-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 10px;
+    .myRecipes-contents {
+      display: none;
+      &.myRecipes-active {
+        background-color: rgba($color: #ffa45b, $alpha: 0.9);
+        display: block;
+        padding: 10px;
+        border-radius: 0 10px 10px 10px;
       }
-      .recipes-menuImg {
-        border-radius: 15px;
-        height: 330px;
-        width: 500px;
+    }
+    .user-recipes {
+      .user-makedRecipes {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        grid-gap: 1rem;
+        @include tb {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          justify-items: center;
+        }
+        @include sp {
+          grid-template-columns: repeat(1, minmax(0, 1fr));
+          justify-items: center;
+        }
       }
-      .recipe-editIcon {
-        font-size: 30px;
-        margin-right: 1em;
-      }
-      .recipe-deleteIcon {
-        font-size: 30px;
-        padding-right: 10px;
-        margin-left: 10px;
+      .recipe-wrapper {
+        width: 340px;
+        padding: 15px;
+        background-color: rgba($color: #fbf6f0, $alpha: 1);
+        .make-wrapper {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 10px;
+        }
+        .recipes-menuImg {
+          border-radius: 15px;
+          height: 260px;
+          width: 310px;
+        }
+        .recipe-editIcon {
+          font-size: 30px;
+          margin-right: 1em;
+        }
+        .recipe-deleteIcon {
+          font-size: 30px;
+          padding-right: 10px;
+          margin-left: 10px;
+        }
       }
     }
   }
