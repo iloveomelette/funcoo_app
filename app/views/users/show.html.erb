@@ -39,9 +39,11 @@
         </div>
       <% end %>
 
-      <div class="paginate pt-10">
-        <%= paginate @recipes %>
-      </div>
+      <% if @recipes.count == 20 %>
+        <div class="paginate pt-10">
+          <%= paginate @recipes %>
+        </div>
+      <% end %>
     </section>
 
     <section class="user-recipes myRecipes-contents" id="favorite-recipes">
@@ -54,6 +56,12 @@
       <% else %>
         <div>
           <p>お気に入りのレシピがここに表示されます</p>
+        </div>
+      <% end %>
+
+      <% if @favorite_recipes.count == 20 %>
+        <div class="paginate pt-10">
+          <%= paginate @favorite_recipes %>
         </div>
       <% end %>
     </section>
