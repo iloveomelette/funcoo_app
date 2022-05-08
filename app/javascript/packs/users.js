@@ -1,6 +1,12 @@
 document.addEventListener('turbolinks:load', () => {
   const menuItems = document.querySelectorAll('.myRecipes-menu li a');
   const contents = document.querySelectorAll('.myRecipes-contents');
+  const myRecipesActive = 'myRecipes-active';
+  function removeClass(arry) {
+    arry.forEach((item) => {
+      item.classList.remove(myRecipesActive);
+    });
+  }
 
   if (!menuItems) {
     return false;
@@ -9,15 +15,11 @@ document.addEventListener('turbolinks:load', () => {
     clickedItem.addEventListener('click', (e) => {
       e.preventDefault();
 
-      menuItems.forEach((item) => {
-        item.classList.remove('myRecipes-active');
-      });
-      clickedItem.classList.add('myRecipes-active');
+      removeClass(menuItems);
+      clickedItem.classList.add(myRecipesActive);
 
-      contents.forEach((content) => {
-        content.classList.remove('myRecipes-active');
-      });
-      document.getElementById(clickedItem.dataset.id).classList.add('myRecipes-active');
+      removeClass(contents);
+      document.getElementById(clickedItem.dataset.id).classList.add(myRecipesActive);
     });
   });
 });
