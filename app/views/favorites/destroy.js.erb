@@ -1,0 +1,1 @@
+document.getElementById("favorite-<%= @recipe.id %>").innerHTML = "<%= j render('favorites/nonfavorite', recipe: @recipe) %>"

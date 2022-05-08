@@ -4,6 +4,7 @@
       <%= image_tag check_user_profile_image(current_user), class: "user-info-image" %>
       <%= link_to "アカウント編集", edit_user_registration_path, class: "user-info-link" %>
     </div>
+
     <div class="user-info-right">
       <div class="user-nameLevel">
         <p class="user-infoName"><%= current_user.name %></p>
@@ -19,22 +20,50 @@
     </div>
 	</div>
 
-	<div class="user-recipes">
-    <p class="text-2xl pb-10 text-center lg:text-left"><%= check_user_characteristic(current_user) %></p>
-    <% if @recipes.present? %>
-      <div class="user-makedRecipes">
-        <% @recipes.each do |recipe| %>
-          <%= render "recipes/recipe", recipe: recipe %>
-        <% end %>
-      </div>
-    <% else %>
-      <div>
-        <p><%= promote_msg(current_user) %></p>
-      </div>
-    <% end %>
-	</div>
+  <div class="myRecipes-show">
+    <ul class="myRecipes-menu">
+      <li><a href="#" class="myRecipes-active" data-id="makedPost-recipes"><%= check_user_characteristic(current_user) %></a></li>
+      <li><a href="#" data-id="favorite-recipes">お気に入りしたレシピ</a></li>
+    </ul>
+  
+    <section class="user-recipes myRecipes-contents myRecipes-active" id="makedPost-recipes">
+      <% if @recipes.present? %>
+        <div class="user-makedRecipes">
+          <% @recipes.each do |recipe| %>
+            <%= render "recipes/recipe", recipe: recipe %>
+          <% end %>
+        </div>
+      <% else %>
+        <div>
+          <p><%= promote_msg(current_user) %></p>
+        </div>
+      <% end %>
 
-  <div class="paginate pt-10">
-    <%= paginate @recipes %>
+      <% if @recipes.count == 20 %>
+        <div class="paginate pt-10">
+          <%= paginate @recipes %>
+        </div>
+      <% end %>
+    </section>
+
+    <section class="user-recipes myRecipes-contents" id="favorite-recipes">
+      <% if @favorite_recipes.present? %>
+        <div class="user-makedRecipes">
+          <% @favorite_recipes.each do |recipe| %>
+            <%= render "recipes/recipe", recipe: recipe %>
+          <% end %>
+        </div>
+      <% else %>
+        <div>
+          <p>お気に入りのレシピがここに表示されます</p>
+        </div>
+      <% end %>
+
+      <% if @favorite_recipes.count == 20 %>
+        <div class="paginate pt-10">
+          <%= paginate @favorite_recipes %>
+        </div>
+      <% end %>
+    </section>
   </div>
 </div>
