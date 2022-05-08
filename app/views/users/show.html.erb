@@ -22,11 +22,11 @@
 
   <div class="myRecipes-show">
     <ul class="myRecipes-menu">
-      <li><a href="#" class="myRecipes-active"><%= check_user_characteristic(current_user) %></a></li>
-      <li><a href="#">お気に入りしたレシピ</a></li>
+      <li><a href="#" class="myRecipes-active" data-id="makedPost-recipes"><%= check_user_characteristic(current_user) %></a></li>
+      <li><a href="#" data-id="favorite-recipes">お気に入りしたレシピ</a></li>
     </ul>
   
-    <section class="user-recipes myRecipes-contents myRecipes-active">
+    <section class="user-recipes myRecipes-contents myRecipes-active" id="makedPost-recipes">
       <% if @recipes.present? %>
         <div class="user-makedRecipes">
           <% @recipes.each do |recipe| %>
@@ -44,7 +44,7 @@
       </div>
     </section>
 
-    <section class="user-recipes myRecipes-contents">
+    <section class="user-recipes myRecipes-contents" id="favorite-recipes">
       <% if @favorite_recipes.present? %>
         <div class="user-makedRecipes">
           <% @favorite_recipes.each do |recipe| %>
