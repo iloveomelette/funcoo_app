@@ -1,0 +1,4 @@
+<%# お気に入りしている状態 %>
+<%= link_to recipe_favorites_path(recipe), method: :delete, remote: true do %>
+  <i class="fa-solid fa-bookmark text-primary"></i>
+<% end %>

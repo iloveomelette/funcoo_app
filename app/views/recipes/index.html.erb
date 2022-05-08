@@ -1,12 +1,12 @@
 <div class="recipes-container flex">
-  <aside class="pl-3 flex-left">
+  <aside class="px-2.5 md:pl-3 flex-left">
     <%= render "search_form", collection: @q %>
   </aside>
 
   <main class="flex-center">
-    <div class="px-10 m-auto">
+    <div class="recipeIndex-wrapper md:px-10 m-auto">
       <% if current_user.characteristic == "general" %>
-        <section class="mb-10">
+        <section class="px-6 mb-10 md:p-0">
           <h2 class="mb-3.5 text-2xl">あなたへのおすすめ</h2>
           <%= render "recipes/shared/recommend", recommend: @recommend %>
         </section>
@@ -21,9 +21,9 @@
     </div>
   </main>
 
-  <aside class="pr-3 flex-right">
+  <aside class="px-2.5 md:pr-3 flex-right">
     <% if user_signed_in? %>
-      <div class="commonCard-outstyle p-2.5">
+      <div class="commonCard-outstyle userInfo-wrapper p-2.5">
         <p class="text-xl"><%= current_user.name %>さんの情報</p>
         <div class="info-msg">
           <p class="text-sm">現在 Lv. <%= current_user.level %></p>
@@ -32,7 +32,7 @@
         </div>
       </div>
     <% else %>
-      <div class="commonCard-outstyle p-2.5">
+      <div class="commonCard-outstyle userInfo-wrapper p-2.5">
         <p class="text-xl">ユーザ情報</p>
         <p class="text-sm mt-4">新規登録 or ログインをするとユーザ情報を表示します</p>
         <div class="text-center mt-8">
@@ -41,8 +41,12 @@
       </div>
     <% end %>
 
-    <div class="commonCard-outstyle p-2.5 mt-8">
+    <div class="commonCard-outstyle userInfo-wrapper p-2.5 mt-8">
       <p>運営からのお知らせ</p>
+      <div class="info-msg">
+        <span class="info-date">2022/05/08</span>
+        <p class="text-sm">レシピのお気に入り登録ができるようになりました</p>
+      </div>
       <div class="info-msg">
         <span class="info-date">2022/05/03</span>
         <p class="text-sm">デザインを刷新しました</p>
@@ -62,4 +66,4 @@
     </div>
   </aside>
 </div>
-<div class="paginate"><%= paginate @recipes %></div>
+<div class="paginate mt-10 lg:m-0"><%= paginate @recipes %></div>

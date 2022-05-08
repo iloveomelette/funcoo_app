@@ -1,12 +1,15 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[edit update destroy]
+  before_action :take_recommend_recipe_id, only: :index
   before_action :authenticate_user!
 
   def index
     # PER_PAGEの参照先： ApplicationController
-    @recipes = Recipe.includes(:user, :makes).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
+    @recipes = Recipe.includes(:user, :makes, :favorites).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
     # レコメンド機能の呼び出し
-    @recommend = Recipe.recommend(current_user) if current_user.characteristic == "general"
+    return unless current_user.characteristic == "general" || current_user.email == "guest@example.com"
+
+    @recommend = Recipe.find_by(id: @recommend_recipe_id)
   end
 
   def new
@@ -61,5 +64,9 @@ class RecipesController < ApplicationController
   def set_recipe
     @recipe = current_user.recipes.find_by(id: params[:id])
     redirect_to recipes_path, alert: "権限がありません" if @recipe.nil?
+  end
+
+  def take_recommend_recipe_id
+    @recommend_recipe_id = Recommend.where(user_id: current_user.id).pluck(:recommend_recipe)
   end
 end

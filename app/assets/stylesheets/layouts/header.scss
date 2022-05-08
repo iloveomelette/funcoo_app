@@ -1,28 +1,51 @@
+@mixin tb {
+  @media screen and (min-width: 790px) and (max-width: 1030px) {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: 790px) {
+    @content;
+  }
+}
+@mixin sp-tb {
+  @media screen and (max-width: 1030px) {
+    @content;
+  }
+}
+@mixin nav-parts {
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s;
+}
+@mixin show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 // *-*-* ヘッダーのレイアウト *-*-*
 .header-wrapper {
-  text-align: center;
+  // text-align: center;
   background-color: rgba($color: #ffa45b, $alpha: 0.8);
   border-bottom: 8px solid #ffda77;
   display: flex;
+  align-items: center;
   height: 80px;
-  .header-left {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-basis: 20%;
+  padding: 0 4em;
+  @include sp {
+    padding: 0 1.5em;
   }
-  .nav-wrapper {
-    flex-basis: 60%;
+  .md-headerRight {
+    margin-left: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
-  }
-  .header-right {
-    display: flex;
-    align-items: center;
-    flex-basis: 20%;
+    @include sp {
+      display: none;
+    }
     .header-searchContainer {
       position: relative;
+      margin-right: 10px;
       .header-q {
         width: 180px;
         height: 50px;
@@ -35,12 +58,87 @@
         transform: translateY(-50%);
       }
     }
-    .user-profileImage {
-      height: 32px;
-      width: 32px;
-      margin-left: 20px;
-      border-radius: 50%;
-      cursor: pointer;
+    .md-navOpen {
+      .user-profileImage {
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
     }
+  }
+  .sp-navOpen {
+    display: none;
+    @include sp {
+      display: block;
+      margin-left: auto;
+    }
+    #sp-navOpen {
+      @include sp {
+        display: block;
+        font-size: 2em;
+        color: #fbf6f0;
+        cursor: pointer;
+      }
+    }
+    #open.hide {
+      display: none;
+    }
+  }
+}
+
+// *-*-* タブレット/PC用のナビ *-*-*
+.md-navWrapper {
+  background-color: #fbf6f0;
+  position: absolute;
+  top: 60px;
+  right: 4em;
+  padding: 15px;
+  width: 170px;
+  @include nav-parts;
+  li {
+    .log-out {
+      color: #f24130;
+    }
+    &:nth-child(n + 2) {
+      padding: 8px 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+    a:hover {
+      cursor: pointer;
+      color: #aee6e6;
+    }
+  }
+  &.show {
+    @include show;
+  }
+}
+
+// *-*-* スマートフォン用のナビ *-*-*
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba($color: #8ec22f, $alpha: 0.95);
+  text-align: center;
+  padding: 64px;
+  @include nav-parts;
+  #sp-navclose {
+    position: absolute;
+    color: #fbf6f0;
+    top: 16px;
+    right: 16px;
+    font-size: 2em;
+    cursor: pointer;
+  }
+  li {
+    font-size: 1.25em;
+    margin-top: 1.5em;
+    color: #fbf6f0;
+  }
+  &.show {
+    @include show;
   }
 }

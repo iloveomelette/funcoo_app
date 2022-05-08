@@ -14,6 +14,21 @@
     color: transparent;
   }
 }
+@mixin tb {
+  @media screen and (min-width: 790px) and (max-width: 1030px) {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: 790px) {
+    @content;
+  }
+}
+@mixin sp-tb {
+  @media screen and (max-width: 1030px) {
+    @content;
+  }
+}
 // **** ボタン用ミックスイン ****
 @mixin submit-layout($bgColor, $hoverColor, $boxShadow) {
   min-width: 290px;
@@ -43,6 +58,24 @@
   min-height: 100vh;
   max-width: 1050px;
   margin: 0 auto;
+  padding-top: 5rem;
+  .rsp-textCenter {
+    @include sp-tb {
+      text-align: center;
+    }
+  }
+  .rsp-deviseContainer {
+    @include tb {
+      margin-top: 20px;
+    }
+  }
+  .welcome-bro,
+  .login-bro {
+    @include sp {
+      width: 300px;
+      margin: 0 auto;
+    }
+  }
   .field {
     margin-top: 1rem;
     position: relative;
@@ -98,6 +131,9 @@
     &:hover {
       color: #fa812b;
     }
+    @include sp {
+      display: none;
+    }
   }
   .google-wrapper {
     margin-top: 15px;
@@ -147,4 +183,7 @@
 .reset-password {
   text-align: center;
   padding: 70px 100px;
+  @include sp {
+    padding: 5rem 0.625rem;
+  }
 }

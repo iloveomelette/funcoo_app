@@ -3,7 +3,10 @@ ja:
     models:
       user: ユーザ
       recipe: レシピ
-      makes: 作ってみた!
+      make: 作ってみた!
+      genre: ジャンル
+      recommend: おすすめ
+      favorite: お気に入り
     attributes:
       user:
         name: お名前
@@ -17,9 +20,16 @@ ja:
         cooking_time: 調理時間
         cooking_cost: 目安費用
         calorie: カロリー
-      make:
+      make: &make
         user: ユーザ
         recipe: レシピ
+      genre:
+        staple_food: 主食
+        main_dish: 主菜
+        side_dish: 副菜
+        country_dish: 各国料理
+      favorite:
+        <<: *make
   time:
     formats:
       default: '%Y年%-m月%-d日'
