@@ -1,11 +1,11 @@
 .footer-wrapper {
   text-align: center;
-  height: 100px;
+  min-height: 100px;
   background-color: #aee6e6;
+  padding: 20px 0;
   .footer-app-name {
     color: #6b7280;
     font-size: 14px;
-    padding-top: 10px;
   }
   .footer-twitter {
     font-size: 12px;
