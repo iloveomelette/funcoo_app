@@ -1,3 +1,82 @@
-// Place all the styles related to the ranks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@mixin tb {
+  @media screen and (min-width: 790px) and (max-width: 1030px) {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: 790px) {
+    @content;
+  }
+}
+@mixin sp-tb {
+  @media screen and (max-width: 1030px) {
+    @content;
+  }
+}
+
+.ranking-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 0;
+  @include sp-tb {
+    padding: 6rem 0.625rem;
+  }
+  .ranking-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 25px;
+    @include sp {
+      font-size: 1.25rem;
+    }
+  }
+  .ranking-tbody {
+    tr:nth-child(n) {
+      @include sp {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    .ranking-row {
+      font-size: 1.25rem;
+      text-align: center;
+      margin-top: 15px;
+      @include tb {
+        min-width: 100px;
+      }
+    }
+    .ranking-1-row {
+      font-size: 1.5rem;
+      color: #ffa45b;
+    }
+  }
+  .recipe-wrapper {
+    display: flex;
+    padding: 15px;
+    margin-top: 15px;
+    @include sp {
+      flex-direction: column;
+    }
+    .recipeWrapper-left {
+      flex-basis: 60%;
+      @include tb {
+        flex-basis: 50%;
+      }
+      .recipes-menuImg {
+        border-radius: 15px;
+      }
+    }
+    .recipeWrapper-right {
+      flex-basis: 40%;
+      @include tb {
+        flex-basis: 50%;
+        padding: 0 10px;
+      }
+      .make-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+      }
+    }
+  }
+}

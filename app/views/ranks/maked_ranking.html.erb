@@ -1,15 +1,13 @@
-<div>
-  <h2>「作ってみた！」総合ランキング</h2>
+<div class="ranking-wrapper">
+  <h2 class="ranking-title">「作ってみた！」総合ランキング</h2>
   <div>
-    <table>
-      <tbody>
+    <table class="m-auto">
+      <tbody class="ranking-tbody">
         <% @high_rank_recipes.each.with_index(1) do |recipe, i| %>
           <tr>
-            <td>第<%= i %>位</td>
+            <td class="ranking-<%= i %>-row ranking-row">第<%= i %>位</td>
             <td>
-              <div>
-                <%= render "recipes/recipe", recipe: recipe %>
-              </div>
+              <%= render "recipes/recipe", recipe: recipe %>
             </td>
           </tr>
         <% end %>
