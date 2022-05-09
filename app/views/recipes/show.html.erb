@@ -8,10 +8,10 @@
         <p id="recipe-<%= @recipe.id %>" class="make-icon lg:mb-4">
           <% if @recipe.maked_by?(current_user) %>
             <%# 「作ってみた!」を押している状態 %>
-            <%= render "make", recipe: @recipe %>
+            <%= render "makes/make", recipe: @recipe %>
           <% else %>
             <%# 「作ってみた!」を押していない状態 %>
-            <%= render "nonmake", recipe: @recipe %>
+            <%= render "makes/nonmake", recipe: @recipe %>
           <% end %>
         </p>
         <%# ===== お気に入り機能 ===== %>
@@ -47,10 +47,10 @@
               <p id="recipe-<%= @recipe.id %>" class="make-icon rsp-makeIcon mr-4">
                 <% if @recipe.maked_by?(current_user) %>
                   <%# 「作ってみた!」を押している状態 %>
-                  <%= render "make", recipe: @recipe %>
+                  <%= render "makes/make", recipe: @recipe %>
                 <% else %>
                   <%# 「作ってみた!」を押していない状態 %>
-                  <%= render "nonmake", recipe: @recipe %>
+                  <%= render "makes/nonmake", recipe: @recipe %>
                 <% end %>
               </p>
               <%# ===== お気に入り機能 ===== %>
