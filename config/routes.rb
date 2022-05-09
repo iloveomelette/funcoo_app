@@ -17,4 +17,7 @@ Rails.application.routes.draw do
     end
   end
   resource :users, only: :show
+  resource :ranks, only: %i[maked_ranking] do
+    get "maked_ranking", on: :collection
+  end
 end

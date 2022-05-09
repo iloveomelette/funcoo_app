@@ -1,6 +1,6 @@
 <div class="recipes-container flex">
   <aside class="px-2.5 md:pl-3 flex-left">
-    <%= render "search_form", collection: @q %>
+    <%= render "recipes/shared/search_form", collection: @q %>
   </aside>
 
   <main class="flex-center">
@@ -43,6 +43,10 @@
 
     <div class="commonCard-outstyle userInfo-wrapper p-2.5 mt-8">
       <p>運営からのお知らせ</p>
+      <div class="info-msg">
+        <span class="info-date">2022/05/09</span>
+        <p class="text-sm">ランキングページで人気のレシピをチェックしましょう</p>
+      </div>
       <div class="info-msg">
         <span class="info-date">2022/05/08</span>
         <p class="text-sm">レシピのお気に入り登録ができるようになりました</p>

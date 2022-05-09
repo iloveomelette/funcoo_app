@@ -8,6 +8,7 @@
 
     <% if user_signed_in? %>
       <div class="md-headerRight">
+        <%# ===== 検索ボックス ===== %>
         <div class="header-searchContainer">
           <%= search_form_for @q, url: url do |f| %>
             <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "header-q searchForm-outstyle" %>
@@ -16,8 +17,11 @@
             <% end %>
           <% end %>
         </div>
+
+        <%# ===== ユーザのプロフィール画像 ===== %>
         <div class="md-navOpen" id="md-navOpen">
           <%= image_tag check_user_profile_image(current_user), class: "user-profileImage" %>
+          <i class="fa-solid fa-caret-down"></i>
         </div>
       </div>
     <% else %>
@@ -36,20 +40,18 @@
       </div>
     <% end %>
 
+    <%# ===== スマートフォン時のハンバーガーメニューアイコン ===== %>
     <div class="sp-navOpen">
       <span class="sp-navIcon" id="sp-navOpen"><i class="fa-solid fa-bars"></i></span>
     </div>
   </div>
 </header>
 
-<%# *-*-* ここからタブレット/PC用のナビ *-*-* %>
+<%# ===== ここからタブレット/PC用のナビ ===== %>
 <div class="md-navWrapper commonCard-outstyle">
   <nav class="nav-wrapper">
     <ul>
       <% if user_signed_in? %>
-        <li>
-          <%= link_to 'マイページ', users_path %>
-        </li>
         <li>
           <%= link_to '一覧', recipes_path %>
         </li>
@@ -58,6 +60,12 @@
             <%= link_to '投稿する', new_recipe_path unless current_page?(new_recipe_path) %>
           </li>
         <% end %>
+        <li>
+          <%= link_to 'ランキング', maked_ranking_ranks_path %>
+        </li>
+        <li>
+          <%= link_to 'マイページ', users_path %>
+        </li>
         <li>
           <%= link_to 'アカウント編集', edit_user_registration_path %>
         </li>
@@ -69,7 +77,7 @@
   </nav>
 </div>
 
-<%# *-*-* ここからスマートフォン用のナビ *-*-* %>
+<%# ===== ここからスマートフォン用のナビ ===== %>
 <div class="overlay">
   <span id="sp-navclose"><i class="fa-solid fa-xmark"></i></span>
 
@@ -84,6 +92,9 @@
             <%= link_to '投稿する', new_recipe_path unless current_page?(new_recipe_path) %>
           </li>
         <% end %>
+        <li>
+          <%= link_to 'ランキング', maked_ranking_ranks_path %>
+        </li>
         <li>
           <%= link_to 'マイページ', users_path %>
         </li>
