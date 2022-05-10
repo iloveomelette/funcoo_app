@@ -15,7 +15,8 @@ class User < ApplicationRecord
     validates :experience_point
     validates :rest_point
   end
-  validates :introduction, length: { maximum: 200 }
+  validates :url, length: { maximum: 2000 }
+  validates :introduction, length: { maximum: 500 }
   # 法人または一般の属性を定義
   enum characteristic: {
     general: 0,
