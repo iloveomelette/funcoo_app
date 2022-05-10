@@ -7,5 +7,6 @@ if Rails.env.production?
       region: "ap-northeast-1"
     }
     config.fog_directory = "fun-coo-app"
+    config.asset_host = "https://static.fun-coo-app.com"
   end
 end
