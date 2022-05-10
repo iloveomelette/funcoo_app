@@ -13,6 +13,10 @@ ja:
         email: メールアドレス
         introduction: 自己紹介
         profile_image: プロフィール画像
+        level: レベル
+        experience_point: 経験値
+        rest_point: 次のレベルまでの経験値
+        url: URL
       recipe:
         title: タイトル
         content: 内容
