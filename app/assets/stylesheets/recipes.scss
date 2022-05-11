@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-// *-*-* 検索ボタン *-*-*
+// ===== 検索ボタン =====
 @mixin submit-btn {
   min-width: 130px;
   height: 50px;
@@ -42,7 +42,7 @@
   }
 }
 
-// *-*-* 料理イメージの共通スタイル *-*-*
+// ===== 料理イメージの共通スタイル =====
 @mixin menu-image($height, $width) {
   border-radius: 15px;
   height: $height;
@@ -54,7 +54,7 @@
   @include sp-tb {
     flex-direction: column;
   }
-  // *-*-* レシピ投稿フォームのスタイル *-*-*
+  // ===== レシピ投稿フォームのスタイル =====
   .recipe-form {
     max-width: 960px;
     @include tb {
@@ -119,7 +119,7 @@
       margin-right: 10px;
     }
   }
-  // *-*-* 一覧ページのスタイル *-*-*
+  // ===== 一覧ページのスタイル =====
   .flex-left {
     flex-basis: 20%;
     @include sp-tb {
@@ -196,7 +196,7 @@
       font-size: 12px;
     }
   }
-  // *-*-* レコメンド機能のスタイル *-*-*
+  // ===== レコメンド機能のスタイル =====
   .recommend-wrapper {
     display: flex;
     padding: 15px;
@@ -217,7 +217,7 @@
     align-items: center;
     box-shadow: 2px 5px 12px 1px #d5d5d5;
   }
-  // *-*-* 検索結果ページのスタイル *-*-*
+  // ===== 検索結果ページのスタイル =====
   .q-resultPage {
     max-width: 1050px;
     min-height: 100vh;
@@ -252,7 +252,7 @@
   }
 }
 
-// *-*-* 詳細ページのスタイル *-*-*
+// ===== 詳細ページのスタイル =====
 .recipeDetaile-wrapper {
   padding-top: 6rem;
   max-width: 1050px;
@@ -323,7 +323,6 @@
       }
     }
     .show-recipeContent {
-      padding: 0px 20px 50px;
       margin-top: 16px;
       @include sp {
         padding: 8px;
@@ -332,7 +331,7 @@
   }
 }
 
-// *-*-* 検索フォームのスタイル *-*-*
+// ===== 検索フォームのスタイル =====
 .search-container {
   input[type='submit'] {
     @include submit-btn;

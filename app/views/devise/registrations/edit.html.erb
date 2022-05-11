@@ -73,10 +73,12 @@
             <%= f.text_area :introduction, class: "texearea-box" %>
           </div>
 
-          <div class="mt-10">
-            <p>自身が運営しているサイトの<%= f.label :url %>をレシピでアピールしましょう！</p>
-            <%= f.text_area :url, class: "texearea-box input-url" %>
-          </div>
+          <% if current_user.characteristic == "corporation" %>
+            <div class="mt-10">
+              <p>自身が運営しているサイトの<%= f.label :url %>をレシピでアピールしましょう！</p>
+              <%= f.text_area :url, class: "texearea-box input-url" %>
+            </div>
+          <% end %>
 
           <div class="actions mt-10 text-center">
             <%= f.submit t('.update') %>

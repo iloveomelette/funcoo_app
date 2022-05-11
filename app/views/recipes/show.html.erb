@@ -73,14 +73,23 @@
         </div>
       </header>
       
-      <section>
+      <section class="p-0 md:p-4">
         <div class="recipiSub_info">
           <p><span class="sub-info">調理時間</span> <%= @recipe.cooking_time %>分</p>
           <p><span class="sub-info">目安費用</span> <%= @recipe.cooking_cost %>円</p>
           <p><span class="sub-info">カロリー</span> <%= @recipe.calorie %>kcal</p>
         </div>
+
         <div class="show-recipeContent">
           <p class="text-xl"><%= @recipe.content %></p>
+        </div>
+
+        <div class="mt-8">
+          <p>投稿者のサイトを訪れてみる</p>
+          <%= link_to @contributor.url, class: "hover:text-quaternary" do %>
+            <%= @contributor.url %>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <% end %>
         </div>
       </section>
     </div>
