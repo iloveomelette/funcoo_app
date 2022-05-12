@@ -12,9 +12,9 @@ module UsersHelper
     current_user.characteristic == "general" ? PROMOTE_MAKE : PROMOTE_POST
   end
 
-  def check_user_profile_image(current_user)
-    original_image = current_user.profile_image.thumb.url
-    default_image = current_user.profile_image.url
-    current_user.profile_image.present? ? original_image : default_image
+  def check_user_profile_image(user)
+    original_image = user.profile_image.thumb.url
+    default_image = user.profile_image.url
+    user.profile_image.present? ? original_image : default_image
   end
 end

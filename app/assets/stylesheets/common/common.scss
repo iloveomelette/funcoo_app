@@ -100,3 +100,9 @@
   margin: 0 auto;
   padding: 0;
 }
+// ===== ユーザプロフィール(ヘッダー/一覧/詳細ページ用) =====
+.user-profileImage {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
