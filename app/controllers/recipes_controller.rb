@@ -6,9 +6,7 @@ class RecipesController < ApplicationController
   def index
     # PER_PAGEの参照先： ApplicationController
     @recipes = Recipe.includes(:user, :makes, :favorites).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
-    return unless current_user.characteristic == "general" || current_user.email == "guest@example.com"
-
-    @recommend = Recipe.find_by(id: @recommend_recipe_id)
+    @recommend = Recipe.recommend_recipe(@recommend_recipe_id, current_user)
     @contributor = User.find_by(id: @recommend.user_id)
   end
 
