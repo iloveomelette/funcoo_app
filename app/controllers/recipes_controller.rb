@@ -9,6 +9,7 @@ class RecipesController < ApplicationController
     return unless current_user.characteristic == "general" || current_user.email == "guest@example.com"
 
     @recommend = Recipe.find_by(id: @recommend_recipe_id)
+    @contributor = User.find_by(id: @recommend.user_id)
   end
 
   def new

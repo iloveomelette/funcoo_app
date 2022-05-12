@@ -7,15 +7,25 @@
         <%= image_tag recommend.menu_image.url, class: "recommed-img" %>
       <% end %>
     </div>
-    <div class="flex-1 md:px-6">
+
+    <div class="flex-1 flex flex-col md:px-6">
       <p class="text-2xl mb-4"><%= recommend.title %></p>
       <p>調理時間： <%= recommend.cooking_time %>分</p>
       <p>目安費用： <%= recommend.cooking_cost %>円</p>
       <p class="mb-4">カロリー： <%= recommend.calorie %>kcal</p>
-      <%= link_to recommend, class: "hover:text-quaternary" do %>
-        <i class="fa-solid fa-caret-right"></i>  詳しく見る
-      <% end %>
+
+      <div class="mt-auto flex justify-between">
+        <%= link_to recommend, class: "hover:text-quaternary" do %>
+          <i class="fa-solid fa-caret-right"></i>  詳しく見る
+        <% end %>
+
+        <div class="flex">
+          <%= image_tag check_user_profile_image(contributor), class: "user-profileImage mr-2" %>
+          <p><%= contributor.name %></p>
+        </div>
+      </div>
     </div>
+
   </div>
 <% else %>
   <div class="makes-info-wrapper">
