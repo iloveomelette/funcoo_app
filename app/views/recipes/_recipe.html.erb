@@ -1,6 +1,11 @@
 <article class="commonCard-outstyle recipe-wrapper">
-  <%#　投稿画像があればサムネイル用を表示、ない場合はデフォルト画像を表示 %>
-  <div class="recipeWrapper-left">
+  <div>
+    <div class="flex mb-2">
+      <%= image_tag check_user_profile_image(recipe.user), class: "user-profileImage mr-2" %>
+      <p><%= recipe.user.name %></p>
+    </div>
+
+    <%#　===== 投稿画像があればサムネイル用を表示、ない場合はデフォルト画像を表示 ===== %>
     <% if recipe.menu_image.present? %>
       <%= image_tag recipe.menu_image.thumb.url, class: "recipes-menuImg" %>
     <% else %>
@@ -8,11 +13,17 @@
     <% end %>
   </div>
 
-  <div class="recipeWrapper-right">
-    <p class="text-xl mt-2"><%= recipe.title %></p>
-    <p>調理時間： <%= recipe.cooking_time %>分</p>
-    <p>目安費用： <%= recipe.cooking_cost %>円</p>
-    <p>カロリー： <%= recipe.calorie %>kcal</p>
+  <div class="recipeArticle-content">
+    <p class="text-xl text-center mt-2"><%= recipe.title %></p>
+    <div class="cooking-info">
+      <p><%= recipe.cooking_time %>分</p>
+      <p><%= recipe.cooking_cost %>円</p>
+      <p><%= recipe.calorie %>kcal</p>
+    </div>
+
+    <div class="mt-2 mb-4">
+      <%= truncate(recipe.content, omision: "...", length: 100) %>
+    </div>
 
     <div class="make-wrapper">
       <% if current_user.id != recipe.user_id %>
