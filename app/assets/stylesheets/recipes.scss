@@ -177,11 +177,25 @@
   .recipe-wrapper {
     width: 340px;
     padding: 15px;
+    .recipeArticle-content {
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+    }
     .make-wrapper {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 10px;
+      margin-top: auto;
+    }
+  }
+  .cooking-info {
+    display: flex;
+    justify-content: right;
+    p {
+      font-size: 14px;
+      color: #aaa;
+      margin: 0 4px;
     }
   }
   .recipes-menuImg {

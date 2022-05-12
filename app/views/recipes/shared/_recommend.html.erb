@@ -10,9 +10,15 @@
 
     <div class="flex-1 flex flex-col md:px-6">
       <p class="text-2xl mb-4"><%= recommend.title %></p>
-      <p>調理時間： <%= recommend.cooking_time %>分</p>
-      <p>目安費用： <%= recommend.cooking_cost %>円</p>
-      <p class="mb-4">カロリー： <%= recommend.calorie %>kcal</p>
+      <div class="cooking-info">
+        <p><%= recommend.cooking_time %>分</p>
+        <p><%= recommend.cooking_cost %>円</p>
+        <p><%= recommend.calorie %>kcal</p>
+      </div>
+
+      <div class="mt-2 mb-4">
+        <%= truncate(recommend.content, omision: "...", length: 100) %>
+      </div>
 
       <div class="mt-auto flex justify-between">
         <%= link_to recommend, class: "hover:text-quaternary" do %>
