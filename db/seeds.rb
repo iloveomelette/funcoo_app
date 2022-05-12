@@ -1,6 +1,7 @@
 # ====== 本番環境のレベル閾値投入処理 ======
 i = 2
 point = 30
+LevelSetting.create!(passing_level: 1, threshold: 0)
 50.times do
   LevelSetting.create!(passing_level: i, threshold: point)
   i += 1
