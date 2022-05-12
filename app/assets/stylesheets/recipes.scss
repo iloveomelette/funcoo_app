@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+@mixin tb {
+  @media screen and (min-width: 790px) and (max-width: 1030px) {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: 790px) {
+    @content;
+  }
+}
+@mixin sp-tb {
+  @media screen and (max-width: 1030px) {
+    @content;
+  }
+}
+
 // ===== 検索ボタン =====
 @mixin submit-btn {
   min-width: 130px;
@@ -26,27 +42,18 @@
   }
 }
 
-@mixin tb {
-  @media screen and (min-width: 790px) and (max-width: 1030px) {
-    @content;
-  }
-}
-@mixin sp {
-  @media screen and (max-width: 790px) {
-    @content;
-  }
-}
-@mixin sp-tb {
-  @media screen and (max-width: 1030px) {
-    @content;
-  }
-}
-
 // ===== 料理イメージの共通スタイル =====
 @mixin menu-image($height, $width) {
   border-radius: 15px;
   height: $height;
   width: $width;
+}
+
+// ===== よく使うflexのスタイル =====
+@mixin flex-style($content, $items) {
+  display: flex;
+  justify-content: $content;
+  align-items: $items;
 }
 
 .recipes-container {
@@ -130,9 +137,8 @@
     flex-basis: 60%;
     @include sp-tb {
       .recipeIndex-wrapper {
-        display: flex;
         flex-direction: column;
-        align-items: center;
+        @include flex-style(normal, center);
         .recommend-title {
           @include sp {
             text-align: center;
@@ -144,8 +150,7 @@
   .flex-right {
     flex-basis: 20%;
     @include tb {
-      display: flex;
-      justify-content: center;
+      @include flex-style(center, normal);
     }
     @include sp-tb {
       order: 2;
@@ -183,15 +188,12 @@
       flex-direction: column;
     }
     .make-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex-style(space-between, center);
       margin-top: auto;
     }
   }
   .cooking-info {
-    display: flex;
-    justify-content: right;
+    @include flex-style(right, normal);
     p {
       font-size: 14px;
       color: #aaa;
@@ -217,6 +219,18 @@
     @include sp {
       display: inherit;
     }
+    .sp-contributorInfo {
+      display: none;
+      @include sp {
+        display: flex;
+      }
+    }
+    .contributor-cooking {
+      @include flex-style(space-between, center);
+      @include sp {
+        @include flex-style(right, center);
+      }
+    }
     .recommed-img {
       @include menu-image(220, 330);
     }
@@ -226,9 +240,7 @@
     background: rgba($color: #aee6e6, $alpha: 0.8);
     border: #344963 solid 2px;
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-style(center, center);
     box-shadow: 2px 5px 12px 1px #d5d5d5;
   }
   // ===== 検索結果ページのスタイル =====
@@ -322,8 +334,7 @@
       margin: 0 auto;
     }
     .recipiSub_info {
-      display: flex;
-      justify-content: space-around;
+      @include flex-style(space-around, normal);
       margin: 0 auto;
       width: 964px;
       @include sp-tb {
@@ -352,8 +363,7 @@
   }
   .q-SearchBox {
     @include tb {
-      display: flex;
-      justify-content: space-around;
+      @include flex-style(space-around, normal);
     }
     .search-common {
       padding: 10px;

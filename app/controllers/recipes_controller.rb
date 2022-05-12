@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
     # PER_PAGEの参照先： ApplicationController
     @recipes = Recipe.includes(:user, :makes, :favorites).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
     @recommend = Recipe.recommend_recipe(@recommend_recipe_id, current_user)
-    @contributor = User.find_by(id: @recommend.user_id)
+    @contributor = User.find_by(id: @recommend.user_id) if @recommend.present?
   end
 
   def new

@@ -1,5 +1,11 @@
 <% if recommend != nil %>
   <div class="recommend-wrapper commonCard-outstyle">
+    <%# =====スマートフォン時に表示する投稿者の情報===== %>
+    <div class="flex mb-2 sp-contributorInfo">
+      <%= image_tag check_user_profile_image(contributor), class: "user-profileImage mr-2" %>
+      <p><%= contributor.name %></p>
+    </div>
+
     <div class="flex-1">
       <% if recommend.menu_image.present? %>
         <%= image_tag recommend.menu_image.thumb.url, class: "recommed-img" %>
@@ -10,28 +16,50 @@
 
     <div class="flex-1 flex flex-col md:px-6">
       <p class="text-2xl mb-4"><%= recommend.title %></p>
-      <div class="cooking-info">
-        <p><%= recommend.cooking_time %>分</p>
-        <p><%= recommend.cooking_cost %>円</p>
-        <p><%= recommend.calorie %>kcal</p>
+      <div class="contributor-cooking">
+        <div class="hidden md:flex">
+          <%= image_tag check_user_profile_image(contributor), class: "user-profileImage mr-2" %>
+          <p><%= contributor.name %></p>
+        </div>
+
+        <div class="cooking-info">
+          <p><%= recommend.cooking_time %>分</p>
+          <p><%= recommend.cooking_cost %>円</p>
+          <p><%= recommend.calorie %>kcal</p>
+        </div>
       </div>
 
       <div class="mt-2 mb-4">
         <%= truncate(recommend.content, omision: "...", length: 100) %>
       </div>
 
-      <div class="mt-auto flex justify-between">
+      <div class="mt-auto flex justify-between items-center">
+        <div class="flex">
+          <p id="recipe-<%= recommend.id %>" class="make-icon mr-4">
+            <% if recommend.maked_by?(current_user) %>
+              <%# 「作ってみた!」を押している状態 %>
+              <%= render "makes/make", recipe: recommend %>
+            <% else %>
+              <%# 「作ってみた!」を押していない状態 %>
+              <%= render "makes/nonmake", recipe: recommend %>
+            <% end %>
+          </p>
+          <%# ===== お気に入り機能 ===== %>
+          <p id="favorite-<%= recommend.id %>" class="make-icon favorite-btn">
+            <% if recommend.favorited_by?(current_user) %>
+              <%= render "favorites/favorite", recipe: recommend %>
+            <% else %>
+              <%= render "favorites/nonfavorite", recipe: recommend %>
+            <% end %>
+          </p>
+        </div>
+
         <%= link_to recommend, class: "hover:text-quaternary" do %>
           <i class="fa-solid fa-caret-right"></i>  詳しく見る
         <% end %>
 
-        <div class="flex">
-          <%= image_tag check_user_profile_image(contributor), class: "user-profileImage mr-2" %>
-          <p><%= contributor.name %></p>
-        </div>
       </div>
     </div>
-
   </div>
 <% else %>
   <div class="makes-info-wrapper">
