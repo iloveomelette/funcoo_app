@@ -24,6 +24,12 @@
         <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'login-btn-guest' %>
       </div>
     </div>
+
+    <div class="visit-recipesLink">
+      <%= link_to recipes_path do %>
+        <i class="fa-solid fa-caret-right"></i> 一覧ページを覗いてみる
+      <% end %>
+    </div>
   </div>
 
   <div class="top-right"><%= image_tag "top-bg-img.jpg", class: "top-img", alt: "トップ画像" %></div>

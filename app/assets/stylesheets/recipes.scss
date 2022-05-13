@@ -2,7 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-// *-*-* 検索ボタン *-*-*
+@mixin tb {
+  @media screen and (min-width: 790px) and (max-width: 1030px) {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: 790px) {
+    @content;
+  }
+}
+@mixin sp-tb {
+  @media screen and (max-width: 1030px) {
+    @content;
+  }
+}
+
+// ===== 検索ボタン =====
 @mixin submit-btn {
   min-width: 130px;
   height: 50px;
@@ -26,27 +42,18 @@
   }
 }
 
-@mixin tb {
-  @media screen and (min-width: 790px) and (max-width: 1030px) {
-    @content;
-  }
-}
-@mixin sp {
-  @media screen and (max-width: 790px) {
-    @content;
-  }
-}
-@mixin sp-tb {
-  @media screen and (max-width: 1030px) {
-    @content;
-  }
-}
-
-// *-*-* 料理イメージの共通スタイル *-*-*
+// ===== 料理イメージの共通スタイル =====
 @mixin menu-image($height, $width) {
   border-radius: 15px;
   height: $height;
   width: $width;
+}
+
+// ===== よく使うflexのスタイル =====
+@mixin flex-style($content, $items) {
+  display: flex;
+  justify-content: $content;
+  align-items: $items;
 }
 
 .recipes-container {
@@ -54,7 +61,7 @@
   @include sp-tb {
     flex-direction: column;
   }
-  // *-*-* レシピ投稿フォームのスタイル *-*-*
+  // ===== レシピ投稿フォームのスタイル =====
   .recipe-form {
     max-width: 960px;
     @include tb {
@@ -119,7 +126,7 @@
       margin-right: 10px;
     }
   }
-  // *-*-* 一覧ページのスタイル *-*-*
+  // ===== 一覧ページのスタイル =====
   .flex-left {
     flex-basis: 20%;
     @include sp-tb {
@@ -130,9 +137,8 @@
     flex-basis: 60%;
     @include sp-tb {
       .recipeIndex-wrapper {
-        display: flex;
         flex-direction: column;
-        align-items: center;
+        @include flex-style(normal, center);
         .recommend-title {
           @include sp {
             text-align: center;
@@ -144,8 +150,7 @@
   .flex-right {
     flex-basis: 20%;
     @include tb {
-      display: flex;
-      justify-content: center;
+      @include flex-style(center, normal);
     }
     @include sp-tb {
       order: 2;
@@ -177,11 +182,25 @@
   .recipe-wrapper {
     width: 340px;
     padding: 15px;
-    .make-wrapper {
+    .recipeArticle-content {
+      min-height: 190px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 10px;
+      flex-direction: column;
+    }
+  }
+  .make-wrapper {
+    @include flex-style(space-between, center);
+    margin-top: auto;
+    .index-rec-makeBtn {
+      margin-right: 16px;
+    }
+  }
+  .cooking-info {
+    @include flex-style(right, normal);
+    p {
+      font-size: 14px;
+      color: #aaa;
+      margin: 0 4px;
     }
   }
   .recipes-menuImg {
@@ -196,12 +215,24 @@
       font-size: 12px;
     }
   }
-  // *-*-* レコメンド機能のスタイル *-*-*
+  // ===== レコメンド機能のスタイル =====
   .recommend-wrapper {
     display: flex;
     padding: 15px;
     @include sp {
       display: inherit;
+    }
+    .sp-contributorInfo {
+      display: none;
+      @include sp {
+        display: flex;
+      }
+    }
+    .contributor-cooking {
+      @include flex-style(space-between, center);
+      @include sp {
+        @include flex-style(right, center);
+      }
     }
     .recommed-img {
       @include menu-image(220, 330);
@@ -212,12 +243,10 @@
     background: rgba($color: #aee6e6, $alpha: 0.8);
     border: #344963 solid 2px;
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-style(center, center);
     box-shadow: 2px 5px 12px 1px #d5d5d5;
   }
-  // *-*-* 検索結果ページのスタイル *-*-*
+  // ===== 検索結果ページのスタイル =====
   .q-resultPage {
     max-width: 1050px;
     min-height: 100vh;
@@ -252,7 +281,7 @@
   }
 }
 
-// *-*-* 詳細ページのスタイル *-*-*
+// ===== 詳細ページのスタイル =====
 .recipeDetaile-wrapper {
   padding-top: 6rem;
   max-width: 1050px;
@@ -283,6 +312,9 @@
     @include sp-tb {
       display: none;
     }
+    .show-makeBtn {
+      margin-bottom: 16px;
+    }
   }
   .recipe-card {
     margin: 16px 0 100px;
@@ -292,6 +324,7 @@
       display: none;
       @include sp-tb {
         display: inherit;
+        margin: 0px 8px;
       }
     }
     .recipe-editIcon {
@@ -308,8 +341,7 @@
       margin: 0 auto;
     }
     .recipiSub_info {
-      display: flex;
-      justify-content: space-around;
+      @include flex-style(space-around, normal);
       margin: 0 auto;
       width: 964px;
       @include sp-tb {
@@ -323,7 +355,6 @@
       }
     }
     .show-recipeContent {
-      padding: 0px 20px 50px;
       margin-top: 16px;
       @include sp {
         padding: 8px;
@@ -332,15 +363,14 @@
   }
 }
 
-// *-*-* 検索フォームのスタイル *-*-*
+// ===== 検索フォームのスタイル =====
 .search-container {
   input[type='submit'] {
     @include submit-btn;
   }
   .q-SearchBox {
     @include tb {
-      display: flex;
-      justify-content: space-around;
+      @include flex-style(space-around, normal);
     }
     .search-common {
       padding: 10px;

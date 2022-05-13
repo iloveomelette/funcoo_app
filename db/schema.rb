@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_07_073253) do
+ActiveRecord::Schema.define(version: 2022_05_10_130552) do
 
   create_table "favorites", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 2022_05_07_073253) do
     t.integer "level", default: 1, null: false
     t.integer "experience_point", default: 0, null: false
     t.integer "rest_point", default: 30, null: false
+    t.text "url"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
