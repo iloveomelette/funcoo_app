@@ -14,7 +14,7 @@
   }
 }
 @mixin nav-parts {
-  z-index: 2;
+  z-index: 10;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.6s;
@@ -24,7 +24,15 @@
   pointer-events: auto;
 }
 
-// *-*-* ヘッダーのレイアウト *-*-*
+header {
+  @include sp {
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+  }
+}
+
+// ===== ヘッダーのレイアウト =====
 .header-wrapper {
   // text-align: center;
   background-color: rgba($color: #ffa45b, $alpha: 0.8);
@@ -89,7 +97,7 @@
   }
 }
 
-// *-*-* タブレット/PC用のナビ *-*-*
+// ===== タブレット/PC用のナビ =====
 .md-navWrapper {
   background-color: #fbf6f0;
   position: absolute;
@@ -116,7 +124,7 @@
   }
 }
 
-// *-*-* スマートフォン用のナビ *-*-*
+// ===== スマートフォン用のナビ =====
 .overlay {
   position: fixed;
   top: 0;

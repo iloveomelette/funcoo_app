@@ -1,5 +1,11 @@
 <% if recommend != nil %>
   <div class="recommend-wrapper commonCard-outstyle">
+    <%# =====スマートフォン時に表示する投稿者の情報===== %>
+    <div class="flex mb-2 sp-contributorInfo">
+      <%= image_tag check_user_profile_image(contributor), class: "user-profileImage mr-2" %>
+      <p><%= contributor.name %></p>
+    </div>
+
     <div class="flex-1">
       <% if recommend.menu_image.present? %>
         <%= image_tag recommend.menu_image.thumb.url, class: "recommed-img" %>
@@ -10,33 +16,40 @@
 
     <div class="flex-1 flex flex-col md:px-6">
       <p class="text-2xl mb-4"><%= recommend.title %></p>
-      <div class="cooking-info">
-        <p><%= recommend.cooking_time %>分</p>
-        <p><%= recommend.cooking_cost %>円</p>
-        <p><%= recommend.calorie %>kcal</p>
+      <div class="contributor-cooking">
+        <div class="hidden md:flex">
+          <%= image_tag check_user_profile_image(contributor), class: "user-profileImage mr-2" %>
+          <p><%= contributor.name %></p>
+        </div>
+
+        <div class="cooking-info">
+          <p><%= recommend.cooking_time %>分</p>
+          <p><%= recommend.cooking_cost %>円</p>
+          <p><%= recommend.calorie %>kcal</p>
+        </div>
       </div>
 
       <div class="mt-2 mb-4">
         <%= truncate(recommend.content, omision: "...", length: 100) %>
       </div>
 
-      <div class="mt-auto flex justify-between">
+      <div class="make-wrapper">
+        <div class="flex">
+          <%# =====「作ってみた！」とお気に入りの部分テンプレート ===== %>
+          <%= render "recipes/shared/makes_favorites", recipe: recommend %>
+        </div>
+
         <%= link_to recommend, class: "hover:text-quaternary" do %>
           <i class="fa-solid fa-caret-right"></i>  詳しく見る
         <% end %>
 
-        <div class="flex">
-          <%= image_tag check_user_profile_image(contributor), class: "user-profileImage mr-2" %>
-          <p><%= contributor.name %></p>
-        </div>
       </div>
     </div>
-
   </div>
 <% else %>
   <div class="makes-info-wrapper">
     <p>
-      <i class="fa-solid fa-circle-info text-blue-700"></i> 「作ってみた！ <i class="fa-regular fa-thumbs-up"></i>」を複数回押すと、あなたにおすすめのレシピを表示します
+      <i class="fa-solid fa-circle-info text-blue-700"></i> 「作ってみた！ <i class="fa-regular fa-thumbs-up"></i>」を押すと、あなたにおすすめのレシピを表示します
     </p>
   </div>
 <% end %>
