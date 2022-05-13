@@ -33,25 +33,10 @@
         <%= truncate(recommend.content, omision: "...", length: 100) %>
       </div>
 
-      <div class="mt-auto flex justify-between items-center">
+      <div class="make-wrapper">
         <div class="flex">
-          <p id="recipe-<%= recommend.id %>" class="make-icon mr-4">
-            <% if recommend.maked_by?(current_user) %>
-              <%# 「作ってみた!」を押している状態 %>
-              <%= render "makes/make", recipe: recommend %>
-            <% else %>
-              <%# 「作ってみた!」を押していない状態 %>
-              <%= render "makes/nonmake", recipe: recommend %>
-            <% end %>
-          </p>
-          <%# ===== お気に入り機能 ===== %>
-          <p id="favorite-<%= recommend.id %>" class="make-icon favorite-btn">
-            <% if recommend.favorited_by?(current_user) %>
-              <%= render "favorites/favorite", recipe: recommend %>
-            <% else %>
-              <%= render "favorites/nonfavorite", recipe: recommend %>
-            <% end %>
-          </p>
+          <%# =====「作ってみた！」とお気に入りの部分テンプレート ===== %>
+          <%= render "recipes/shared/makes_favorites", recipe: recommend %>
         </div>
 
         <%= link_to recommend, class: "hover:text-quaternary" do %>
@@ -64,7 +49,7 @@
 <% else %>
   <div class="makes-info-wrapper">
     <p>
-      <i class="fa-solid fa-circle-info text-blue-700"></i> 「作ってみた！ <i class="fa-regular fa-thumbs-up"></i>」を複数回押すと、あなたにおすすめのレシピを表示します
+      <i class="fa-solid fa-circle-info text-blue-700"></i> 「作ってみた！ <i class="fa-regular fa-thumbs-up"></i>」を押すと、あなたにおすすめのレシピを表示します
     </p>
   </div>
 <% end %>

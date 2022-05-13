@@ -4,30 +4,15 @@
   <% end %>
   <div class="flex recipeDetaile-flex">
     <div class="makeRecipe-wrapper">
+      <%# =====「作ってみた！」とお気に入りの部分テンプレート ===== %>
       <% if current_user.id != @recipe.user_id %>
-        <p id="recipe-<%= @recipe.id %>" class="make-icon lg:mb-4">
-          <% if @recipe.maked_by?(current_user) %>
-            <%# 「作ってみた!」を押している状態 %>
-            <%= render "makes/make", recipe: @recipe %>
-          <% else %>
-            <%# 「作ってみた!」を押していない状態 %>
-            <%= render "makes/nonmake", recipe: @recipe %>
-          <% end %>
-        </p>
-        <%# ===== お気に入り機能 ===== %>
-        <p id="favorite-<%= @recipe.id %>" class="make-icon favorite-btn">
-          <% if @recipe.favorited_by?(current_user) %>
-            <%= render "favorites/favorite", recipe: @recipe %>
-          <% else %>
-            <%= render "favorites/nonfavorite", recipe: @recipe %>
-          <% end %>
-        </p>
+        <%= render "recipes/shared/makes_favorites", recipe: @recipe %>
       <% end %>
     </div>
 
     <div class="commonCard-outstyle recipe-card">
       <header>
-        <div class="flex justify-between items-center mb-2">
+        <div class="flex justify-between items-center">
           <p class="text-sm ml-2">
             投稿日 <%= l @recipe.created_at %>
             <% if @recipe.created_at != @recipe.updated_at %>
@@ -43,29 +28,13 @@
                 <i class="fa-solid fa-trash-can recipe-deleteIcon recipe-delete"></i>
               <% end %>
             <% else %>
-            <%# ===== sp/tb用 作ってみた/お気に入りボタン ===== %>
-              <p id="recipe-<%= @recipe.id %>" class="make-icon rsp-makeIcon mr-4">
-                <% if @recipe.maked_by?(current_user) %>
-                  <%# 「作ってみた!」を押している状態 %>
-                  <%= render "makes/make", recipe: @recipe %>
-                <% else %>
-                  <%# 「作ってみた!」を押していない状態 %>
-                  <%= render "makes/nonmake", recipe: @recipe %>
-                <% end %>
-              </p>
-              <%# ===== お気に入り機能 ===== %>
-              <p id="favorite-<%= @recipe.id %>" class="make-icon favorite-btn rsp-makeIcon">
-                <% if @recipe.favorited_by?(current_user) %>
-                  <%= render "favorites/favorite", recipe: @recipe %>
-                <% else %>
-                  <%= render "favorites/nonfavorite", recipe: @recipe %>
-                <% end %>
-              </p>
+              <%# ===== sp/tb用 作ってみた/お気に入りボタン ===== %>
+              <%= render "recipes/shared/makes_favorites", recipe: @recipe %>
             <% end %>
           </div>
         </div>
 
-        <div class="mb-8 ml-2 flex">
+        <div class="flex m-0 md:mb-8 md:ml-2">
           <%= image_tag check_user_profile_image(@contributor), class: "user-profileImage mr-2" %>
           <p><%= @contributor.name %></p>
         </div>
@@ -89,13 +58,15 @@
           <p class="text-xl"><%= @recipe.content %></p>
         </div>
 
-        <div class="mt-8">
-          <p>投稿者のサイトを訪れてみる</p>
-          <%= link_to @contributor.url, class: "hover:text-quaternary" do %>
-            <%= @contributor.url %>
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          <% end %>
-        </div>
+        <% if @contributor.url.present? %>
+          <div class="mt-8">
+            <p>投稿者のサイトを訪れてみる</p>
+            <%= link_to @contributor.url, class: "hover:text-quaternary" do %>
+              <%= @contributor.url %>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <% end %>
+          </div>
+        <% end %>
       </section>
     </div>
   </div>
