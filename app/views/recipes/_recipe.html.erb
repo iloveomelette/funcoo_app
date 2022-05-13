@@ -25,28 +25,30 @@
       <%= truncate(recipe.content, omision: "...", length: 100) %>
     </div>
 
-    <div class="make-wrapper">
-      <% if current_user.id != recipe.user_id %>
-        <div class="flex">
-          <%# =====「作ってみた！」とお気に入りの部分テンプレート ===== %>
-          <%= render "recipes/shared/makes_favorites", recipe: recipe %>
-        </div>
-      <% end %>
+    <% if user_signed_in? %>
+      <div class="make-wrapper">
+        <% if current_user.id != recipe.user_id %>
+          <div class="flex">
+            <%# =====「作ってみた！」とお気に入りの部分テンプレート ===== %>
+            <%= render "recipes/shared/makes_favorites", recipe: recipe %>
+          </div>
+        <% end %>
 
-      <%= link_to recipe, class: "text-base hover:text-quaternary" do %>
-        <i class="fa-solid fa-caret-right"></i>  詳しく見る
-      <% end %>
+        <%= link_to recipe, class: "text-base hover:text-quaternary" do %>
+          <i class="fa-solid fa-caret-right"></i>  詳しく見る
+        <% end %>
 
-      <% if current_user.id == recipe.user_id %>
-        <div class="flex">
-          <%= link_to edit_recipe_path(recipe) do %>
-            <i class="fa-solid fa-pen-to-square recipe-edit"></i>
-          <% end %>
-          <%= link_to recipe_path(recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} do %>
-            <i class="fa-solid fa-trash-can recipe-delete"></i>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+        <% if current_user.id == recipe.user_id %>
+          <div class="flex">
+            <%= link_to edit_recipe_path(recipe) do %>
+              <i class="fa-solid fa-pen-to-square recipe-edit"></i>
+            <% end %>
+            <%= link_to recipe_path(recipe), method: :delete, data: { confirm: '削除してもよろしいですか？'} do %>
+              <i class="fa-solid fa-trash-can recipe-delete"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </article>
