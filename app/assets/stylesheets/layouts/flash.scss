@@ -1,3 +1,19 @@
+@mixin tb {
+  @media screen and (min-width: 790px) and (max-width: 1030px) {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: 790px) {
+    @content;
+  }
+}
+@mixin sp-tb {
+  @media screen and (max-width: 1030px) {
+    @content;
+  }
+}
+
 // *-*-* フラッシュのレイアウト *-*-*
 @mixin flash-animation {
   z-index: 1;
@@ -13,21 +29,8 @@
       transform: translateY(0);
     }
   }
-}
-
-@mixin tb {
-  @media screen and (min-width: 790px) and (max-width: 1030px) {
-    @content;
-  }
-}
-@mixin sp {
-  @media screen and (max-width: 790px) {
-    @content;
-  }
-}
-@mixin sp-tb {
-  @media screen and (max-width: 1030px) {
-    @content;
+  @include sp {
+    z-index: 5;
   }
 }
 

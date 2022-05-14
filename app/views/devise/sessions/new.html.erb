@@ -8,7 +8,7 @@
         <a href="https://storyset.com/user" class="credit">User illustrations by Storyset</a>
       </div>
 
-      <div class="flex-1 px-8 pt-8">
+      <div class="flex-1 px-2 pt-6 md:p-8">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "pl-7" %>
