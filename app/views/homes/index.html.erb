@@ -8,7 +8,7 @@
       <div class="topMsg-wrapper">
         <div>
           <p class="top-msg">最高のレシピをあなたに。</p>
-          <p class="top-msg">達成感を持って毎日の料理が楽しくなります。</p>
+          <p class="top-msg">達成感を持って毎日の料理が<span class="inline-block">楽しくなります。</span></p>
         </div>
       </div>
     </div>
@@ -21,7 +21,9 @@
         <%= link_to 'ログイン', new_user_session_path, class: 'login-btn' %>
       </div>
       <div class="px-4">
-        <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: 'login-btn-guest' %>
+        <%= link_to users_guest_sign_in_path, method: :post, class: 'login-btn-guest' do %>
+          ゲストログイン<span class="inline-block">(閲覧用)</span>
+        <% end %>
       </div>
     </div>
 
@@ -93,7 +95,7 @@
       </div>
 
       <div class="mt-8">
-        <div class="tail-toUser-msg">
+        <div class="mb-8 text-center md:tail-toUser-msg">
           <h3 class="main-section-heading3">個人農家/個人飲食店経営の方</h3>
         </div>
         <div class="flex justify-center">

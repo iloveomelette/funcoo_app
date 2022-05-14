@@ -18,7 +18,9 @@
           <%= f.label :characteristic_general, "個人利用者", class: "mr-4" %>
           <span class="inline-block">
             <%= f.radio_button :characteristic, :corporation %>
-            <%= f.label :characteristic_corporation, "法人(個人農家/個人飲食店経営の方はこちら)" %>
+            <%= f.label :characteristic_corporation do %>
+              法人<span class="text-sm md:text-base">(個人農家/個人飲食店経営の方はこちら)</span>
+            <% end %>
           </span>
           <p class="text-sm">＊個人利用の場合、レシピを投稿できません。</p>
         </div>
@@ -59,7 +61,7 @@
           <div class="google">
             <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post do %>
               <i class="fa-brands fa-google"></i>
-              Googleアカウントでサインインする
+              <span class="text-sm md:text-base">Googleアカウントでサインインする</span>
             <% end %>
           </div>
         </div>
