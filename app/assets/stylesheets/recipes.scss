@@ -56,6 +56,27 @@
   align-items: $items;
 }
 
+.cooking-info {
+  @include flex-style(right, normal);
+  p {
+    font-size: 14px;
+    color: #aaa;
+    margin: 0 4px;
+  }
+}
+.make-wrapper {
+  @include flex-style(space-between, center);
+  margin-top: auto;
+  .index-rec-makeBtn {
+    margin-right: 16px;
+  }
+}
+.recipeArticle-content {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+}
+
 .recipes-container {
   padding-top: 6rem;
   @include sp-tb {
@@ -182,26 +203,6 @@
   .recipe-wrapper {
     width: 340px;
     padding: 15px;
-    .recipeArticle-content {
-      min-height: 190px;
-      display: flex;
-      flex-direction: column;
-    }
-  }
-  .make-wrapper {
-    @include flex-style(space-between, center);
-    margin-top: auto;
-    .index-rec-makeBtn {
-      margin-right: 16px;
-    }
-  }
-  .cooking-info {
-    @include flex-style(right, normal);
-    p {
-      font-size: 14px;
-      color: #aaa;
-      margin: 0 4px;
-    }
   }
   .recipes-menuImg {
     @include menu-image(210px, 340px);
