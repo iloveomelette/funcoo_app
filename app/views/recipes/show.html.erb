@@ -55,7 +55,7 @@
         </div>
 
         <div class="show-recipeContent">
-          <p class="text-xl"><%= @recipe.content %></p>
+          <p class="text-xl"><%= safe_join(@recipe.content.split("\n"),tag(:br)) %></p>
         </div>
 
         <% if @contributor.url.present? %>
