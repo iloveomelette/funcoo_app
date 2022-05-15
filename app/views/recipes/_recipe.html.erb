@@ -1,5 +1,5 @@
 <article class="commonCard-outstyle recipe-wrapper">
-  <div>
+  <div class="ranks-recipeWrapper-left">
     <div class="flex mb-2">
       <%= image_tag check_user_profile_image(recipe.user), class: "user-profileImage mr-2" %>
       <p><%= recipe.user.name %></p>
@@ -13,7 +13,7 @@
     <% end %>
   </div>
 
-  <div class="recipeArticle-content">
+  <div class="recipeArticle-content ranks-recipeWrapper-right">
     <p class="text-xl text-center mt-2"><%= recipe.title %></p>
     <div class="cooking-info">
       <p><%= recipe.cooking_time %>分</p>

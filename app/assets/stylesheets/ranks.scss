@@ -37,10 +37,12 @@
       }
     }
     .ranking-row {
-      font-size: 1.25rem;
-      text-align: center;
-      margin-top: 15px;
-      min-width: 100px;
+      margin-top: 1rem;
+      .first-col {
+        font-size: 1.25rem;
+        text-align: center;
+        min-width: 100px;
+      }
     }
     .ranking-1-row {
       font-size: 1.5rem;
@@ -49,13 +51,14 @@
   }
   .recipe-wrapper {
     display: flex;
+    align-items: center;
     padding: 15px;
     margin-top: 15px;
     @include sp {
       flex-direction: column;
     }
-    .recipeWrapper-left {
-      flex-basis: 60%;
+    .ranks-recipeWrapper-left {
+      flex-basis: 50%;
       margin-right: 15px;
       @include sp-tb {
         margin: 0;
@@ -70,9 +73,8 @@
         }
       }
     }
-    .recipeWrapper-right {
-      flex-basis: 40%;
-      margin-right: 15px;
+    .ranks-recipeWrapper-right {
+      flex-basis: 50%;
       @include sp-tb {
         padding: 0 10px;
         margin: 0;
