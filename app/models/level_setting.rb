@@ -1,50 +1,32 @@
 class LevelSetting < ApplicationRecord
   class << self
     def calc_level(user)
-      current_point = user.experience_point
-      adding_point = calc_adding_point(user)
-      update_experience_point(user, current_point, adding_point)
-      update_level(user)
-      calc_rest_point(user)
+      current_point, adding_point = calc_adding_point(user)    # ===== 現在の経験値と加算する経験値を計算する処理 =====
+      experience_point, next_level, rest_point = calc_related_level(current_point, adding_point, user) # ===== レベル関連を計算する処理 =====
+      user.update!(level: next_level, experience_point:, rest_point:)
     end
 
     # ===== ここからclass_privateメソッド =====
     def calc_adding_point(user)
-      adding_point = if user.experience_point.zero?
-                       15
-                     else
-                       user.experience_point * 0.2
-                     end
-      adding_point.round
+      current_point = user.experience_point
+      adding_point = current_point.zero? ? 15 : user.experience_point * 0.2
+      [current_point, adding_point.round]
     end
 
-    def update_experience_point(current_user, current_point, adding_point)
+    def calc_related_level(current_point, adding_point, user)
       current_point += adding_point
-      current_user.update!(experience_point: current_point)
+      next_level = define_next_level(user.level)
+      if next_level.threshold <= current_point
+        user.level += 1
+        next_level = define_next_level(user.level)
+      end
+      rest_point = next_level.threshold - current_point
+      [current_point, user.level, rest_point]
     end
 
-    def update_level(current_user)
-      next_level = define_next_level(current_user)
-      return unless next_level.threshold <= current_user.experience_point
-
-      current_user.level += 1
-      current_user.update!(level: current_user.level)
-      next_level
-    end
-
-    def calc_rest_point(user)
-      next_level = define_next_level(user)
-      rest_point = next_level.threshold - user.experience_point
-      user.update!(rest_point:)
-    end
-
-    def define_next_level(user)
-      LevelSetting.find_by(passing_level: user.level + 1)
+    def define_next_level(user_level)
+      LevelSetting.find_by(passing_level: user_level + 1)
     end
   end
-  private_class_method :calc_adding_point,
-                       :update_experience_point,
-                       :update_level,
-                       :define_next_level,
-                       :calc_rest_point
+  private_class_method :calc_adding_point, :calc_related_level, :define_next_level
 end
