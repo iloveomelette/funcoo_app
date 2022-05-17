@@ -1,4 +1,4 @@
-// 変数定義
+// ===== テキスト入力欄のレイアウト =====
 @mixin input-layout {
   width: 100%;
   height: 50px;
@@ -33,16 +33,6 @@
 @mixin submit-layout($bgColor, $hoverColor, $boxShadow) {
   min-width: 290px;
   height: 50px;
-  color: #fbf6f0;
-  padding: 5px 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  outline: none;
-  border-radius: 10px;
-  border: none;
   background-color: $bgColor;
   box-shadow: 0 3px 1px -2px $boxShadow, 0 2px 2px 0 $boxShadow, 0 1px 5px 0 $boxShadow;
   &:hover {
@@ -124,7 +114,7 @@
     color: #aee6e6;
   }
   .delete-wrapper {
-    input[type='submit'] {
+    .accountDelete-btn {
       @include submit-layout(#f06060, #ee4b4b, #f03c3c);
       margin-bottom: 40px;
     }

@@ -87,7 +87,10 @@
           <%= form.file_field :menu_image, accept: "image/png,image/jpeg,image/gif" %>
         </div>
       </div>
-      <div class="text-center mt-10 mb-20"><%= form.submit '投稿する' %></div>
+
+      <div class="text-center mt-10 mb-20">
+        <%= form.submit "投稿する", class: "commonBtn-layout recipeForm-btn" %>
+      </div>
     <% end %>
   </div>
 </div>
