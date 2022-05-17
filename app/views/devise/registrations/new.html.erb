@@ -50,7 +50,7 @@
         </div>
 
         <div class="actions mt-4 text-center">
-          <%= f.submit t('.sign_up') %>
+          <%= f.submit t('.sign_up'), class: "commonBtn-layout" %>
         </div>
 
         <div class="another-choice">
@@ -58,7 +58,7 @@
           </div>
 
         <div class="field google-wrapper">
-          <div class="google">
+          <div class="google commonBtn-layout">
             <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post do %>
               <i class="fa-brands fa-google"></i>
               <span class="text-sm md:text-base">Googleアカウントでサインインする</span>

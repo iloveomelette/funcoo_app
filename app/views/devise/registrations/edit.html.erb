@@ -81,12 +81,12 @@
           <% end %>
 
           <div class="actions mt-10 text-center">
-            <%= f.submit t('.update') %>
+            <%= f.submit t('.update'), class: "commonBtn-layout" %>
           </div>
         <% end %>
 
         <div class="delete-wrapper mt-10 text-center">
-          <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %>
+          <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "commonBtn-layout accountDelete-btn" %>
         </div>
       </div>
     </div>
