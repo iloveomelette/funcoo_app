@@ -1,24 +1,6 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-
-@mixin submit-layout($bgColor, $hoverColor, $boxShadow) {
-  color: #fbf6f0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-block;
-  outline: none;
-  border-radius: 10px;
-  border: none;
-  background-color: $bgColor;
-  box-shadow: 0 3px 1px -2px $boxShadow, 0 2px 2px 0 $boxShadow, 0 1px 5px 0 $boxShadow;
-  &:hover {
-    background-color: $hoverColor;
-  }
-  &:active {
-    box-shadow: 0 4px 2px -3px $boxShadow, 0 4px 5px 1px $boxShadow, 0 2px 7px 1px $boxShadow;
-  }
-}
 @mixin tb {
   @media screen and (min-width: 790px) and (max-width: 1030px) {
     @content;
@@ -35,19 +17,29 @@
   }
 }
 
-// *-*-* 共通のレイアウト *-*-*
+@mixin submit-layout($bgColor, $hoverColor, $boxShadow) {
+  background-color: $bgColor;
+  box-shadow: 0 3px 1px -2px $boxShadow, 0 2px 2px 0 $boxShadow, 0 1px 5px 0 $boxShadow;
+  &:hover {
+    background-color: $hoverColor;
+  }
+  &:active {
+    box-shadow: 0 4px 2px -3px $boxShadow, 0 4px 5px 1px $boxShadow, 0 2px 7px 1px $boxShadow;
+  }
+}
+
+// ===== 共通のレイアウト =====
 .sign-up-btn {
   @include submit-layout(#5eaf23, #8ec22f, #2f630a);
   width: 100px;
   height: 50px;
-  font-weight: 900;
   padding: 10px 0px;
   @include sp {
     width: 140px;
   }
 }
 
-// *-*-* トップセクションのレイアウト *-*-*
+// ===== トップセクションのレイアウト =====
 .top-section {
   min-height: 100vh;
   background-color: rgba($color: #ffa45b, $alpha: 0.95);
@@ -162,7 +154,6 @@
     @include submit-layout(#ffda77, #ffe291, #b39542);
     width: 100px;
     height: 50px;
-    font-weight: 900;
     padding: 10px 0px;
     color: rgba(0, 0, 0, 0.6);
     @include sp {
@@ -174,7 +165,6 @@
     @include submit-layout(#ffda77, #ffe291, #b39542);
     width: 140px;
     height: 50px;
-    font-weight: 900;
     padding: 0px 3px;
     color: rgba(0, 0, 0, 0.6);
     @include sp {
@@ -183,7 +173,7 @@
   }
 }
 
-// *-*-* メインセクションのレイアウト *-*-*
+// ===== メインセクションのレイアウト =====
 .main-section {
   margin: 80px auto 120px;
   .flex {

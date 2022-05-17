@@ -18,20 +18,10 @@
   }
 }
 
-// ===== 検索ボタン =====
+// ===== レシピ関連ページ共通のボタンスタイル =====
 @mixin submit-btn {
   min-width: 130px;
   height: 50px;
-  color: #fbf6f0;
-  padding: 5px 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  outline: none;
-  border-radius: 10px;
-  border: none;
   background-color: #ffa45b;
   box-shadow: 0 3px 1px -2px #fa8d35, 0 2px 2px 0 #fa8d35, 0 1px 5px 0 #fa8d35;
   &:hover {
@@ -56,6 +46,11 @@
   align-items: $items;
 }
 
+.recipeForm-btn,
+.recipesLogin-btn,
+.searchForm-btn {
+  @include submit-btn;
+}
 .cooking-info {
   @include flex-style(right, normal);
   p {
@@ -122,9 +117,6 @@
       box-shadow: 0 0 8px 0 #aee6e6;
     }
   }
-  input[type='submit'] {
-    @include submit-btn;
-  }
   .recipe-content {
     flex-basis: 70%;
     @include tb {
@@ -183,9 +175,6 @@
         margin: 0 15px;
       }
     }
-  }
-  .login-btn {
-    @include submit-btn;
   }
   .recipeArticles-wrapper {
     display: grid;
@@ -366,9 +355,6 @@
 
 // ===== 検索フォームのスタイル =====
 .search-container {
-  input[type='submit'] {
-    @include submit-btn;
-  }
   .q-SearchBox {
     @include tb {
       @include flex-style(space-around, normal);
