@@ -4,7 +4,9 @@
       <div class="commonCard-outstyle search-common mb-10">
         <h3 class="text-2xl">レシピから検索</h3>
         <span class="search-span"></span>
+
         <%= f.search_field :title_or_content_cont, placeholder: "タイトルもしくは内容", class: "searchForm-outstyle recipes-q" %>
+
         <div class="pt-2">
           <%= f.radio_button :cooking_time_lteq, "30" %>
           <%= f.label :cooking_time_lteq_30, "30分以内" %>
@@ -38,6 +40,7 @@
       <div class="commonCard-outstyle search-common">
         <h3 class="text-2xl">ジャンルから検索</h3>
         <span class="search-span"></span>
+
         <div>
           <p class="pb-2 text-lg">主食</p>
           <%= f.check_box :genre_staple_food_eq_any, { multiple: true }, "1", "" %>
@@ -86,6 +89,9 @@
         </div>
       </div>
     </div>
-    <div class="text-center mt-6"><%= f.submit "検索" %></div>
+
+    <div class="text-center mt-6">
+      <%= f.submit "検索", class: "commonBtn-layout searchForm-btn" %>
+    </div>
   <% end %>
 </div>

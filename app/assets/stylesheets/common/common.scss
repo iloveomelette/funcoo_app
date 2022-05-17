@@ -106,3 +106,15 @@
   width: 32px;
   border-radius: 50%;
 }
+// ===== 共通ボタンレイアウト =====
+.commonBtn-layout {
+  color: #fbf6f0;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 10px;
+  border: none;
+}
