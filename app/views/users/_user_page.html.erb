@@ -1,0 +1,75 @@
+<div class="my-page-wrapper">
+	<div class="user-info commonCard-outstyle">
+    <div class="user-info-left">
+      <%= image_tag check_user_profile_image(user), class: "user-info-image" %>
+      <%= link_to "アカウント編集", edit_user_registration_path, class: "user-info-link" if current_page?(action: "mypage") %>  <%# ===== mypage専用 ===== %>
+    </div>
+
+    <div class="user-info-right">
+      <div class="user-nameLevel">
+        <div>
+          <p class="user-infoName"><%= user.name %></p>
+
+          <% if current_page?(controller: "users", action: "show") %>  <%# ===== show専用 ===== %>
+            <p class="text-sm mt-4">投稿者のHPを覗いてみる ↓</p>
+            <%= link_to user.url, target: "_blank", rel: "noopener noreferrer", class: "hover:text-quaternary" do %>
+              <%= user.url %>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="user-infoLevel">
+          <p>現在 Lv. <span><%= user.level %></span></p>
+          <p>経験値 <span><%= user.experience_point %>Exp</span></p>
+          <p>次のレベルまであと <span class="inline-block"><%= user.rest_point %>Exp</span></p>
+        </div>
+      </div>
+
+      <div class="text-lg mt-3">
+        <p><%= user.introduction %></p>
+      </div>
+    </div>
+	</div>
+
+  <div class="myRecipes-show">
+    <ul class="myRecipes-menu">
+      <li><a href="#" class="myRecipes-active" data-id="makedPost-recipes"><%= check_user_characteristic(user) %></a></li>
+      <%= show_favorited_recipes %>  <%# ==== mypage専用(メソッドはusersヘルパー参照) ==== %>
+    </ul>
+  
+    <section class="user-recipes myRecipes-contents myRecipes-active" id="makedPost-recipes">
+      <% if recipes.present? %>
+        <div class="user-makedRecipes">
+          <% recipes.each do |recipe| %>
+            <%= render "recipes/recipe", recipe: recipe %>
+          <% end %>
+        </div>
+
+        <%= show_paginate(recipes) %>  <%# ===== ページネーションを表示するかどうか ===== %>
+      <% else %>
+        <div>
+          <p><%= promote_msg(user) %></p>
+        </div>
+      <% end %>
+    </section>
+
+    <% if current_page?(action: "mypage") %>  <%# ===== mypage専用 ===== %>
+      <section class="user-recipes myRecipes-contents" id="favorite-recipes">
+        <% if favorite_recipes.present? %>
+          <div class="user-makedRecipes">
+            <% favorite_recipes.each do |recipe| %>
+              <%= render "recipes/recipe", recipe: recipe %>
+            <% end %>
+          </div>
+
+          <%= show_paginate(favorite_recipes) %>
+        <% else %>
+          <div>
+            <p>お気に入りのレシピがここに表示されます</p>
+          </div>
+        <% end %>
+      </section>
+    <% end %>
+  </div>
+</div>

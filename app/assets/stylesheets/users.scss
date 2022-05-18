@@ -60,6 +60,7 @@
       flex-basis: 50%;
       .user-nameLevel {
         display: flex;
+        justify-content: space-between;
         .user-infoName {
           font-size: 20px;
           flex-basis: 50%;
