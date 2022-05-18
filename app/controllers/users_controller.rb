@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  def show
+  def show; end
+
+  def mypage
     @recipes = take_user_recipes
     recipe_ids = Favorite.includes(:user).where(user_id: current_user.id).order(created_at: :desc).pluck(:recipe_id)
     @favorite_recipes = Recipe.includes(:makes, :favorites).where(id: recipe_ids).page(params[:page]).per(PER_PAGE)
