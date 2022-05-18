@@ -1,67 +1,52 @@
 <div class="my-page-wrapper">
 	<div class="user-info commonCard-outstyle">
     <div class="user-info-left">
-      <%= image_tag check_user_profile_image(current_user), class: "user-info-image" %>
-      <%= link_to "アカウント編集", edit_user_registration_path, class: "user-info-link" %>
+      <%= image_tag check_user_profile_image(@contributor), class: "user-info-image" %>
     </div>
 
     <div class="user-info-right">
       <div class="user-nameLevel">
-        <p class="user-infoName"><%= current_user.name %></p>
+        <div>
+          <p class="user-infoName"><%= @contributor.name %></p>
+          <p>投稿者のHPを覗いてみる ↓</p>
+          <%= link_to @contributor.url, target: "_blank", rel: "noopener noreferrer", class: "hover:text-quaternary" do %>
+            <%= @contributor.url %>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <% end %>
+        </div>
         <div class="user-infoLevel">
-          <p>現在 Lv. <span><%= current_user.level %></span></p>
-          <p>経験値 <span><%= current_user.experience_point %>Exp</span></p>
-          <p>次のレベルまであと <span class="inline-block"><%= current_user.rest_point %>Exp</span></p>
+          <p>現在 Lv. <span><%= @contributor.level %></span></p>
+          <p>経験値 <span><%= @contributor.experience_point %>Exp</span></p>
+          <p>次のレベルまであと <span class="inline-block"><%= @contributor.rest_point %>Exp</span></p>
         </div>
       </div>
       <div class="text-lg mt-3">
-        <p><%= current_user.introduction %></p>
+        <p><%= @contributor.introduction %></p>
       </div>
     </div>
 	</div>
 
   <div class="myRecipes-show">
     <ul class="myRecipes-menu">
-      <li><a href="#" class="myRecipes-active" data-id="makedPost-recipes"><%= check_user_characteristic(current_user) %></a></li>
-      <li><a href="#" data-id="favorite-recipes">お気に入りしたレシピ</a></li>
+      <li><a href="#" class="myRecipes-active" data-id="makedPost-recipes"><%= check_user_characteristic(@contributor) %></a></li>
     </ul>
   
     <section class="user-recipes myRecipes-contents myRecipes-active" id="makedPost-recipes">
-      <% if @recipes.present? %>
+      <% if @contributor_recipes.present? %>
         <div class="user-makedRecipes">
-          <% @recipes.each do |recipe| %>
+          <% @contributor_recipes.each do |recipe| %>
             <%= render "recipes/recipe", recipe: recipe %>
           <% end %>
         </div>
       <% else %>
         <div>
-          <p><%= promote_msg(current_user) %></p>
+          <p><%= promote_msg(@contributor) %></p>
         </div>
       <% end %>
 
-      <% if @recipes.count == 20 %>
+      <% if @contributor_recipes.count == ApplicationController::PER_PAGE %>
         <div class="paginate pt-10">
-          <%= paginate @recipes %>
-        </div>
-      <% end %>
-    </section>
-
-    <section class="user-recipes myRecipes-contents" id="favorite-recipes">
-      <% if @favorite_recipes.present? %>
-        <div class="user-makedRecipes">
-          <% @favorite_recipes.each do |recipe| %>
-            <%= render "recipes/recipe", recipe: recipe %>
-          <% end %>
-        </div>
-      <% else %>
-        <div>
-          <p>お気に入りのレシピがここに表示されます</p>
-        </div>
-      <% end %>
-
-      <% if @favorite_recipes.count == 20 %>
-        <div class="paginate pt-10">
-          <%= paginate @favorite_recipes %>
+          <%= paginate @contributor_recipes %>
         </div>
       <% end %>
     </section>

@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  def show; end
+  before_action :set_contributor, only: :show
+
+  def show
+    @contributor_recipes = take_contributor_recipes(@contributor.id)
+  end
 
   def mypage
     @recipes = take_user_recipes
@@ -15,5 +19,13 @@ class UsersController < ApplicationController
     else
       Recipe.includes(:user, :makes, :favorites).where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
     end
+  end
+
+  def set_contributor
+    @contributor = User.find_by(id: params[:id])
+  end
+
+  def take_contributor_recipes(user_id)
+    Recipe.includes(:user, :makes, :favorites).where(user_id:).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
   end
 end
