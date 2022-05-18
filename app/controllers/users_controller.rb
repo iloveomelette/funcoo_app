@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if current_user.characteristic == "general"
       Recipe.includes(:user, :makes, :favorites).where(id: current_user.maked_recipes.pluck(:recipe_id)).page(params[:page]).per(PER_PAGE)
     else
-      Recipe.includes(:user, :makes, :favorites).where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
+      take_contributor_recipes(current_user.id)
     end
   end
 
