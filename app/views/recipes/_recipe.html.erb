@@ -1,9 +1,11 @@
 <article class="commonCard-outstyle recipe-wrapper">
   <div class="ranks-recipeWrapper-left">
-    <div class="flex mb-2">
-      <%= image_tag check_user_profile_image(recipe.user), class: "user-profileImage mr-2" %>
-      <p><%= recipe.user.name %></p>
-    </div>
+    <%= link_to user_path(recipe.user) do %>
+      <div class="flex mb-2">
+        <%= image_tag check_user_profile_image(recipe.user), class: "user-profileImage mr-2" %>
+        <p class="hover:text-quaternary"><%= recipe.user.name %></p>
+      </div>
+    <% end %>
 
     <%#　===== 投稿画像があればサムネイル用を表示、ない場合はデフォルト画像を表示 ===== %>
     <% if recipe.menu_image.present? %>

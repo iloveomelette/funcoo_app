@@ -17,4 +17,20 @@ module UsersHelper
     default_image = user.profile_image.url
     user.profile_image.present? ? original_image : default_image
   end
+
+  def show_favorited_recipes
+    return unless current_page?(action: "mypage")
+
+    tag.li do
+      tag.a "お気に入りしたレシピ", href: "#", "data-id": "favorite-recipes"
+    end
+  end
+
+  def show_paginate(recipes)
+    return unless recipes.count == ApplicationController::PER_PAGE
+
+    tag.div class: "paginate pt-10" do
+      paginate recipes
+    end
+  end
 end
