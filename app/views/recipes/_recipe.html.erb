@@ -3,7 +3,7 @@
     <%= link_to user_path(recipe.user) do %>
       <div class="flex mb-2">
         <%= image_tag check_user_profile_image(recipe.user), class: "user-profileImage mr-2" %>
-        <p><%= recipe.user.name %></p>
+        <p class="hover:text-quaternary"><%= recipe.user.name %></p>
       </div>
     <% end %>
 
