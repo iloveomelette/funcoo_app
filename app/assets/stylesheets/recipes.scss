@@ -51,6 +51,7 @@
 .searchForm-btn {
   @include submit-btn;
 }
+// ===== レシピの調理時間、調理コスト、カロリーのスタイル =====
 .cooking-info {
   @include flex-style(right, normal);
   p {
@@ -59,11 +60,25 @@
     margin: 0 4px;
   }
 }
+
 .make-wrapper {
   @include flex-style(space-between, center);
   margin-top: auto;
   .index-rec-makeBtn {
     margin-right: 16px;
+  }
+  .makes-link {
+    width: 40px;
+    height: 40px;
+    padding: 3px 0;
+    text-align: center;
+  }
+}
+// =====「詳しくみる」のスタイル =====
+.recipe-moreInfo {
+  min-width: 100px;
+  &:hover {
+    color: #aee6e6;
   }
 }
 .recipeArticle-content {
