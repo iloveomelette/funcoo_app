@@ -1,5 +1,5 @@
 <%# 「作ってみた!」を押していない状態 %>
-<%= link_to recipe_makes_path(recipe), method: :post, remote: true, data: { confirm: 'このアクションを取り消すことはできませんが、よろしいですか？'} do %>
+<%= link_to recipe_makes_path(recipe), method: :post, remote: true, data: { confirm: 'このアクションを取り消すことはできませんが、よろしいですか？'}, class: "makes-link" do %>
   <i class="fa-regular fa-thumbs-up"></i>
   <%= recipe.makes_count %>
 <% end %>
