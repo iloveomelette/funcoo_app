@@ -1,52 +1,26 @@
 require "rails_helper"
 
 RSpec.describe "Recipes", type: :request do
-  describe "GET /index" do
-    it "returns http success" do
-      get "/recipes/index"
-      expect(response).to have_http_status(:success)
-    end
-  end
+  # ===== ここから一覧ページのテスト =====
+  describe "GET #index" do
+    subject { get(recipes_path) }
 
-  describe "GET /new" do
-    it "returns http success" do
-      get "/recipes/new"
-      expect(response).to have_http_status(:success)
+    context "リクエストを投げたとき" do
+      it "リクエストが成功する" do
+        subject
+        expect(response).to have_http_status(:ok)
+      end
     end
-  end
 
-  describe "GET /create" do
-    it "returns http success" do
-      get "/recipes/create"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /show" do
-    it "returns http success" do
-      get "/recipes/show"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /edit" do
-    it "returns http success" do
-      get "/recipes/edit"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /update" do
-    it "returns http success" do
-      get "/recipes/update"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /destroy" do
-    it "returns http success" do
-      get "/recipes/destroy"
-      expect(response).to have_http_status(:success)
+    context "レシピが存在するとき" do
+      let!(:recipe) { create(:recipe) }
+      it "レシピの情報が表示されている" do
+        subject
+        expect(response.body).to include(
+          recipe.title, recipe.content, recipe.cooking_time.to_s,
+          recipe.cooking_cost.to_s, recipe.calorie.to_s, recipe.makes_count.to_s
+        )
+      end
     end
   end
 end
