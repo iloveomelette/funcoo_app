@@ -3,37 +3,34 @@ require "rails_helper"
 RSpec.describe User, type: :model do
   # ===== ここから保存できる時のテスト =====
   describe "全体のバリデーション" do
+    let(:user) { build(:user) }
+
     context "characteristicの値を入力しないとき" do
       it "デフォルトのgeneralで保存できる" do
-        user = build(:user)
         expect(user[:characteristic]).to eq "general"
       end
     end
 
     context "levelの値を入力しないとき" do
       it "デフォルト値: 1で保存できる" do
-        user = build(:user)
         expect(user[:level]).to eq 1
       end
     end
 
     context "experience_pointの値を入力しないとき" do
       it "デフォルト値: 0で保存できる" do
-        user = build(:user)
         expect(user[:experience_point]).to eq 0
       end
     end
 
     context "rest_pointの値を入力しないとき" do
       it "デフォルト値: 30で保存できる" do
-        user = build(:user)
         expect(user[:rest_point]).to eq 30
       end
     end
 
     context "条件を満たすとき" do
       it "保存できる" do
-        user = build(:user)
         expect(user.valid?).to eq true
       end
     end
@@ -133,6 +130,22 @@ RSpec.describe User, type: :model do
       it "エラーが発生する" do
         expect(subject).to eq false
         expect(user.errors.messages[:url]).to include "は2000文字以内で入力してください"
+      end
+    end
+  end
+
+  # ===== ここから1対多の関係にあるRecipeモデルとのアソシエーションテスト =====
+  describe "Recipeモデルとのアソシエーション" do
+    context "ユーザが削除されたとき" do
+      subject { user.destroy }
+
+      let(:user) { create(:user) }
+      before do
+        create_list(:recipe, 2, user:)
+        create(:recipe)
+      end
+      it "変数userが作成した2つのレシピが削除される" do
+        expect { subject }.to change { user.recipes.count }.by(-2)
       end
     end
   end
