@@ -66,4 +66,49 @@ RSpec.describe "Recipes", type: :request do
       end
     end
   end
+
+  # ===== ここから新規投稿ページのテスト =====
+  describe "GET #new" do
+    subject { get(new_recipe_path) }
+    let(:user) { create(:user) }
+
+    context "リクエストを投げたとき" do
+      it "リクエストが成功する" do
+        sign_in user
+        subject
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
+
+  describe "POST #create" do
+    subject { post(recipes_path, params:) }
+    let(:user) { create(:user) }
+
+    # ===== パラメータが『正常』なとき =====
+    context "正常なパラメータを渡してリクエストを投げるとき" do
+      let(:params) { { make_recipe_form: attributes_for(:recipe).merge(genre) } }
+      let(:genre) { attributes_for(:genre) }
+
+      it "新規レシピが保存後、リダイレクトしフラッシュが表示される" do
+        sign_in user
+        expect { subject }.to change { Recipe.count }.by(1)
+        expect(response).to have_http_status(:found)
+        expect(response).to redirect_to recipes_path
+        expect(flash[:notice]).to be_present
+      end
+    end
+
+    # ===== パラメータが『異常』なとき =====
+    context "異常なパラメータを渡してリクエストを投げたとき" do
+      let(:params) { { make_recipe_form: attributes_for(:recipe, :invalid).merge(genre) } }
+      let(:genre) { attributes_for(:genre) }
+
+      it "新規レシピが保存されず、新規投稿ページがレンダリングされる" do
+        sign_in user
+        expect { subject }.not_to change(Recipe, :count)
+        expect(response.body).to include "ジャンルを選択"
+      end
+    end
+  end
 end

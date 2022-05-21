@@ -7,4 +7,8 @@ FactoryBot.define do
     cooking_cost { 100 }
     calorie { 100 }
   end
+
+  trait :invalid do
+    title { "a" * 101 }
+  end
 end
