@@ -1,11 +1,14 @@
 FactoryBot.define do
   factory :recipe do
-    user { nil }
-    title { "MyString" }
-    content { "MyText" }
-    menu_image { "MyString" }
-    cooking_time { 1 }
-    cooking_cost { 1 }
-    calorie { 1 }
+    user
+    title { Faker::Lorem.word }
+    content { Faker::Lorem.paragraph }
+    cooking_time { 100 }
+    cooking_cost { 100 }
+    calorie { 100 }
+  end
+
+  trait :invalid do
+    title { "a" * 101 }
   end
 end
