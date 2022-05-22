@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  GUEST_USER_INTRODUCTION = "FunCooAppをご利用いただき誠にありがとうございます!\n 引き続き当アプリをお楽しみくださいませ。".freeze
   has_many :recipes, dependent: :destroy
   has_many :makes, dependent: :destroy
   has_many :maked_recipes, through: :makes, source: :recipe
@@ -52,6 +53,7 @@ class User < ApplicationRecord
         user.password = SecureRandom.urlsafe_base64
         user.name = "ゲストユーザ"
         user.characteristic = 1
+        user.introduction = GUEST_USER_INTRODUCTION
       end
     end
 
