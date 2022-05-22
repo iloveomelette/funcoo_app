@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   private
 
   def take_user_recipes
-    if current_user.characteristic == "general"
+    if current_user.characteristic == "general" || current_user.email == "guest@example.com"
       Recipe.includes(:user, :makes, :favorites).where(id: current_user.maked_recipes.pluck(:recipe_id)).page(params[:page]).per(PER_PAGE)
     else
       take_contributor_recipes(current_user.id)

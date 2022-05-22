@@ -27,7 +27,7 @@
       </div>
 
       <div class="text-lg mt-3">
-        <p><%= user.introduction %></p>
+        <p><%= safe_join(user.introduction.split("\n"),tag(:br)) %></p>
       </div>
     </div>
 	</div>
