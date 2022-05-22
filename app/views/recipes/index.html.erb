@@ -18,7 +18,7 @@
     <div class="recipeIndex-wrapper md:px-10 m-auto">
       <% if user_signed_in? %>
         <% if current_user.characteristic == "general" || current_user.email == "guest@example.com" %>
-          <section class="px-6 mb-10 md:p-0">
+          <section class="px-4 mb-10 md:p-0">
             <h2 class="mb-3.5 text-2xl">あなたへのおすすめ</h2>
             <%= render "recipes/shared/recommend", recommend: @recommend, contributor: @contributor %>
           </section>
@@ -34,7 +34,7 @@
     </div>
   </main>
 
-  <aside class="px-2.5 md:pr-3 flex-right">
+  <aside class="px-2.5 md:pr-3 lg:pt-12 flex-right">
     <% if user_signed_in? %>
       <div class="commonCard-outstyle userInfo-wrapper p-2.5">
         <p class="text-xl"><%= current_user.name %>さんの情報</p>
