@@ -13,18 +13,22 @@ module UsersHelper
     current_user.characteristic == "general" ? PROMOTE_MAKE : PROMOTE_POST
   end
 
+  # ===== ここからログインユーザのプロフィール画像をチェックする処理 =====
   def check_user_profile_image(user)
     user.email == "guest@example.com" ? guest_user_profile_image : original_user_profile_image(user)
   end
 
   def original_user_profile_image(user)
-    original_image = user.profile_image.thumb.url
-    default_image = user.profile_image.url
-    user.profile_image.present? ? original_image : default_image
+    user.profile_image.present? ? user.profile_image.thumb.url : user.profile_image.url
   end
 
   def guest_user_profile_image
     GUEST_PROFILE_IMAGE
+  end
+  # ===== ここまで =====
+
+  def verify_user_introduction(user)
+    user.introduction.present? ? safe_join(user.introduction.split("\n"), tag.br) : user.introduction
   end
 
   def show_favorited_recipes
