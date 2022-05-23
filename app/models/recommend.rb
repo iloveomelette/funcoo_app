@@ -1,4 +1,8 @@
 class Recommend < ApplicationRecord
+  LATEST_USER_IDS = 5
+  NEXT_TO_LOGIN_USER = 1
+  SUBSTITUTE_RECIPE_ID = 1
+  TWO_WEEKS_DINNER = 14
   belongs_to :user
   # クラス内Lineが長くなりすぎるため、with_optionsは使わずに対応(NOTNULL制約のバリデーション)
   validates :recommend_recipe, :avg_staple, :avg_main, :avg_side, :avg_country,
@@ -11,7 +15,7 @@ class Recommend < ApplicationRecord
       avg_columns = calc_recommend_average_columns(sum_makes, sum_columns)
 
       # 作ってみたを押した投稿に同じく作ってみたを押した最新5人のユーザIDを抽出する
-      user_ids = Make.where(recipe_id:).order(created_at: :desc).limit(5).offset(1).pluck(:user_id)
+      user_ids = Make.where(recipe_id:).order(created_at: :desc).limit(LATEST_USER_IDS).offset(NEXT_TO_LOGIN_USER).pluck(:user_id)
       if user_ids.present?
         # ターゲットとなるログインユーザの平均ジャンル(avg_staple...)を実引数として渡す
         similarity_results = calc_cosine_similarity(user_ids, avg_columns)
@@ -77,9 +81,9 @@ class Recommend < ApplicationRecord
       # user_idsのインデックス番号を指定してユーザIDを抽出する
       friendly_user_id = user_ids[index_num]
       # friendly_userが「作ってみた」を押したレシピIDを取得する
-      recommend_recipes = Make.where(user_id: friendly_user_id).order(created_at: :desc).limit(14).pluck(:recipe_id)
+      recommend_recipes = Make.where(user_id: friendly_user_id).order(created_at: :desc).limit(TWO_WEEKS_DINNER).pluck(:recipe_id)
       # ログインユーザが作ってみたを押したレシピID(最新14件)を取得する
-      target_maked_recipes = Make.where(user_id: current_user.id).order(created_at: :desc).limit(14).pluck(:recipe_id)
+      target_maked_recipes = Make.where(user_id: current_user.id).order(created_at: :desc).limit(TWO_WEEKS_DINNER).pluck(:recipe_id)
       # ログインユーザがまだ「作ってみた」を押していない最新のレシピIDを抽出する
       recommend_recipes - target_maked_recipes
     end
@@ -94,8 +98,9 @@ class Recommend < ApplicationRecord
       end
     end
 
+    # ===== 比較対象の他ユーザがいない、おすすめレシピIDがない時の代わりのレシピを取得する処理 =====
     def substitute_for_recipe(avg_columns)
-      recipe_id = Genre.where(staple_food: avg_columns[0].round(0)).order(created_at: :desc).limit(1).pluck(:recipe_id)
+      recipe_id = Genre.where(staple_food: avg_columns[0].round(0)).order(created_at: :desc).limit(SUBSTITUTE_RECIPE_ID).pluck(:recipe_id)
       Recipe.find_by(id: recipe_id)
     end
 
@@ -105,6 +110,7 @@ class Recommend < ApplicationRecord
                                sum_side: sum_columns[2], sum_country: sum_columns[3])
     end
 
+    # ===== 以下3つのメソッドがコサイン類似度の計算処理 =====
     def cosine_similarity(target, partner)
       dp = dot_product(target, partner)
       nm = normalize(target) * normalize(partner)
