@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   GUEST_USER_INTRODUCTION = "FunCooAppをご利用いただき誠にありがとうございます!\n 引き続き当アプリをお楽しみくださいませ。".freeze
+  PASSWORD_LENGTH = 10
   has_many :recipes, dependent: :destroy
   has_many :makes, dependent: :destroy
   has_many :maked_recipes, through: :makes, source: :recipe
@@ -72,7 +73,7 @@ class User < ApplicationRecord
           name: auth.info.name,
           email: auth.info.email,
           profile_image: auth.info.image,
-          password: Devise.friendly_token(10)
+          password: Devise.friendly_token(PASSWORD_LENGTH)
         )
         sns = SnsCredential.create(
           user_id: user.id,
@@ -90,7 +91,7 @@ class User < ApplicationRecord
           name: auth.info.name,
           email: auth.info.email,
           profile_image: auth.info.image,
-          password: Devise.friendly_token(10)
+          password: Devise.friendly_token(PASSWORD_LENGTH)
         )
       end
       { user: }
