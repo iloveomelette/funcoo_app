@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  LATEST_RECIPE = 1  # ===== レコメンドレシピを渡す処理で使用 =====
   belongs_to :user
   has_many :makes, dependent: :destroy
   has_many :maked_users, through: :makes, source: :user
@@ -31,7 +32,7 @@ class Recipe < ApplicationRecord
       if current_user.characteristic == "general"
         Recipe.find_by(id: recommend_recipe_id)
       elsif current_user.email == "guest@example.com"
-        Recipe.find_by(id: Recipe.order(created_at: :desc).limit(1).pluck(:id))
+        Recipe.find_by(id: Recipe.order(created_at: :desc).limit(LATEST_RECIPE).pluck(:id))
       end
     end
   end
