@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Recipes", type: :request do
-  # ===== ここから一覧ページのテスト =====
+  # ===== ここから一覧のテスト =====
   describe "GET #index" do
     subject { get(recipes_path) }
 
@@ -24,7 +24,7 @@ RSpec.describe "Recipes", type: :request do
     end
   end
 
-  # ===== ここから詳細ページのテスト =====
+  # ===== ここから詳細のテスト =====
   describe "GET #show" do
     subject { get(recipe_path(recipe_id)) }
     let(:user) { create(:user) }
@@ -67,7 +67,7 @@ RSpec.describe "Recipes", type: :request do
     end
   end
 
-  # ===== ここから新規投稿ページのテスト =====
+  # ===== ここから新規投稿のテスト =====
   describe "GET #new" do
     subject { get(new_recipe_path) }
     let(:user) { create(:user) }
@@ -108,6 +108,33 @@ RSpec.describe "Recipes", type: :request do
         sign_in user
         expect { subject }.not_to change(Recipe, :count)
         expect(response.body).to include "ジャンルを選択"
+      end
+    end
+  end
+
+  # ===== ここから編集のテスト =====
+  describe "GET #edit" do
+    subject { get(edit_recipe_path(recipe.id)) }
+    let!(:user) { create(:user) }
+    let!(:recipe) { create(:recipe, user_id: user.id) }
+    let!(:genre) { create(:genre, recipe_id: recipe.id) }
+
+    context "リクエストを投げたとき" do
+      it "リクエストが成功する" do
+        sign_in user
+        subject
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context "レシピが存在するとき" do
+      it "レシピのタイトル・コンテンツ・調理時間・目安費用・カロリーが表示される" do
+        sign_in user
+        subject
+        expect(response.body).to include(
+          recipe.title, recipe.content, recipe.cooking_time.to_s,
+          recipe.cooking_cost.to_s, recipe.calorie.to_s
+        )
       end
     end
   end
