@@ -138,4 +138,46 @@ RSpec.describe "Recipes", type: :request do
       end
     end
   end
+
+  # ===== ここから更新のテスト =====
+  describe "POST #update" do
+    subject { patch(recipe_path(recipe.id, params:)) }
+    let!(:user) { create(:user) }
+    let!(:recipe) { create(:recipe, user_id: user.id) }
+    let!(:genre) { create(:genre, recipe_id: recipe.id) }
+    let(:params) { { make_recipe_form: attributes_for(:recipe).merge(new_genre) } }
+    let(:new_genre) { attributes_for(:genre) }
+
+    context "レシピIDを渡してリクエストを投げたとき" do
+      it "リクエストが成功する" do
+        sign_in user
+        subject
+        expect(response).to have_http_status(:found)
+      end
+    end
+
+    context "正常なパラメータを渡して『レシピ』を更新するとき" do
+      # ===== レシピのタイトルを更新前と更新後で比較する =====
+      it "レシピを更新した後、詳細ページにリダイレクトする" do
+        sign_in user
+        original_title = recipe.title
+        new_title = params[:make_recipe_form][:title]
+        expect { subject }.to change { recipe.reload.title }.from(original_title).to(new_title)
+        expect(response).to redirect_to Recipe.last
+      end
+    end
+
+    context "正常なパラメータを渡して『レシピのジャンル』を更新するとき" do
+      let(:new_genre) { attributes_for(:genre, staple_food: "noodles") }
+
+      # ===== ジャンルの主食を更新前と更新後で比較する =====
+      it "レシピを更新した後、詳細ページにリダイレクトする" do
+        sign_in user
+        original_staple_food = recipe.genre.staple_food
+        new_staple_food = params[:make_recipe_form][:staple_food]
+        expect { subject }.to change { recipe.genre.reload.staple_food }.from(original_staple_food).to(new_staple_food)
+        expect(response).to redirect_to Recipe.last
+      end
+    end
+  end
 end
