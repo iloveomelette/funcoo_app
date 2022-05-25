@@ -179,5 +179,52 @@ RSpec.describe "Recipes", type: :request do
         expect(response).to redirect_to Recipe.last
       end
     end
+
+    context "不正な値を渡して更新を行ったとき" do
+      let(:params) { { make_recipe_form: attributes_for(:recipe, :invalid).merge(new_genre) } }
+      it "新しいレシピが更新されない" do
+        sign_in user
+        expect { subject }.not_to change(Recipe, :count)
+      end
+    end
+  end
+
+  # ===== ここから削除のテスト =====
+  describe "DELETE #destroy" do
+    subject { delete(recipe_path(recipe.id)) }
+    let!(:user) { create(:user) }
+    let!(:recipe) { create(:recipe, user_id: user.id) }
+    let!(:genre) { create(:genre, recipe_id: recipe.id) }
+
+    context "正常なパラメータを渡してリクエストを投げたとき" do
+      it "リクエストが成功し、フラッシュメッセージを表示する" do
+        sign_in user
+        subject
+        expect(response).to have_http_status(:found)
+        expect(flash[:notice]).to be_present
+      end
+    end
+
+    context "正常なパラメータを渡して削除を行ったとき" do
+      it "削除が成功し、一覧ページへリダイレクトされる" do
+        sign_in user
+        expect { subject }.to change { Recipe.count }.by(-1)
+        expect(response).to redirect_to recipes_path
+      end
+    end
+
+    context "他人のレシピを渡して削除を行ったとき" do
+      subject { delete(recipe_path(unknown_recipe.id)) }
+      let!(:unknown_recipe) { create(:recipe) }
+      let!(:unknown_genre) { create(:genre, recipe_id: unknown_recipe.id) }
+
+      it "リクエストが成功し、一覧ページへリダイレクトした後フラッシュメッセージを表示する" do
+        sign_in user
+        subject
+        expect(response).to have_http_status(:found)
+        expect(response).to redirect_to recipes_path
+        expect(flash[:alert]).to be_present
+      end
+    end
   end
 end
