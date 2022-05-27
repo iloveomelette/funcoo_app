@@ -37,8 +37,12 @@ class RecipesController < ApplicationController
 
   def update
     @recipe_form = MakeRecipeForm.new(recipe_params, recipe: @recipe)
-    @recipe_form.update_recipe
-    redirect_to @recipe
+    if @recipe_form.valid?
+      @recipe_form.update_recipe
+      redirect_to @recipe, notice: "更新しました!"
+    else
+      render :edit
+    end
   end
 
   def destroy
