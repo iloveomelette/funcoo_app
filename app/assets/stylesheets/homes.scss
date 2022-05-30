@@ -41,7 +41,7 @@
 
 // ===== トップセクションのレイアウト =====
 .top-section {
-  min-height: 100vh;
+  min-height: 95vh;
   background-color: rgba($color: #ffa45b, $alpha: 0.95);
   display: flex;
   @include tb {
