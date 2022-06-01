@@ -1,7 +1,11 @@
-<section class="recipes-container">
+<section class="recipes-container flex">
+  <aside class="px-2.5 md:pl-3 lg:mt-36 flex-left">
+    <%= render "recipes/shared/search_form", collection: @q %>
+  </aside>
+
   <div class="q-resultPage">
     <div class="text-center lg:text-left">
-      <h2 class="text-3xl mb-8">Recipes</h2>
+      <h2 class="text-3xl mb-8">検索されたレシピ</h2>
       <% if @searched_recipes.present? %>
         <p>ページ内検索結果 > <span class="q-count"><%= @searched_recipes.count %></span>レシピ</p>
         <div class="recipe-results">
@@ -14,5 +18,6 @@
       <% end %>
     </div>
   </div>
-  <div class="paginate"><%= paginate @searched_recipes %></div>
 </section>
+
+<div class="paginate"><%= paginate @searched_recipes %></div>
