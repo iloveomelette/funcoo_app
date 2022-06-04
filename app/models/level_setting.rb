@@ -1,4 +1,7 @@
 class LevelSetting < ApplicationRecord
+  FIRST_ADDING_POINT = 15
+  ADDING_POINT_RATE = 0.2
+
   class << self
     def calc_level(user)
       current_point, adding_point = calc_adding_point(user)    # ===== 現在の経験値と加算する経験値を計算する処理 =====
@@ -9,7 +12,7 @@ class LevelSetting < ApplicationRecord
     # ===== ここからclass_privateメソッド =====
     def calc_adding_point(user)
       current_point = user.experience_point
-      adding_point = current_point.zero? ? 15 : user.experience_point * 0.2
+      adding_point = current_point.zero? ? FIRST_ADDING_POINT : user.experience_point * ADDING_POINT_RATE
       [current_point, adding_point.round]
     end
 
