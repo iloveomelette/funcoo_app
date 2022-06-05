@@ -35,10 +35,10 @@
           </div>
         </div>
 
-        <%= link_to user_path(@contributor) do %>
+        <%= link_to user_path(@recipe.user) do %>
           <div class="flex m-0 md:mb-8 md:ml-2">
-            <%= image_tag check_user_profile_image(@contributor), class: "user-profileImage mr-2" %>
-            <p><%= @contributor.name %></p>
+            <%= image_tag check_user_profile_image(@recipe.user), class: "user-profileImage mr-2" %>
+            <p><%= @recipe.user.name %></p>
           </div>
         <% end %>
         
@@ -61,11 +61,11 @@
           <p class="text-xl"><%= safe_join(@recipe.content.split("\n"),tag(:br)) %></p>
         </div>
 
-        <% if @contributor.url.present? %>
+        <% if @recipe.user.url.present? %>
           <div class="mt-8">
             <p>投稿者のサイトを訪れてみる</p>
-            <%= link_to @contributor.url, target: "_blank", rel: "noopener noreferrer", class: "hover:text-quaternary" do %>
-              <%= @contributor.url %>
+            <%= link_to @recipe.user.url, target: "_blank", rel: "noopener noreferrer", class: "hover:text-quaternary" do %>
+              <%= @recipe.user.url %>
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             <% end %>
           </div>

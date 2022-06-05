@@ -16,10 +16,6 @@ Rails.application.routes.draw do
       get "search_index"
     end
   end
-  resources :users, only: %i[show visit] do
-    get "mypage", on: :member
-  end
-  resource :ranks, only: %i[maked_ranking] do
-    get "maked_ranking", on: :collection
-  end
+  resources :users, only: %i[show]
+  resources :ranks, only: %i[index]
 end

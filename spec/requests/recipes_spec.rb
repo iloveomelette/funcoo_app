@@ -158,12 +158,13 @@ RSpec.describe "Recipes", type: :request do
 
     context "正常なパラメータを渡して『レシピ』を更新するとき" do
       # ===== レシピのタイトルを更新前と更新後で比較する =====
-      it "レシピを更新した後、詳細ページにリダイレクトする" do
+      it "レシピを更新した後、詳細ページにリダイレクトしフラッシュメッセージを表示する" do
         sign_in user
         original_title = recipe.title
         new_title = params[:make_recipe_form][:title]
         expect { subject }.to change { recipe.reload.title }.from(original_title).to(new_title)
         expect(response).to redirect_to Recipe.last
+        expect(flash[:notice]).to be_present
       end
     end
 
@@ -171,20 +172,22 @@ RSpec.describe "Recipes", type: :request do
       let(:new_genre) { attributes_for(:genre, staple_food: "noodles") }
 
       # ===== ジャンルの主食を更新前と更新後で比較する =====
-      it "レシピを更新した後、詳細ページにリダイレクトする" do
+      it "レシピを更新した後、詳細ページにリダイレクトしフラッシュメッセージを表示する" do
         sign_in user
         original_staple_food = recipe.genre.staple_food
         new_staple_food = params[:make_recipe_form][:staple_food]
         expect { subject }.to change { recipe.genre.reload.staple_food }.from(original_staple_food).to(new_staple_food)
         expect(response).to redirect_to Recipe.last
+        expect(flash[:notice]).to be_present
       end
     end
 
     context "不正な値を渡して更新を行ったとき" do
       let(:params) { { make_recipe_form: attributes_for(:recipe, :invalid).merge(new_genre) } }
-      it "新しいレシピが更新されない" do
+      it "新しいレシピが更新されず、編集ページへレンダリングされる" do
         sign_in user
         expect { subject }.not_to change(Recipe, :count)
+        expect(response.body).to include "ジャンルを選択"
       end
     end
   end

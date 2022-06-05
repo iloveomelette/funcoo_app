@@ -92,6 +92,9 @@
   @include sp-tb {
     flex-direction: column;
   }
+  @include sp {
+    margin: 0 0 3rem 0;
+  }
   // ===== レシピ投稿フォームのスタイル =====
   .recipe-form {
     max-width: 960px;
@@ -220,6 +223,12 @@
       font-size: 12px;
     }
   }
+  .index-sp-paginate {
+    display: none;
+    @include sp {
+      display: block;
+    }
+  }
   // ===== レコメンド機能のスタイル =====
   .recommend-wrapper {
     display: flex;
@@ -283,6 +292,11 @@
         max-height: 390px;
       }
     }
+  }
+}
+.index-paginate {
+  @include sp {
+    display: none;
   }
 }
 

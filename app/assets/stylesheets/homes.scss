@@ -41,7 +41,7 @@
 
 // ===== トップセクションのレイアウト =====
 .top-section {
-  min-height: 100vh;
+  min-height: 95vh;
   background-color: rgba($color: #ffa45b, $alpha: 0.95);
   display: flex;
   @include tb {
@@ -176,7 +176,7 @@
 // ===== メインセクションのレイアウト =====
 .main-section {
   margin: 80px auto 120px;
-  .flex {
+  .sp-topContents-flex {
     @include sp {
       flex-direction: column;
       text-align: center;
@@ -235,6 +235,29 @@
     font-weight: 900;
     margin-bottom: 16px;
     text-align: center;
+  }
+  .home-recipeArticles-wrapper {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3em;
+    margin: 20px 0px 40px;
+    @include tb {
+      gap: 4em;
+    }
+    @include sp {
+      grid-template-columns: 1fr;
+      gap: 2em;
+    }
+    .recipe-wrapper {
+      width: 340px;
+      padding: 15px;
+    }
+  }
+  .recipes-menuImg {
+    border-radius: 15px;
+    height: 210px;
+    width: 340px;
   }
   .lead-signUp-msg {
     color: #5eaf23;

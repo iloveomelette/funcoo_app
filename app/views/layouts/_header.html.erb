@@ -61,10 +61,10 @@
           </li>
         <% end %>
         <li>
-          <%= link_to 'ランキング', maked_ranking_ranks_path %>
+          <%= link_to 'ランキング', ranks_path %>
         </li>
         <li>
-          <%= link_to 'マイページ', mypage_user_path(current_user) %>
+          <%= link_to "マイページ", user_path(current_user, page: "mypage") %>
         </li>
         <li>
           <%= link_to 'アカウント編集', edit_user_registration_path %>
@@ -93,10 +93,10 @@
           </li>
         <% end %>
         <li>
-          <%= link_to 'ランキング', maked_ranking_ranks_path %>
+          <%= link_to 'ランキング', ranks_path %>
         </li>
         <li>
-          <%= link_to 'マイページ', mypage_user_path(current_user) %>
+          <%= link_to "マイページ", user_path(current_user, page: "mypage") %>
         </li>
         <li>
           <%= link_to 'アカウント編集', edit_user_registration_path %>

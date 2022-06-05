@@ -1,31 +1,31 @@
 class UsersController < ApplicationController
-  before_action :set_contributor, only: :show
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def show
-    @contributor_recipes = take_contributor_recipes(@contributor.id)
-  end
-
-  def mypage
-    @recipes = take_user_recipes
-    recipe_ids = Favorite.includes(:user).where(user_id: current_user.id).order(created_at: :desc).pluck(:recipe_id)
-    @favorite_recipes = Recipe.includes(:makes, :favorites).where(id: recipe_ids).page(params[:page]).per(PER_PAGE)
+    if params[:page] == "mypage"
+      @recipes = if current_user.characteristic == "general"
+                   take_stored_recipe(current_user.maked_recipe_ids)
+                 else
+                   take_contributed_recipes(current_user.id)
+                 end
+      @favorite_recipes = take_stored_recipe(current_user.favorited_recipe_ids)
+    else
+      @contributor = User.find(params[:id])
+      @contributor_recipes = take_contributed_recipes(@contributor.id)
+    end
   end
 
   private
 
-  def take_user_recipes
-    if current_user.characteristic == "general" || current_user.email == "guest@example.com"
-      Recipe.includes(:user, :makes, :favorites).where(id: current_user.maked_recipes.pluck(:recipe_id)).page(params[:page]).per(PER_PAGE)
-    else
-      take_contributor_recipes(current_user.id)
-    end
+  def take_stored_recipe(recipe_ids)
+    Recipe.includes(:user, :makes, :favorites).where(id: recipe_ids).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
   end
 
-  def set_contributor
-    @contributor = User.find_by(id: params[:id])
-  end
-
-  def take_contributor_recipes(user_id)
+  def take_contributed_recipes(user_id)
     Recipe.includes(:user, :makes, :favorites).where(user_id:).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
+  end
+
+  def record_not_found
+    redirect_to recipes_path
   end
 end
