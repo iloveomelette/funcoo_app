@@ -1,10 +1,12 @@
 <% if recommend != nil %>
   <div class="recommend-wrapper commonCard-outstyle items-center">
     <%# =====スマートフォン時に表示する投稿者の情報===== %>
-    <div class="flex mb-2 sp-contributorInfo">
-      <%= image_tag check_user_profile_image(recommend.user), class: "user-profileImage mr-2" %>
-      <p><%= recommend.user.name %></p>
-    </div>
+    <%= link_to user_path(recommend.user) do %>
+      <div class="flex mb-2 sp-contributorInfo">
+        <%= image_tag check_user_profile_image(recommend.user), class: "user-profileImage mr-2" %>
+        <p><%= recommend.user.name %></p>
+      </div>
+    <% end %>
 
     <div class="flex-1">
       <% if recommend.menu_image.present? %>
@@ -17,10 +19,12 @@
     <div class="flex-1 flex flex-col md:px-6">
       <p class="text-2xl text-center md:text-left md:mb-4"><%= recommend.title %></p>
       <div class="contributor-cooking">
-        <div class="hidden md:flex">
-          <%= image_tag check_user_profile_image(recommend.user), class: "user-profileImage mr-2" %>
-          <p><%= recommend.user.name %></p>
-        </div>
+        <%= link_to user_path(recommend.user) do %>
+          <div class="hidden md:flex">
+            <%= image_tag check_user_profile_image(recommend.user), class: "user-profileImage mr-2" %>
+            <p class="hover:text-quaternary"><%= recommend.user.name %></p>
+          </div>
+        <% end %>
 
         <div class="cooking-info">
           <p><%= recommend.cooking_time %>分</p>

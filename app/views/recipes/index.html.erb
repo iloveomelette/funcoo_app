@@ -16,13 +16,11 @@
 
   <main class="flex-center">
     <div class="recipeIndex-wrapper md:px-10 m-auto">
-      <% if user_signed_in? %>
-        <% if current_user.characteristic == "general" || current_user.email == "guest@example.com" %>
-          <section class="px-4 mb-10 md:p-0">
-            <h2 class="mb-3.5 text-2xl">あなたへのおすすめ</h2>
-            <%= render "recipes/shared/recommend", recommend: @recommend %>
-          </section>
-        <% end %>
+      <% if user_signed_in? && current_user.characteristic == "general" %>
+        <section class="px-4 mb-10 md:p-0">
+          <h2 class="mb-3.5 text-2xl">あなたへのおすすめ</h2>
+          <%= render "recipes/shared/recommend", recommend: @recommend %>
+        </section>
       <% end %>
 
       <section>
