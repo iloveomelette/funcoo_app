@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def search
     @q = Recipe.ransack(params[:q])
-    @searched_recipes = @q.result.includes(:user, :makes).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
+    @searched_recipes = @q.result.includes(:user, :makes, :favorites).order(created_at: :desc).page(params[:page]).per(PER_PAGE)
   end
 
   def after_sign_in_path_for(_resource)

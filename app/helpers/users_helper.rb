@@ -32,7 +32,7 @@ module UsersHelper
   end
 
   def show_favorited_recipes
-    return unless current_page?(action: "mypage")
+    return unless current_page?(page: "mypage")
 
     tag.li do
       tag.a "お気に入りしたレシピ", href: "#", "data-id": "favorite-recipes"

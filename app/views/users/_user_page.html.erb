@@ -2,7 +2,7 @@
 	<div class="user-info commonCard-outstyle">
     <div class="user-info-left">
       <%= image_tag check_user_profile_image(user), class: "user-info-image" %>
-      <%= link_to "アカウント編集", edit_user_registration_path, class: "user-info-link" if current_page?(action: "mypage") %>  <%# ===== mypage専用 ===== %>
+      <%= link_to "アカウント編集", edit_user_registration_path, class: "user-info-link" if current_page?(page: "mypage") %>  <%# ===== mypage専用 ===== %>
     </div>
 
     <div class="user-info-right">
@@ -10,7 +10,7 @@
         <div>
           <p class="user-infoName"><%= user.name %></p>
 
-          <% if current_page?(controller: "users", action: "show") %>  <%# ===== show専用 ===== %>
+          <% if !current_page?(page: "mypage") %>  <%# ===== 公開ユーザページ専用 ===== %>
             <p class="text-sm mt-4">投稿者のHPを覗いてみる ↓</p>
             <%= link_to user.url, target: "_blank", rel: "noopener noreferrer", class: "hover:text-quaternary" do %>
               <%= user.url %>
@@ -27,7 +27,7 @@
       </div>
 
       <div class="text-lg mt-3">
-        <p><%= verify_user_introduction(current_user) %></p>
+        <p><%= verify_user_introduction(user) %></p>
       </div>
     </div>
 	</div>
@@ -54,7 +54,7 @@
       <% end %>
     </section>
 
-    <% if current_page?(action: "mypage") %>  <%# ===== mypage専用 ===== %>
+    <% if current_page?(page: "mypage") %>  <%# ===== mypage専用 ===== %>
       <section class="user-recipes myRecipes-contents" id="favorite-recipes">
         <% if favorite_recipes.present? %>
           <div class="user-makedRecipes">

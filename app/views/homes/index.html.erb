@@ -29,7 +29,7 @@
 
     <div class="visit-recipesLink">
       <%= link_to recipes_path do %>
-        <i class="fa-solid fa-caret-right"></i> 一覧ページを覗いてみる
+        <i class="fa-solid fa-caret-right"></i> レシピの一覧を覗いてみる
       <% end %>
     </div>
   </div>
@@ -43,7 +43,7 @@
         <h2 class="main-section-heading2">FunCooAppとは？</h2>
       </div>
       <div>
-        <div class="flex md:px-8 lg:px-20">
+        <div class="sp-topContents-flex flex md:px-8 lg:px-20">
           <div class="flex-1 text-center">
             <%= image_tag "what-app.png", alt: "アプリ説明画像", class: "what-app-img" %>
             <%= link_to "Idea illustrations by Storyset", "https://storyset.com/idea", class: "credit" %>
@@ -52,7 +52,7 @@
             <h3 class="main-section-heading3 pt-10 md:pt-4">直感的に「これだ！」と思う</h3>
             <h3 class="main-section-heading3">レシピを届けたい</h3>
             <p class="app-description">
-              FunCooAppでは、食に精通した方々が想いを込めて考案したレシピをあなたにお届けします。毎日の面倒なレシピを考えることに集中するのではなく、料理自体を楽しむことに集中してほしいと願っております。
+              FunCooAppでは、食に精通した方々が想いを込めて考案したレシピをあなたにお届けします。毎日の面倒なレシピを考えることに集中するのではなく、料理自体を楽しむことに集中できる日常を提供致します。
             </p>
           </div>
         </div>
@@ -61,13 +61,13 @@
 
     <div class="mb-32">
       <div class="text-center mb-16">
-        <h2 class="main-section-heading2">おもな機能</h2>
+        <h2 class="main-section-heading2">主な機能</h2>
       </div>
       <div class="mb-16">
         <div class="tail-toUser-msg toUser-scss-rsp">
           <h3 class="main-section-heading3">個人利用者の方</h3>
         </div>
-        <div class="flex justify-center">
+        <div class="sp-topContents-flex flex justify-center">
           <div class="tail-function-wrapper function-scss-rsp1">
             <%= image_tag "search.png", alt: "検索機能が利用できる", class: "main-section-img" %>
             <div class="px-4">
@@ -88,7 +88,7 @@
             <%= image_tag "level-status.png", alt: "レベル機能が利用できる", class: "main-section-img" %>
             <div class="px-4">
               <p class="function-title">ステータス機能</p>
-              <p>当アプリ機能である「作ってみた！」を押すことでレベルを上げるとステータス機能が上がります。達成感を持って毎日楽しく料理をすることができます。</p>
+              <p>「作ってみた！」ボタンを押すことで経験値を得られ、レベルが上がっていきます。達成感を持って毎日楽しく料理をすることができます。</p>
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@
         <div class="mb-8 text-center md:tail-toUser-msg">
           <h3 class="main-section-heading3">個人農家/個人飲食店経営の方</h3>
         </div>
-        <div class="flex justify-center">
+        <div class="sp-topContents-flex flex justify-center">
           <div class="tail-function-wrapper function-scss-rsp1">
             <%= image_tag "appeal-food.png", alt: "魅力ある食材をアピールしよう", class: "main-section-img" %>
             <div class="px-4">
@@ -126,7 +126,16 @@
       </div>
     </div>
 
-    <div>
+    <section>
+      <h2 class="main-section-heading2 text-center">新着レシピ</h2>
+      <div class="home-recipeArticles-wrapper">
+        <% @recipes.each do |recipe| %>
+          <%= render "recipes/recipe", recipe: recipe %>
+        <% end %>
+      </div>
+    </section>
+
+    <div class="mt-24">
       <div class="text-center mb-16">
         <h3 class="lead-signUp-msg">毎日楽しく料理ができる</h3>
         <h3 class="lead-signUp-msg">さあ、今すぐ始めましょう！</h3>

@@ -1,1 +1,5 @@
-<%= render "users/user_page", user: @contributor, recipes: @contributor_recipes %>
+<% if params[:page] == "mypage" %>
+	<%= render "users/user_page", recipes: @recipes, favorite_recipes: @favorite_recipes, user: current_user %>
+<% else %>
+	<%= render "users/user_page", user: @contributor, recipes: @contributor_recipes %>
+<% end %>
